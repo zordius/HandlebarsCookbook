@@ -1,0 +1,24 @@
+{
+  "name": "handlebars.cookbook",
+  "version": "0.0.1",
+  "description": "i",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zordius/HandlebarsCookbook.git"
+  },
+  "keywords": [
+    "handlebars"
+  ],
+  "author": "zordius@yahoo-inc.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zordius/HandlebarsCookbook/issues"
+  },
+  "homepage": "https://github.com/zordius/HandlebarsCookbook",
+  "devDependencies": {
+    "handlebars": "^4.0.5",
+    "mustache": "^2.2.0"
+  }
+}
