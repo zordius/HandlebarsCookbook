@@ -1,0 +1,19 @@
+{
+    "name": "zordius/HandlebarsCookbook",
+    "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
+    "homepage": "https://github.com/zordius/HandlebarsCookbook",
+    "keywords": ["handlebars", "mustache", "template", "logicless"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zordius Chen",
+            "email": "zordius@yahoo-inc.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "zordius/lightncandy": "0.89"
+    }
+}
