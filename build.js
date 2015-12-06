@@ -7,8 +7,18 @@ var partial_dir = 'partials/';
 var fs = require('fs');
 var handlebars = require('handlebars');
 
-var partials = fs.readdirSync(partial_dir).reduce(function (O, fn) {
-    O[fn] = fs.readFileSync(partial_dir + fn, 'utf8');
-    return O;
-}, {});
+fs.readdirSync(partial_dir).forEach(function (fn) {
+    handlebars.registerPartial(fn, fs.readFileSync(partial_dir + fn, 'utf8'));
+});
 
+if (!fs.existsSync(out_dir)) {
+    fs.mkdirSync(out_dir);
+}
+
+fs.readdirSync(in_dir).forEach(function (fn) {
+    fs.writeFileSync(out_dir + fn, handlebars.compile(fs.readFileSync(in_dir + fn, 'utf8'))({
+        filename: fn
+    }));
+});
+
+console.log('done!');
