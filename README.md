@@ -6,4 +6,5 @@ A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and 
 How to Build
 ------------
 
-
+* npm install
+* npm run build

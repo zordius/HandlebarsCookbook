@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "build": "node build.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zordius/HandlebarsCookbook.git"
