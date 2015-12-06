@@ -1,0 +1,9 @@
+[submodule "cloned/mustache"]
+	path = cloned/mustache
+	url = https://github.com/janl/mustache.js.git
+[submodule "cloned/handlebars"]
+	path = cloned/handlebars
+	url = https://github.com/wycats/handlebars.js.git
+[submodule "cloned/lightncandy"]
+	path = cloned/lightncandy
+	url = https://github.com/zordius/lightncandy.git
