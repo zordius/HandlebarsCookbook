@@ -1,6 +1,7 @@
 // configs
 var out_dir = 'generated/';
 var in_dir = 'templates/';
+var data_dir = 'bookdata/';
 var partial_dir = 'partials/';
 
 // required libs
