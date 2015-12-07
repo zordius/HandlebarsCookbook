@@ -22,10 +22,11 @@ gulp.task('build', function () {
 
 gulp.task('browser-sync', function() {
     browserSync.init({
+        open: false,
         server: {
             baseDir: "./generated/"
         }
     });
 });
 
-gulp.task('default', ['build', 'watch', 'browser-sync']);
+gulp.task('default', ['watch', 'browser-sync']);
