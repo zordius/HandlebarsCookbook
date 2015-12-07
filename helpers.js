@@ -1,4 +1,5 @@
 var fs = require('fs');
+var handlebars = require('handlebars');
 
 var helpers = {
     book_writer: function (data, options) {
@@ -12,18 +13,32 @@ var helpers = {
             fs.writeFileSync(data.configs.out_dir + D.pagename + '.html', options.fn(D));
         });
     },
-    section_builder: function (options) {
-        return Object.keys(this).reduce(function (ret, S) {
-            switch (S) {
-            case 'title':
-            case 'description':
-            case 'pagename':
-                break;
-            default:
-                ret += options.fn(S);
+    section_builder: function (cx, options) {
+        var sections = Object.keys(cx).reduce(function (ret, S) {
+            var data = handlebars.createFrame(options.data);
+            data.section = S;
+            var R = options.fn(cx, {data: data});
+            if (R != '') {
+                ret.push(R);
             }
             return ret;
-        }.bind(this), '');
+        }.bind(this), []);
+        if (options.hash.column) {
+            return '<div class="row">' + sections.map(function (S) {
+                return '<div class="col-md-' + ((sections.length > 2) ? '4' : '6') + '">' + S + '</div>';
+            }).join('') + '</div>';
+        }
+        return sections.join('');
+    },
+    main_section: function (options) {
+        switch (options.data.section) {
+        case 'title':
+        case 'description':
+        case 'pagename':
+            return '';
+        default:
+            return options.fn(this);
+        }
     }
 };
 

@@ -4,7 +4,7 @@
 <div class="col-md-9 col-sm-10">
 <h1>{{title}}</h1>
 <p>{{description}}</p>
-{{#section_builder}}
+{{#section_builder .}}
  {{> sections}}
 {{/section_builder}}
 </div>

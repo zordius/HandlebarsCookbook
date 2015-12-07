@@ -1,1 +1,6 @@
-<h2>{{.}}</h2>
+{{#main_section}}
+<h2>{{@section}}</h2>
+{{#section_builder (lookup . @section) column=true}}
+{{.}}
+{{/section_builder}}
+{{/main_section}}
