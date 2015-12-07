@@ -1,4 +1,4 @@
-title: create your project
+title: Create your project
 description:
   No matter PHP or nodejs, you should create a project first. The project definition can provide package management tools dependency information, and help you to install required packages. Here are examples of project definition file with minimal settings, you may use it as a quick start. Remember to modify the file to fit your project information.
 

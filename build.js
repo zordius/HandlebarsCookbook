@@ -15,9 +15,12 @@ var yaml = require('js-yaml');
 
 module.exports = function () {
     // all book data
-    var data = fs.readdirSync(configs.data_dir).map(function (fn) {
-        return Object.assign(yaml.load(fs.readFileSync(configs.data_dir + fn, 'utf8'), {filename: fn}), {pagename: fn.replace(/.yaml/, '')});
-    });
+    var data = fs.readdirSync(configs.data_dir).reduce(function (O, fn) {
+        if (fn.match(/.yaml$/)) {
+            O.push(Object.assign(yaml.load(fs.readFileSync(configs.data_dir + fn, 'utf8'), {filename: fn}), {pagename: fn.replace(/.yaml/, '')}));
+        }
+        return O;
+    }, []);
 
     var partials = fs.readdirSync(configs.partial_dir).reduce(function (O, fn) {
         O[fn] = fs.readFileSync(configs.partial_dir + fn, 'utf8');

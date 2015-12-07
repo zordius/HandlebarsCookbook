@@ -1,5 +1,5 @@
-<ul>
+<ul class="list-group">
 {{#each @root}}
-<li>{{pagename}}</li>
+<li class="list-group-item"><a href="{{pagename}}.html">{{title}}</a></li>
 {{/each}}
 </ul>
