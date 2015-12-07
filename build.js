@@ -14,6 +14,8 @@ var handlebars = require('handlebars');
 var yaml = require('js-yaml');
 
 module.exports = function () {
+    delete require.cache[require.resolve('./helpers')];
+
     // all book data
     var data = fs.readdirSync(configs.data_dir).reduce(function (O, fn) {
         if (fn.match(/.yaml$/)) {
@@ -35,4 +37,5 @@ module.exports = function () {
         partials: partials,
         helpers: require('./helpers')
     });
+
 };

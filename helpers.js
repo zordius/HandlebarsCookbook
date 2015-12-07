@@ -11,6 +11,19 @@ var helpers = {
             }
             fs.writeFileSync(data.configs.out_dir + D.pagename + '.html', options.fn(D));
         });
+    },
+    section_builder: function (options) {
+        return Object.keys(this).reduce(function (ret, S) {
+            switch (S) {
+            case 'title':
+            case 'description':
+            case 'pagename':
+                break;
+            default:
+                ret += options.fn(S);
+            }
+            return ret;
+        }.bind(this), '');
     }
 };
 
