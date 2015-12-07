@@ -1,15 +1,17 @@
 {{#main_section}}
-<h2>{{@section}}</h2>
-{{#section_builder (lookup . @section) column=true}}
+<h2>{{@sectionNumber}}{{@section}}</h2>
+ {{#if content}}
+ <p>{{content}}</p>
+ {{/if}}
+ {{#section_builder (lookup . @section) column=true}}
 <h3>{{@section}}</h3>
-{{#with (lookup . @section)}}
-{{#if file}}
-file name: <code>{{file}}</code>
-{{/if}}
-{{#if code}}
-<pre>{{code}}</pre>
-{{/if}}
-{{log .}}
-{{/with}}
-{{/section_builder}}
+  {{#with (lookup . @section)}}
+   {{#if file}}
+ <p>file name: <code>{{file}}</code></p>
+   {{/if}}
+   {{#if code}}
+ <pre class="prettyprint lang-{{code_type}}">{{remove_last_cr code}}</pre>
+   {{/if}}
+  {{/with}}
+ {{/section_builder}}
 {{/main_section}}

@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
-var build = require('./build');
 var lint_files = ['*.js'];
 
 gulp.task('watch', function () {
@@ -16,7 +15,8 @@ gulp.task('lint', function () {
 });
 
 gulp.task('build', function () {
-    build();
+    delete require.cache[require.resolve('./build')];
+    require('./build')();
     browserSync.reload();
 });
 

@@ -1,5 +1,5 @@
-<ul class="list-group">
+<ul class="dropdown-menu">
 {{#each @root}}
-<li class="list-group-item"><a href="{{pagename}}.html">{{title}}</a></li>
+<li><a href="{{pagename}}.html">{{addOne @index}}. {{title}}</a></li>
 {{/each}}
 </ul>

@@ -34,3 +34,16 @@ Create project definition file:
           "mustache": "2.2.0"
         }
       }
+Install dependency:
+  php:
+    code: composer install
+  nodejs:
+    code: npm install
+Require the library:
+  lightncandy:
+    code: use LightnCandy;
+  handlebars:
+    code: var Handlebars = require('handlebars');
+  mustache:
+    code: var Mustache = require('mustache');
+Start to use the library: Now the library is ready to go!
