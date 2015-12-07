@@ -4,8 +4,9 @@
   "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
   "main": "index.js",
   "scripts": {
-    "build": "node build.js",
-    "lint": "eslint build.js helpers.js"
+    "start": "gulp",
+    "build": "gulp build",
+    "lint": "gulp lint"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,9 @@
   },
   "homepage": "https://github.com/zordius/HandlebarsCookbook",
   "devDependencies": {
-    "eslint": "1.10.3",
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
     "handlebars": "4.0.5",
     "js-yaml": "^3.4.6",
     "mustache": "2.2.0",
