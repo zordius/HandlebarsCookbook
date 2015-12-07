@@ -2,6 +2,7 @@ require('object.assign').shim();
 
 // configs
 var configs = {
+    project_name: 'Handlebars Cookbook',
     out_dir: 'generated/',
     data_dir: 'bookdata/',
     partial_dir: 'partials/'

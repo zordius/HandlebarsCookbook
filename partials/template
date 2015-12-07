@@ -1,3 +1,11 @@
 {{> html_start}}                                                                                        
+{{> nav}}
+<div class="container row">
+<div class="col-md-9 col-sm-10">
 This is a test...
+</div>
+<div class="col-md-3 col-sm-2">
+{{> toc}}
+</div>
+</div>
 {{> html_end}}
