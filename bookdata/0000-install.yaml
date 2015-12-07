@@ -1,0 +1,36 @@
+title: create your project
+description:
+  No matter PHP or nodejs, you should create a project first. The project definition can provide package management tools dependency information, and help you to install required packages. Here are examples of project definition file with minimal settings, you may use it as a quick start. Remember to modify the file to fit your project information.
+
+create project definition file:
+  php: 
+    file: composer.json
+    code: >
+      {
+          "name": "zordius/HandlebarsCookbook",
+          "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
+          "homepage": "https://github.com/zordius/HandlebarsCookbook",
+          "require": {
+              "php": ">=5.3.0"
+          },
+          "require-dev": {
+              "zordius/lightncandy": "0.89"
+          }
+      }
+  nodejs:
+    file: package.json
+    code: >
+      {
+        "name": "handlebars.cookbook",
+        "version": "0.0.1",
+        "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/zordius/HandlebarsCookbook.git"
+        },
+        "homepage": "https://github.com/zordius/HandlebarsCookbook",
+        "devDependencies": {
+          "handlebars": "4.0.5",
+          "mustache": "2.2.0"
+        }
+      }
