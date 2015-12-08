@@ -5,7 +5,7 @@ description:
 Create project definition file:
   php: 
     file: composer.json
-    code: >
+    code: |
       {
           "name": "zordius/HandlebarsCookbook",
           "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
@@ -19,7 +19,7 @@ Create project definition file:
       }
   nodejs:
     file: package.json
-    code: >
+    code: |
       {
         "name": "handlebars.cookbook",
         "version": "0.0.1",

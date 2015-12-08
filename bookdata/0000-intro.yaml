@@ -10,7 +10,7 @@ How it works...:
   template:
     code: Hello! My name is {{name}} and I am {{age}} years old.
   + data:
-    code: >
+    code: |
       {
         "name": "John",
         "age": 18

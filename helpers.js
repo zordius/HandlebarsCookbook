@@ -14,6 +14,23 @@ var helpers = {
     addOne: function (I) {
         return I + 1;
     },
+    collect: function (cx, key, options) {
+        if (typeof cx != 'object') {
+            return;
+        }
+        return Object.keys(cx).reduce(function (O, K, I) {
+            var V = cx[K];
+            if (V && V[key]) {
+                if (!options.hash.ignore || options.hash.ignore[I] === undefined) {
+                    O.push(V[key]);
+                }
+            }
+            return O;
+        }, []);
+    },
+    join: function (cx, sep) {
+        return (cx && cx.join) ? new handlebars.SafeString(cx.join(sep)) : '';
+    },
     book_writer: function (data, options) {
         data.forEach(function (D, I) {
             if (I > 0) {

@@ -12,7 +12,7 @@ Define the template:
   
 Compile the template:
   lightncandy:
-    code: >
+    code: |
       $php = LightnCandy::compile($template);
       $render = LightnCandy::prepare($php);
   handlebars.js:
@@ -45,3 +45,15 @@ Reuse the render function:
   mustache:
     content: <p>Mustache does not support pre-compile, so you need to compile the template everytime.</p>
     code: console.log(Mustache.render(template, data));
+
+The full code for copy:
+  lightncandy:
+    collectcode:
+      5:
+  handlebars.js:
+    collectcode:
+      5:
+  mustache:
+    collectcode:
+    ignore:
+      5:
