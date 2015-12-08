@@ -1,12 +1,11 @@
 {{> html_start}}                                                                                        
 {{> nav}}
 <div class="container-fluid row">
-<h1>{{title}}</h1>
-<p>{{description}}</p>
+ <h1>{{title}}</h1>
+ <p>{{{description}}}</p>
 {{#section_builder .}}
  {{> sections}}
 {{/section_builder}}
 {{>pager}}
-</div>
 </div>
 {{> html_end}}

@@ -1,0 +1,19 @@
+title: About this book
+description:
+  This book contains every handlebars features and example, you can find working example code for both handlebars.js and lightncandy
+
+What is...:
+  mustache: <a href="http://mustache.github.io/">Mustache</a> is a logic-less template syntax. It can be used for HTML, config files, source code - anything. It works by expanding tags in a template using values provided in a hash or object.
+  handlebars.js: <a href="http://handlebarsjs.com/">Handlebars.js</a> is an extension to the Mustache templating language created by Chris Wanstrath.
+  lightncandy: <a href="https://github.com/zordius/lightncandy">LightnCandy</a> is an extremely fast PHP implementation of handlebars and mustache.
+How it works...:
+  template:
+    code: Hello! My name is {{name}} and I am {{age}} years old.
+  + data:
+    code: >
+      {
+        "name": "John",
+        "age": 18
+      }
+  = result:
+    code: Hello! My name is John and I am 18 years old.

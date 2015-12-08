@@ -1,0 +1,3 @@
+title: Simple Variable
+description:
+  Use {{foo}} will lookup the input data

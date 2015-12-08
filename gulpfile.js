@@ -1,11 +1,11 @@
 var gulp = require('gulp');
+var del = require('del');
 var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
 var lint_files = ['*.js'];
 
 gulp.task('watch', function () {
-    gulp.watch(['partials/*', 'helpers.js', 'bookdata/*'], ['build']);
-    gulp.watch(lint_files, ['lint']);
+    gulp.watch(['partials/*', '*.js', 'bookdata/*'], ['lint', 'build']);
 });
 
 gulp.task('lint', function () {
@@ -14,7 +14,11 @@ gulp.task('lint', function () {
     .pipe(eslint.format());
 });
 
-gulp.task('build', function () {
+gulp.task('clean', function () {
+    return del('generated/*');
+});
+
+gulp.task('build', ['clean'], function () {
     delete require.cache[require.resolve('./build')];
     require('./build')();
     browserSync.reload();

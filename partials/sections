@@ -1,11 +1,10 @@
 {{#main_section}}
 <h2>{{@sectionNumber}}{{@section}}</h2>
- {{#if content}}
- <p>{{content}}</p>
- {{/if}}
+ {{isStringThenOutput . tag='p'}}
  {{#section_builder (lookup . @section) column=true}}
 <h3>{{@section}}</h3>
   {{#with (lookup . @section)}}
+   {{isStringThenOutput . tag='p'}}
    {{#if file}}
  <p>file name: <code>{{file}}</code></p>
    {{/if}}

@@ -19,7 +19,7 @@ module.exports = function () {
     // all book data
     var data = fs.readdirSync(configs.data_dir).reduce(function (O, fn) {
         if (fn.match(/.yaml$/)) {
-            O.push(Object.assign(yaml.load(fs.readFileSync(configs.data_dir + fn, 'utf8'), {filename: fn}), {pagename: fn.replace(/.yaml/, '')}));
+            O.push(Object.assign(yaml.load(fs.readFileSync(configs.data_dir + fn, 'utf8'), {filename: fn}), {pagename: O.length ? fn.replace(/.yaml/, '') : 'index'}));
         }
         return O;
     }, []);

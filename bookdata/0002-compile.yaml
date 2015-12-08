@@ -1,0 +1,10 @@
+title: Compile the template
+description:
+  Before you use the template you should compile the template.
+
+Compile the template:
+  lightncandy:
+    code: LightnCandy::compile($template);
+  mustache: mustache do not support compile, so you can just go to next step.
+  handlebars:
+    code: Handlebars.compile(template);

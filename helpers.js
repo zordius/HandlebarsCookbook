@@ -2,6 +2,15 @@ var fs = require('fs');
 var handlebars = require('handlebars');
 
 var helpers = {
+    isStringThenOutput: function (cx, options) {
+        if (typeof cx !== 'string') {
+            return;
+        }
+        if (options.hash.tag) {
+            return new handlebars.SafeString('<' + options.hash.tag + '>' + cx + '</' + options.hash.tag + '>');
+        }
+        return cx;
+    },
     addOne: function (I) {
         return I + 1;
     },
