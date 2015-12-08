@@ -1,0 +1,47 @@
+title: Hello World
+description:
+  This is a basic example to use mustache or handlebars template.
+
+Define the template:
+  lightncandy:
+    code: $template = 'Hello, {{foo}}!';
+  handlebars.js:
+    code: var template = 'Hello, {{foo}}!';
+  mustache:
+    code: var template = 'Hello, {{foo}}!';
+  
+Compile the template:
+  lightncandy:
+    code: >
+      $php = LightnCandy::compile($template);
+      $render = LightnCandy::prepare($php);
+  handlebars.js:
+    code: var render = Handlebars.compile(template);
+  mustache: mustache do not support compile, so you can just go to next step.
+
+Define the data:
+  lightncandy:
+    code: $data = array('foo' => 'world');
+  handlebars.js:
+    code: "var data = {foo: 'world'};"
+  mustache:
+    code: "var data = {foo: 'world'};"
+
+Rendering the template:
+  lightncandy:
+    code: echo $render($data);
+  handlebars.js:
+    code: console.log(render(data));
+  mustache:
+    code: console.log(Mustache.render(template, data));
+
+Reuse the render function:
+  lightncandy:
+    content: <p>You do not need to compile template everytime. You can reuse the render function with different data. </p>
+    code: echo $render($another_data);
+  handlebars.js:
+    content: <p>You do not need to compile template everytime. You can reuse the render function with different data. </p>
+    code: console.log(render(another_data));
+  mustache:
+    content: <p>Mustache does not support pre-compile, so you need to compile the template everytime.</p>
+    code: console.log(Mustache.render(template, data));
