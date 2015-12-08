@@ -64,7 +64,7 @@ var helpers = {
         }
         if (options.data.section) {
             switch (options.data.section) {
-            case 'handlebars':
+            case 'handlebars.js':
             case 'mustache':
             case 'nodejs':
             case 'JavaScript':

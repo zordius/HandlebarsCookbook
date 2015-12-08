@@ -5,6 +5,9 @@
 <h3>{{@section}}</h3>
   {{#with (lookup . @section)}}
    {{isStringThenOutput . tag='p'}}
+   {{#if content}}
+   {{{content}}}
+   {{/if}}
    {{#if file}}
  <p>file name: <code>{{file}}</code></p>
    {{/if}}
