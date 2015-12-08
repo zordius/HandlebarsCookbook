@@ -4,7 +4,7 @@ var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
 var lint_files = ['*.js'];
 
-gulp.task('watch', function () {
+gulp.task('watch', ['build'], function () {
     gulp.watch(['partials/*', '*.js', 'bookdata/*'], ['lint', 'build']);
 });
 

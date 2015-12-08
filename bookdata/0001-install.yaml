@@ -42,7 +42,7 @@ Install dependency:
 Require the library:
   lightncandy:
     code: use LightnCandy;
-  handlebars:
+  handlebars.js:
     code: var Handlebars = require('handlebars');
   mustache:
     code: var Mustache = require('mustache');
