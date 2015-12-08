@@ -4,7 +4,11 @@ php:
 script:
   - npm install
   - npm run build
+  - ./travis.sh
 sudo: false
 cache:
   directories:
     - node_modules
+env:
+  global:
+    secure: "Tj232O/0b7io+9MWsXmB/nqMl33vOQ1mDyaYqSZJaOFIshk/ihuhHV+P9Lu9RXuePapjgUMbaZHw+x+o1UuGugl08lvO3P9y5I4E8bG93JAvhJLrpWW3b7bhE/cXH/ZISt1U5RNQzdosWlLWkQJOAKhLUieYyS2O+oY3Yl4m6XJYdPzO326bKJ0epuY9XYLXj0YW/Pnqa0HsMIDsTBZI3shpxmCDJn2jc4oistkgVT4nJYoTDi71t+IICOM7YEABBtG0mukYDx++amoDXW/ybe511cY+giHAN8mRXvHC1nMY1+Djdl2aQbS0+sBcu8oCVcV4/67ehIsRqy8jQJF2jNjkOoUTelXJpvUPccEONvXeuX/V/5vrWdMBAZxr/Q1iYXL/hwSZG1d3/5J8Wh9g4mkAf3EGTP6rqNLU2fezi2SLDbef0nxQKEAycdA3kaOyANAIthBL5LiZ5qB7pr4CoQ8KtILXQkcB6IinWyoDvqlgR+VPrNmioB8tZY5b6isDzHEFn1I9p/pSkBHT6TQi5/M7AiKDKbqh9Fu932SR4eD06DGl2OsmW6o3gxvpXQUXCEBSqpa1gDTc1QCxcApg1TjvoPXg9K/hwiCvzBI0QyUFhGsG8S2EXj0qpwZJxiGg99SHhjJrooe/EZDjjKgv5upBKxbSo5ZhvySzAdxVJZI="
