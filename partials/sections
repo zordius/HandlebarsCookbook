@@ -18,8 +18,8 @@
     {{{code "" type=(code_type) use=""}}}
    {{/if}}
    {{#if ./collectcode}}
-    {{{code (join (collect (collect ../.. @section ignore=collectcode) "code") "
-") type=(code_type) copy=@section use="
+    {{{code (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
+") type=(code_type) copy=@section result=true use="
 "}}}
    {{/if}}
   {{/with}}

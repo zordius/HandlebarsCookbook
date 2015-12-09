@@ -1,6 +1,7 @@
 var fs = require('fs');
 var handlebars = require('handlebars');
 var Prism = require('prismjs');
+var exec = require('shelljs').exec;
 
 require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-php');
@@ -9,23 +10,47 @@ require('prismjs/components/prism-handlebars');
 var helpers = {
     code: function (cx, options) {
         var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
-        var code = helpers.remove_last_cr(cx);
+        var code = '';
+        var tmp_file = 'tmp_file_exec';
+        var result = '';
 
         if (options.hash.use !== undefined) {
             switch (options.data.section) {
             case 'lightncandy':
-                code = 'require \'./vendor/autoload.php\';\nuse LightnCandy\\LightnCandy;\n' + options.hash.use + code;
+                code = 'require \'./vendor/autoload.php\';\nuse LightnCandy\\LightnCandy;';
                 break;
             case 'handlebars.js':
-                code = 'var Handlebars = require(\'handlebars\');\n' + options.hash.use + code;
+                code = 'var Handlebars = require(\'handlebars\');';
                 break;
             case 'mustache':
-                code = 'var Mustache = require(\'mustache\');\n' + options.hash.use + code;
+                code = 'var Mustache = require(\'mustache\');';
                 break;
             }
+            code = code + options.hash.use;
         }
 
-        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(code, Prism.languages[options.hash.type], options.hash.type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '');
+        code = code + helpers.remove_dupe_cr(cx);
+
+        if (options.hash.result !== undefined) {
+            switch (options.hash.type) {
+            case 'php':
+                fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
+                result = exec('php ' + tmp_file, {silent: true});
+                break;
+            default:
+                fs.writeFileSync(tmp_file, code);
+                result = exec('node ' + tmp_file, {silent: true});
+            }
+            if ((result.code === 0) && (result.output !== '')) {
+                result = '<h4>Output</h4><pre class="result">' + result.output + '</pre>';
+            } else {
+                console.warn(result);
+                result = '';
+            }
+            fs.unlink(tmp_file);
+        }
+
+        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(code, Prism.languages[options.hash.type], options.hash.type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
     },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
@@ -47,6 +72,12 @@ var helpers = {
             var V = cx[K];
             if (V && V[key]) {
                 if (!options.hash.ignore || (options.hash.ignore[I] === undefined)) {
+                    if (options.hash.key) {
+                        V[key][options.hash.key] = K;
+                    }
+                    if (options.hash.comment && V[options.hash.comment]) {
+                        O.push('\n// ' + V[options.hash.comment]);
+                    }
                     O.push(V[key]);
                 }
             }
@@ -123,8 +154,8 @@ var helpers = {
             }
         }
     },
-    remove_last_cr: function (txt) {
-        return (txt && txt.replace) ? txt.replace(/\n+$/, '') : '';
+    remove_dupe_cr: function (txt) {
+        return (txt && txt.replace) ? txt.replace(/\n+$/, '').replace(/\n{3,10}/g, '\n\n') : '';
     }
 };
 
