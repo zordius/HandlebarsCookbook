@@ -141,8 +141,8 @@ var helpers = {
         if (options.data.section) {
             switch (options.data.section) {
             case 'template':
-            case 'mustache':
                 return 'handlebars';
+            case 'mustache':
             case 'handlebars.js':
             case 'nodejs':
             case 'JavaScript':
