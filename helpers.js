@@ -11,10 +11,10 @@ var helpers = {
         var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
         var code = helpers.remove_last_cr(cx);
 
-        if (options.hash.use) {
+        if (options.hash.use !== undefined) {
             switch (options.data.section) {
             case 'lightncandy':
-                code = 'use LightnCandy;\n' + options.hash.use + code;
+                code = '// Use composer autoloader\nrequire \'./vendor/autoload.php\';\nuse LightnCandy;\n' + options.hash.use + code;
                 break;
             case 'handlebars.js':
                 code = 'var Handlebars = require(\'handlebars\');\n' + options.hash.use + code;
