@@ -44,6 +44,7 @@ var helpers = {
             if ((result.code === 0) && (result.output !== '')) {
                 result = '<h4>Output</h4><pre class="result">' + result.output + '</pre>';
             } else {
+                console.warn('Bad result when execute code:\n' + code);
                 console.warn(result);
                 result = '';
             }
