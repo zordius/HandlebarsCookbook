@@ -8,14 +8,14 @@ require('prismjs/components/prism-handlebars');
 
 var helpers = {
     code: function (cx, options) {
-        return new handlebars.SafeString('<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(helpers.remove_last_cr(cx), Prism.languages[options.hash.type], options.hash.type) + '</code></pre>');
+        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(helpers.remove_last_cr(cx), Prism.languages[options.hash.type], options.hash.type) + '</code></pre>';
     },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
             return;
         }
         if (options.hash.tag) {
-            return new handlebars.SafeString('<' + options.hash.tag + '>' + cx + '</' + options.hash.tag + '>');
+            return '<' + options.hash.tag + '>' + cx + '</' + options.hash.tag + '>';
         }
         return cx;
     },
@@ -29,7 +29,7 @@ var helpers = {
         return Object.keys(cx).reduce(function (O, K, I) {
             var V = cx[K];
             if (V && V[key]) {
-                if (!options.hash.ignore || options.hash.ignore[I] === undefined) {
+                if (!options.hash.ignore || (options.hash.ignore[I] === undefined)) {
                     O.push(V[key]);
                 }
             }
@@ -37,7 +37,7 @@ var helpers = {
         }, []);
     },
     join: function (cx, sep) {
-        return (cx && cx.join) ? new handlebars.SafeString(cx.join(sep)) : '';
+        return (cx && cx.join) ? cx.join(sep) : '';
     },
     book_writer: function (data, options) {
         data.forEach(function (D, I) {

@@ -4,7 +4,7 @@
  {{#section_builder (lookup . @section) column=true}}
 <h3>{{@section}}</h3>
   {{#with (lookup . @section)}}
-   {{isStringThenOutput . tag='p'}}
+   {{{isStringThenOutput . tag='p'}}}
    {{#if content}}
    {{{content}}}
    {{/if}}
@@ -12,11 +12,11 @@
  <p>file name: <code>{{file}}</code></p>
    {{/if}}
    {{#if code}}
-    {{code code type=(code_type)}}
+    {{{code code type=(code_type)}}}
    {{/if}}
    {{#if ./collectcode}}
- <pre class="prettyprint lang-{{code_type}}">{{join (collect (collect ../.. @section ignore=collectcode) "code") "
-"}}</pre>
+    {{{code (join (collect (collect ../.. @section ignore=collectcode) "code") "
+") type=(code_type)}}}
    {{/if}}
   {{/with}}
  {{/section_builder}}

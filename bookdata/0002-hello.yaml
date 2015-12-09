@@ -49,11 +49,10 @@ Reuse the render function:
 The full code for copy:
   lightncandy:
     collectcode:
-      5:
+      6:
   handlebars.js:
     collectcode:
-      5:
+      6:
   mustache:
     collectcode:
-    ignore:
-      5:
+      6:
