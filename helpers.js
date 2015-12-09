@@ -74,7 +74,6 @@ var helpers = {
         var sections = Object.keys(cx).reduce(function (ret, S) {
             var data = handlebars.createFrame(options.data);
             data.section = S;
-            data.sectionNumber = (ret.length + 1) + '. ';
             var R = options.fn(cx, {data: data});
             if (R != '') {
                 ret.push(R);

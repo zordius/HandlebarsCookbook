@@ -1,6 +1,6 @@
 {{> html_start}}                                                                                        
 {{> nav}}
-<div class="container-fluid row">
+<div class="container-fluid">
  <h1>{{title}}</h1>
  <p>{{{description}}}</p>
 {{#section_builder .}}
