@@ -14,7 +14,7 @@ var helpers = {
         if (options.hash.use !== undefined) {
             switch (options.data.section) {
             case 'lightncandy':
-                code = '// Use composer autoloader\nrequire \'./vendor/autoload.php\';\nuse LightnCandy;\n' + options.hash.use + code;
+                code = 'require \'./vendor/autoload.php\';\nuse LightnCandy\\LightnCandy;\n' + options.hash.use + code;
                 break;
             case 'handlebars.js':
                 code = 'var Handlebars = require(\'handlebars\');\n' + options.hash.use + code;
