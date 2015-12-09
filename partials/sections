@@ -14,9 +14,13 @@
    {{#if code}}
     {{{code code type=(code_type)}}}
    {{/if}}
+   {{#if code_use}}
+    {{{code "" type=(code_type) use=""}}}
+   {{/if}}
    {{#if ./collectcode}}
     {{{code (join (collect (collect ../.. @section ignore=collectcode) "code") "
-") type=(code_type) copy=@section}}}
+") type=(code_type) copy=@section use="
+"}}}
    {{/if}}
   {{/with}}
  {{/section_builder}}

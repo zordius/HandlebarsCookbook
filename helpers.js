@@ -9,7 +9,23 @@ require('prismjs/components/prism-handlebars');
 var helpers = {
     code: function (cx, options) {
         var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
-        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(helpers.remove_last_cr(cx), Prism.languages[options.hash.type], options.hash.type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + cx + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '');
+        var code = helpers.remove_last_cr(cx);
+
+        if (options.hash.use) {
+            switch (options.data.section) {
+            case 'lightncandy':
+                code = 'use LightnCandy;\n' + options.hash.use + code;
+                break;
+            case 'handlebars.js':
+                code = 'var Handlebars = require(\'handlebars\');\n' + options.hash.use + code;
+                break;
+            case 'mustache':
+                code = 'var Mustache = require(\'mustache\');\n' + options.hash.use + code;
+                break;
+            }
+        }
+
+        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(code, Prism.languages[options.hash.type], options.hash.type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '');
     },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
@@ -94,9 +110,9 @@ var helpers = {
         if (options.data.section) {
             switch (options.data.section) {
             case 'template':
-            case 'handlebars.js':
             case 'mustache':
                 return 'handlebars';
+            case 'handlebars.js':
             case 'nodejs':
             case 'JavaScript':
                 return 'js';

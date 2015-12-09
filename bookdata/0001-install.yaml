@@ -41,9 +41,9 @@ Install dependency:
     code: npm install
 Require the library:
   lightncandy:
-    code: use LightnCandy;
+    code_use: 1
   handlebars.js:
-    code: var Handlebars = require('handlebars');
+    code_use: 1
   mustache:
-    code: var Mustache = require('mustache');
+    code_use: 1
 Start to use the library: Now the library is ready to go!
