@@ -33,7 +33,9 @@ module.exports = function () {
         fs.mkdirSync(configs.out_dir);
     }
 
-    handlebars.compile('{{#book_writer .}}{{> template}}{{/book_writer}}')(Object.assign(data, {configs: configs}), {
+    handlebars.compile('{{#book_writer .}}{{> template}}{{/book_writer}}', {
+        preventIndent: true
+    })(Object.assign(data, {configs: configs}), {
         partials: partials,
         helpers: require('./helpers')
     });

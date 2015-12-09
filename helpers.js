@@ -1,7 +1,15 @@
 var fs = require('fs');
 var handlebars = require('handlebars');
+var Prism = require('prismjs');
+
+require('prismjs/components/prism-javascript');
+require('prismjs/components/prism-php');
+require('prismjs/components/prism-handlebars');
 
 var helpers = {
+    code: function (cx, options) {
+        return new handlebars.SafeString('<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(helpers.remove_last_cr(cx), Prism.languages[options.hash.type], options.hash.type) + '</code></pre>');
+    },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
             return;
@@ -77,24 +85,30 @@ var helpers = {
     },
     code_type: function (options) {
         if (this.file) {
-            return this.file.match(/\.(.+)$/)[1];
+            switch (this.file.match(/\.(.+)$/)[1]) {
+            default:
+                return 'js';
+            }
         }
         if (options.data.section) {
             switch (options.data.section) {
+            case 'template':
             case 'handlebars.js':
             case 'mustache':
+                return 'handlebars';
             case 'nodejs':
             case 'JavaScript':
                 return 'js';
+            case 'php':
             case 'lightncandy':
                 return 'php';
             default:
-                return options.data.section;
+                return 'js';
             }
         }
     },
     remove_last_cr: function (txt) {
-        return txt.replace(/\n+$/, '');
+        return (txt && txt.replace) ? txt.replace(/\n+$/, '') : '';
     }
 };
 

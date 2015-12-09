@@ -12,7 +12,7 @@
  <p>file name: <code>{{file}}</code></p>
    {{/if}}
    {{#if code}}
- <pre class="prettyprint lang-{{code_type}}">{{remove_last_cr code}}</pre>
+    {{code code type=(code_type)}}
    {{/if}}
    {{#if ./collectcode}}
  <pre class="prettyprint lang-{{code_type}}">{{join (collect (collect ../.. @section ignore=collectcode) "code") "
