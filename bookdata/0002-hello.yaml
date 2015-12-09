@@ -46,7 +46,7 @@ Reuse the render function:
     content: <p>Mustache does not support pre-compile, so you need to compile the template everytime.</p>
     code: console.log(Mustache.render(template, data));
 
-The full code for copy:
+The full code:
   lightncandy:
     collectcode:
       6:

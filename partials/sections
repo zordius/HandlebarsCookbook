@@ -16,7 +16,7 @@
    {{/if}}
    {{#if ./collectcode}}
     {{{code (join (collect (collect ../.. @section ignore=collectcode) "code") "
-") type=(code_type)}}}
+") type=(code_type) copy=@section}}}
    {{/if}}
   {{/with}}
  {{/section_builder}}

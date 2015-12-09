@@ -8,7 +8,8 @@ require('prismjs/components/prism-handlebars');
 
 var helpers = {
     code: function (cx, options) {
-        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(helpers.remove_last_cr(cx), Prism.languages[options.hash.type], options.hash.type) + '</code></pre>';
+        var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
+        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(helpers.remove_last_cr(cx), Prism.languages[options.hash.type], options.hash.type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + cx + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '');
     },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
