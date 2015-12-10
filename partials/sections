@@ -5,7 +5,17 @@
   {{#quicksample}}
    {{#section_builder @samples column=true}}
 <h3>{{lookup . @section}}</h3>
-{{log ..}}
+    {{#each ..}}
+<table>
+ <tr>
+  <td rowspan="2">{{{code ../data type="data" language=(lookup . @section)}}}</td>
+  <td>{{{code ../template type="handlebars"}}}</td>
+ </tr>
+ <tr>
+  <td>{{{code result type="handlebars"}}}</td>
+ </tr>
+</table>
+    {{/each}}
    {{/section_builder}}
   {{else}}
 <h3>{{@section}}</h3>

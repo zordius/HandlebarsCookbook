@@ -3,6 +3,6 @@ description:
   Use <code>{{foo}}</code> will lookup the <code>foo</code> value from the input data. The value will be escaped by default.
 Samples:
   quicksample:
-    - template: {{foo}}
+    - template: "{{foo}}"
       data:
         foo: Hello

@@ -8,25 +8,32 @@ require('prismjs/components/prism-php');
 require('prismjs/components/prism-handlebars');
 
 var helpers = {
+    code_for_require: function (type) {
+        switch (type) {
+        case 'lightncandy':
+            return 'require \'./vendor/autoload.php\';\nuse LightnCandy\\LightnCandy;';
+        case 'handlebars.js':
+            return 'var Handlebars = require(\'handlebars\');';
+        case 'mustache':
+            return 'var Mustache = require(\'mustache\');';
+        }
+        console.warn('unknown code type in code_for_require():' + type);
+        return '';
+    },
+
     code: function (cx, options) {
         var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
         var code = '';
         var tmp_file = 'tmp_file_exec';
         var result = '';
+        var type = options.hash.type;
 
         if (options.hash.use !== undefined) {
-            switch (options.data.section) {
-            case 'lightncandy':
-                code = 'require \'./vendor/autoload.php\';\nuse LightnCandy\\LightnCandy;';
-                break;
-            case 'handlebars.js':
-                code = 'var Handlebars = require(\'handlebars\');';
-                break;
-            case 'mustache':
-                code = 'var Mustache = require(\'mustache\');';
-                break;
-            }
-            code = code + options.hash.use;
+            code = helpers.code_for_require(options.data.section) + options.hash.use;
+        }
+
+        if (type === 'data') {
+            type = 'js';
         }
 
         code = code + helpers.remove_dupe_cr(cx);
@@ -51,7 +58,7 @@ var helpers = {
             fs.unlink(tmp_file);
         }
 
-        return '<pre><code class="language-' + options.hash.type + '">' + Prism.highlight(code, Prism.languages[options.hash.type], options.hash.type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
+        return '<pre><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
     },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
