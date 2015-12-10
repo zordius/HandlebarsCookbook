@@ -14,7 +14,7 @@
   <div><b>Result:</b>{{{code result type="handlebars"}}}</div>
  </div>
 </div>
-{{{code "test...." type=(code_type section=..) collapse=true copy="test"}}}
+{{{collapsed_full_code}}}
      {{/each}}
     {{/with}}
    {{/section_builder}}
@@ -36,7 +36,7 @@
     {{/if}}
     {{#if collectcode}}
      {{{code (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
-") type=(code_type) copy=@section result=true use="
+") type=(code_type) copy=true result=true use="
 "}}}
     {{/if}}
    {{/with}}

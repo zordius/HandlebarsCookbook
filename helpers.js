@@ -2,6 +2,7 @@ var fs = require('fs');
 var handlebars = require('handlebars');
 var Prism = require('prismjs');
 var exec = require('shelljs').exec;
+var shortid = require('shortid').generate;
 var defaultSP = '  ';
 var tmp_file = 'tmp_file_exec';
 
@@ -21,6 +22,30 @@ var helpers = {
         }
         console.warn('unknown code type in code_for_require():' + type);
         return '';
+    },
+
+    code_for_setdata: function (type, options) {
+        var D = this.data;
+        switch (type) {
+        case 'lightncandy':
+            return '$data = ' + helpers.php_array(D, '');
+        case 'handlebars.js':
+        case 'mustache':
+        }
+        console.warn('unknown code type in code_for_require():' + type);
+        return '';
+    },
+
+    code_for_data: function (data, type) {
+        switch (type) {
+        case 'handlebars.js':
+        case 'mustache':
+            return ['js', JSON.stringify(data, undefined, defaultSP)];
+        case 'lightncandy':
+            return ['php', helpers.php_array(data, '')];
+        default:
+            console.warn('unknown code type in code_for_data():' + type);
+        }
     },
 
     php_array: function (D, sp) {
@@ -71,30 +96,29 @@ var helpers = {
         return result;
     },
 
+    collapsed_full_code: function (options) {
+        var copy = 'copy_' + shortid();
+        var type = options.data.samples[options.data.section];
+        var req = helpers.code_for_require(type);
+        var data = helpers.code_for_setdata.apply(this, [type, options]);
+    },
+
     code: function (cx, options) {
-        var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
+        var copy = options.hash.copy ? 'copy_' + shortid() : null;
         var code = '';
         var result = '';
         var type = options.hash.type;
         var className = options.hash.class ? (' class="' + options.hash.class + '"') : '';
+        var R;
 
         if (options.hash.use !== undefined) {
             code = helpers.code_for_require(options.data.section) + options.hash.use;
         }
 
         if ((options.hash.language !== undefined) && (type === 'data')) {
-            switch (options.hash.language) {
-            case 'handlebars.js':
-            case 'mustache':
-                code = JSON.stringify(cx, undefined, defaultSP);
-                type = 'js';
-                break;
-            case 'lightncandy':
-                code = helpers.php_array(cx, '');
-                type = 'php';
-                break;
-            default:
-            }
+            R = helpers.code_for_data(cx, options.hash.language);
+            code = R[1];
+            type = R[0];
         }
 
         code = code + helpers.remove_dupe_cr(cx);
