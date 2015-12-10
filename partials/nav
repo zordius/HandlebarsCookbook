@@ -5,8 +5,7 @@
   </div>
   <ul class="nav navbar-nav">
    <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-     <span class="caret"></span>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Index <span class="caret"></span>
     </a>
     {{> toc}}
    </li>

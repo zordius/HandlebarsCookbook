@@ -2,26 +2,29 @@
 <h2>{{@section}}</h2>
  {{isStringThenOutput . tag='p'}}
  {{#section_builder (lookup . @section) column=true}}
+  {{#quicksample}}
+  {{else}}
 <h3>{{@section}}</h3>
-  {{#with (lookup . @section)}}
-   {{{isStringThenOutput . tag='p'}}}
-   {{#if content}}
-   {{{content}}}
-   {{/if}}
-   {{#if file}}
+   {{#with (lookup . @section)}}
+    {{{isStringThenOutput . tag='p'}}}
+    {{#if content}}
+     {{{content}}}
+    {{/if}}
+    {{#if file}}
  <p>file name: <code>{{file}}</code></p>
-   {{/if}}
-   {{#if code}}
-    {{{code code type=(code_type)}}}
-   {{/if}}
-   {{#if code_use}}
-    {{{code "" type=(code_type) use=""}}}
-   {{/if}}
-   {{#if ./collectcode}}
-    {{{code (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
+    {{/if}}
+    {{#if code}}
+     {{{code code type=(code_type)}}}
+    {{/if}}
+    {{#if code_use}}
+     {{{code "" type=(code_type) use=""}}}
+    {{/if}}
+    {{#if collectcode}}
+     {{{code (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
 ") type=(code_type) copy=@section result=true use="
 "}}}
-   {{/if}}
-  {{/with}}
+    {{/if}}
+   {{/with}}
+  {{/quicksample}}
  {{/section_builder}}
 {{/main_section}}

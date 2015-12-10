@@ -131,6 +131,9 @@ var helpers = {
             return options.fn(this);
         }
     },
+    quicksample: function (options) {
+        return (options.data.section === 'quicksample') ? options.fn(this) : options.inverse(this);
+    },
     code_type: function (options) {
         if (this.file) {
             switch (this.file.match(/\.(.+)$/)[1]) {
