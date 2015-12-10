@@ -203,14 +203,17 @@ var helpers = {
         }
     },
     code_type: function (options) {
+        var T = options.hash.section || options.data.section;
+
         if (this.file) {
             switch (this.file.match(/\.(.+)$/)[1]) {
             default:
                 return 'js';
             }
         }
-        if (options.data.section) {
-            switch (options.data.section) {
+
+        if (T) {
+            switch (T) {
             case 'template':
                 return 'handlebars';
             case 'mustache':

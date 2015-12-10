@@ -7,15 +7,14 @@
     {{#with (lookup . @section)}}
 <h3>{{.}}</h3>
      {{#each ../../quicksample}}
-<table>
- <tr>
-  <td rowspan="2"><b>Data:</b>{{{code data type="data" language=..}}}</td>
-  <td><b>Tempalte:</b>{{{code template type="handlebars"}}}</td>
- </tr>
- <tr>
-  <td><b>Result:</b>{{{code result type="handlebars"}}}</td>
- </tr>
-</table>
+<div class="row">
+ <div class="col-md-6"><b>Data:</b>{{{code data type="data" language=..}}}</div>
+ <div class="col-md-6">
+  <div><b>Tempalte:</b>{{{code template type="handlebars"}}}</div>
+  <div><b>Result:</b>{{{code result type="handlebars"}}}</div>
+ </div>
+</div>
+{{{code "test...." type=(code_type section=..) collapse=true copy="test"}}}
      {{/each}}
     {{/with}}
    {{/section_builder}}
