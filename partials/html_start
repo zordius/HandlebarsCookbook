@@ -17,6 +17,9 @@ h2 {border-top:1px dotted #ccc;padding-top:10px}
 h4 {color:#666}
 .result {background:#efe}
 .pager {border-top:1px solid #aaa;padding-top:30px}
+table {width:100%}
+td {vertical-align:top;position:relative;width:50%}
+td pre{margin:auto;height:100%;width:95%}
 </style>
 </head>
 <body>

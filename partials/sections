@@ -4,18 +4,20 @@
  {{#section_builder (lookup . @section) column=true}}
   {{#quicksample}}
    {{#section_builder @samples column=true}}
-<h3>{{lookup . @section}}</h3>
-    {{#each ..}}
+    {{#with (lookup . @section)}}
+<h3>{{.}}</h3>
+     {{#each ../../quicksample}}
 <table>
  <tr>
-  <td rowspan="2">{{{code ../data type="data" language=(lookup . @section)}}}</td>
-  <td>{{{code ../template type="handlebars"}}}</td>
+  <td rowspan="2"><b>Data:</b>{{{code data type="data" language=..}}}</td>
+  <td><b>Tempalte:</b>{{{code template type="handlebars"}}}</td>
  </tr>
  <tr>
-  <td>{{{code result type="handlebars"}}}</td>
+  <td><b>Result:</b>{{{code result type="handlebars"}}}</td>
  </tr>
 </table>
-    {{/each}}
+     {{/each}}
+    {{/with}}
    {{/section_builder}}
   {{else}}
 <h3>{{@section}}</h3>

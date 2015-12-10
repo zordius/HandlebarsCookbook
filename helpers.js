@@ -2,6 +2,7 @@ var fs = require('fs');
 var handlebars = require('handlebars');
 var Prism = require('prismjs');
 var exec = require('shelljs').exec;
+var defaultSP = '  ';
 
 require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-php');
@@ -21,19 +22,66 @@ var helpers = {
         return '';
     },
 
+    php_array: function (D, sp) {
+        var spp = sp + defaultSP;
+
+        if (Array.isArray(D)) {
+            return 'array(' + spp + D.map(function (V, K) {
+                return spp + '"' + K.replace(/"/g, '\"/' + '"') + '" => ' + helpers.php_array(V, spp);
+            }).join(',') + ')';
+        }
+
+        if (typeof D === 'object') {
+            return 'array(\n' + Object.keys(D).map(function (K) {
+                var V = D[K];
+                return spp + '"' + K.replace(/"/g, '\"/' + '"') + '" => ' + helpers.php_array(V, spp);
+            }).join(',\n') + '\n' + sp + ')\n';
+        }
+
+        if (typeof D === 'string') {
+            return '"' + D.replace(/\\/g, '\\\\').replace(/"/g, '\"/' + '"') + '"';
+        }
+
+        if (D === true) {
+            return 'true';
+        }
+
+        if (D === false) {
+            return 'false';
+        }
+
+        if (D === undefined) {
+            return 'NULL';
+        }
+
+        return D;
+    },
+
     code: function (cx, options) {
         var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
         var code = '';
         var tmp_file = 'tmp_file_exec';
         var result = '';
         var type = options.hash.type;
+        var className = options.hash.class ? (' class="' + options.hash.class + '"') : '';
 
         if (options.hash.use !== undefined) {
             code = helpers.code_for_require(options.data.section) + options.hash.use;
         }
 
-        if (type === 'data') {
-            type = 'js';
+        if ((options.hash.language !== undefined) && (type === 'data')) {
+            switch (options.hash.language) {
+            case 'handlebars.js':
+            case 'mustache':
+                code = JSON.stringify(cx, undefined, defaultSP);
+                type = 'js';
+                break;
+            case 'lightncandy':
+                code = helpers.php_array(cx, '');
+                type = 'php';
+                break;
+            default:
+            }
         }
 
         code = code + helpers.remove_dupe_cr(cx);
@@ -58,7 +106,7 @@ var helpers = {
             fs.unlink(tmp_file);
         }
 
-        return '<pre><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
+        return '<pre' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
     },
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
