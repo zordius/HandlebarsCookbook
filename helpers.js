@@ -3,6 +3,7 @@ var handlebars = require('handlebars');
 var Prism = require('prismjs');
 var exec = require('shelljs').exec;
 var defaultSP = '  ';
+var tmp_file = 'tmp_file_exec';
 
 require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-php');
@@ -57,10 +58,22 @@ var helpers = {
         return D;
     },
 
+    result_for_code: function (code, type) {
+        var result;
+        if (type === 'php') {
+            fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
+            result = exec('php ' + tmp_file, {silent: true});
+        } else {
+            fs.writeFileSync(tmp_file, code);
+            result = exec('node ' + tmp_file, {silent: true});
+        }
+        fs.unlink(tmp_file);
+        return result;
+    },
+
     code: function (cx, options) {
         var copy = options.hash.copy ? 'copy_for_' + options.hash.copy.replace(/\./, '_') : null;
         var code = '';
-        var tmp_file = 'tmp_file_exec';
         var result = '';
         var type = options.hash.type;
         var className = options.hash.class ? (' class="' + options.hash.class + '"') : '';
@@ -87,15 +100,8 @@ var helpers = {
         code = code + helpers.remove_dupe_cr(cx);
 
         if (options.hash.result !== undefined) {
-            switch (options.hash.type) {
-            case 'php':
-                fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
-                result = exec('php ' + tmp_file, {silent: true});
-                break;
-            default:
-                fs.writeFileSync(tmp_file, code);
-                result = exec('node ' + tmp_file, {silent: true});
-            }
+            result = helpers.result_for_code(code, options.hash.type);
+
             if ((result.code === 0) && (result.output !== '')) {
                 result = '<h4>Output</h4><pre class="result">' + result.output + '</pre>';
             } else {
@@ -103,7 +109,6 @@ var helpers = {
                 console.warn(result);
                 result = '';
             }
-            fs.unlink(tmp_file);
         }
 
         return '<pre' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
