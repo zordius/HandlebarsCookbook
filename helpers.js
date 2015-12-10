@@ -112,7 +112,7 @@ var helpers = {
             }
             return ret;
         }.bind(this), []);
-        if (options.hash.column) {
+        if (options.hash.column && sections.length > 1) {
             return '<div class="row">' + sections.map(function (S) {
                 return '<div class="col-md-' + ((sections.length > 2) ? '4' : '6') + '">' + S + '</div>';
             }).join('') + '</div>';
@@ -132,7 +132,15 @@ var helpers = {
         }
     },
     quicksample: function (options) {
-        return (options.data.section === 'quicksample') ? options.fn(this) : options.inverse(this);
+        var samples = ['lightncandy', 'handlebars.js', 'mustache'];
+
+        if (options.data.section === 'quicksample') {
+            var data = handlebars.createFrame(options.data);
+            data.samples = samples;
+            return options.fn(this, {data: data});
+        } else {
+            return options.inverse(this);
+        }
     },
     code_type: function (options) {
         if (this.file) {

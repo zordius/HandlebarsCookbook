@@ -3,6 +3,10 @@
  {{isStringThenOutput . tag='p'}}
  {{#section_builder (lookup . @section) column=true}}
   {{#quicksample}}
+   {{#section_builder @samples column=true}}
+<h3>{{lookup . @section}}</h3>
+{{log ..}}
+   {{/section_builder}}
   {{else}}
 <h3>{{@section}}</h3>
    {{#with (lookup . @section)}}
