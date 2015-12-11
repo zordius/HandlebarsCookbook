@@ -1,6 +1,6 @@
 {{#ref}}
 <h2>See Also...</h2>
-<ul>
+<ul class="ref">
 {{#with (lookup @refs .)}}
  <li><a href="{{pagename}}.html">{{title}}</a></li>
 {{else}}
