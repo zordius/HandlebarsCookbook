@@ -8,6 +8,7 @@
 <h3>{{.}}</h3>
      {{#each ../../quicksample}}
       {{#render type=..}}
+<hr />
 <div class="row">
  <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
  <div class="col-md-6">

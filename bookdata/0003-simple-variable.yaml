@@ -1,8 +1,11 @@
 title: Simple Variable
 description:
-  Use <code>{{foo}}</code> will lookup the <code>foo</code> value from the input data. The value will be escaped by default.
+  Use <code>{{foo}}</code> will lookup the <code>foo</code> value from the input data.
 Samples:
   quicksample:
     - template: "{{foo}}"
       data:
         foo: Hello
+    - template: "{{foo}}"
+      data:
+        bar: missing

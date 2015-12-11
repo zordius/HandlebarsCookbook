@@ -1,0 +1,11 @@
+title: Variable Escaping
+description:
+  Use output of <code>{{foo}}</code> will escaped by template engine.
+Samples:
+  quicksample:
+    - template: "{{foo}}"
+      data:
+        foo: Hello & Happy
+    - template: "{{foo}}"
+      data:
+        foo: <p>Hello</p>

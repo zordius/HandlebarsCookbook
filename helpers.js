@@ -77,6 +77,10 @@ var helpers = {
     php_array: function (D, sp) {
         var spp = sp + defaultSP;
 
+        if (D === null) {
+            return 'NULL';
+        }
+
         if (Array.isArray(D)) {
             return 'array(' + spp + D.map(function (V, K) {
                 return spp + '"' + K.replace(/"/g, '\"/' + '"') + '" => ' + helpers.php_array(V, spp);
