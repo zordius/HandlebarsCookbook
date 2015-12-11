@@ -1,0 +1,10 @@
+{{#ref}}
+<h2>See Also...</h2>
+<ul>
+{{#with (lookup @refs .)}}
+ <li><a href="{{.}}.html">{{title}}</a></li>
+{{else}}
+ {{log "Warning! Can not reference page name:" .}}
+{{/with}}
+</ul>
+{{/ref}}
