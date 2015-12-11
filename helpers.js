@@ -87,7 +87,7 @@ var helpers = {
             return 'array(\n' + Object.keys(D).map(function (K) {
                 var V = D[K];
                 return spp + '"' + K.replace(/"/g, '\"/' + '"') + '" => ' + helpers.php_array(V, spp);
-            }).join(',\n') + '\n' + sp + ')\n';
+            }).join(',\n') + '\n' + sp + ')';
         }
 
         if (typeof D === 'string') {
