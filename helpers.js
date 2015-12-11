@@ -48,6 +48,32 @@ var helpers = {
         }
     },
 
+    code_for_compile: function (type) {
+        switch (type) {
+        case 'lightncandy':
+            return '$php = LightnCandy::compile($template);\n$render = LightnCandy::prepare($php);';
+        case 'handlebars.js':
+            return 'var render = Handlebars.compile(template);';
+        case 'mustache':
+            return '';
+        }
+        console.warn('unknown code type in code_for_compile():' + type);
+        return '';
+    },
+
+    code_for_render: function (type) {
+        switch (type) {
+        case 'lightncandy':
+            return 'echo $render($data);';
+        case 'handlebars.js':
+            return 'console.log(render(data));';
+        case 'mustache':
+            return 'console.log(Mustache.render(template, data));';
+        }
+        console.warn('unknown code type in code_for_render():' + type);
+        return '';
+    },
+
     php_array: function (D, sp) {
         var spp = sp + defaultSP;
 
@@ -96,19 +122,35 @@ var helpers = {
         return result;
     },
 
+    singleQuote: function (str) {
+        return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/'/, '\\\'') : str;
+    },
+
     render: function (options) {
         var type = options.hash.type;
         var template = options.hash.template || this.template;
         var D = options.hash.data || this.data;
         var Data = helpers.code_for_data.apply(this, [D, type]);
-        var setData = helpers.code_for_set.apply(this, ['data', type]);
         var data = handlebars.createFrame(options.data);
 
         data.template = template;
         data.codeData = Data[1];
-        data.codeDataType = Data[0];
+        data.codeType = Data[0];
         data.codeRequire = helpers.code_for_require(type);
-        data.codeSetdata = setData + Data[1];
+        data.codeSetData = helpers.code_for_set('data', type) + Data[1] + ';';
+        data.codeSetTemplate = helpers.code_for_set('template', type) + "'" + helpers.singleQuote(template) + "';";
+        data.codeCompile = helpers.code_for_compile(type);
+        data.codeRender = helpers.code_for_render(type);
+
+        data.code = [
+            data.codeRequire,
+            data.codeSetTemplate,
+            data.codeCompile,
+            data.codeSetData,
+            data.codeRender
+        ].join('\n');
+
+        data.result = helpers.result_for_code(data.code, data.codeType);
 
         return options.fn(D, {data: data});
     },
