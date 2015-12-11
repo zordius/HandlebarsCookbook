@@ -300,8 +300,14 @@ var helpers = {
         }, {});
 
         data.forEach(function (D, I) {
-            var Data = handlebars.createFrame(options.data);
             var T = D.pagename.match(/LC-(.+)/);
+            if (T) {
+                D.title = 'LightnCandy option: ' + T[1];
+            }
+        });
+
+        data.forEach(function (D, I) {
+            var Data = handlebars.createFrame(options.data);
 
             Data.refs = refs;
 
@@ -310,10 +316,6 @@ var helpers = {
             }
             if (data[I + 1] !== undefined) {
                 Data.page_next = data[I + 1];
-            }
-
-            if (T) {
-                D.title = 'LightnCandy option: ' + T[1];
             }
 
             console.log('>> Writing the page:' + D.pagename);
