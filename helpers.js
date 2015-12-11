@@ -179,6 +179,7 @@ var helpers = {
 
         return '<pre' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
     },
+
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
             return;
@@ -188,9 +189,11 @@ var helpers = {
         }
         return cx;
     },
+
     addOne: function (I) {
         return I + 1;
     },
+
     collect: function (cx, key, options) {
         if (typeof cx != 'object') {
             return;
@@ -211,15 +214,18 @@ var helpers = {
             return O;
         }, []);
     },
+
     str_join: function () {
         var arg = Array.prototype.slice.call(arguments);
         var options = arg.pop();
 
         return arg.join(options.hash.sep || '');
     },
+
     join: function (cx, sep) {
         return (cx && cx.join) ? cx.join(sep) : '';
     },
+
     book_writer: function (data, options) {
         data.forEach(function (D, I) {
             if (I > 0) {
@@ -231,6 +237,7 @@ var helpers = {
             fs.writeFileSync(data.configs.out_dir + D.pagename + '.html', options.fn(D));
         });
     },
+
     section_builder: function (cx, options) {
         if (typeof cx !== 'object') {
             return cx ? '<p>' + cx + '</p>' : '';
@@ -251,6 +258,7 @@ var helpers = {
         }
         return sections.join('');
     },
+
     main_section: function (options) {
         switch (options.data.section) {
         case 'page_prev':
@@ -263,6 +271,7 @@ var helpers = {
             return options.fn(this);
         }
     },
+
     quicksample: function (options) {
         var samples = ['lightncandy', 'handlebars.js', 'mustache'];
 
@@ -274,6 +283,7 @@ var helpers = {
             return options.inverse(this);
         }
     },
+
     code_type: function (options) {
         var T = options.hash.section || options.data.section;
 
@@ -301,6 +311,7 @@ var helpers = {
             }
         }
     },
+
     remove_dupe_cr: function (txt) {
         return (txt && txt.replace) ? txt.replace(/\n+$/, '').replace(/\n{3,10}/g, '\n\n') : '';
     }
