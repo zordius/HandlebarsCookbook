@@ -45,7 +45,7 @@ var helpers = {
 
         switch (type) {
         case 'lightncandy':
-            return option.map(function (V) {
+            return opt.map(function (V) {
                 return 'LightnCandy::' + V;
             }).join(' | ');
         case 'handlebars.js':
