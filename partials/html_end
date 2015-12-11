@@ -3,6 +3,20 @@
 <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
 <script>
 new Clipboard('.btn[data-clipboard-target]');
+$(document).keydown(function (e) {
+  var A;
+  switch (e.keyCode) {
+  case 37:
+    A = $('.pager .previous a').attr('href');
+    break;
+  case 39:
+    A = $('.pager .next a').attr('href');
+    break;
+  }
+  if (A) {
+    location.href = A;
+  }
+});
 </script>
 </body>
 </html>
