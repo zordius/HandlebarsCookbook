@@ -27,3 +27,15 @@ Samples:
       data:
         - Hello
         - World
+    - content: Spaces before or after the name are allowed.
+      template: "{{ foo  }}"
+      data:
+        foo: Good
+    - content: Line changes before or after the name are allowed.
+      template: |
+        {{
+         foo
+
+        }}
+      data:
+        foo: Good

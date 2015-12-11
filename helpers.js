@@ -158,8 +158,20 @@ var helpers = {
         return result;
     },
 
+    result_class: function (options) {
+        return options.data.result;
+    },
+
+    escapeString: function (str, type) {
+        return (type == 'lightncandy') ? ('"' + helpers.doubleQuote(str) + '"') : ("'" + helpers.singleQuote(str) + "'");
+    },
+
+    doubleQuote: function (str) {
+        return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/"/, '\\\"').replace(/\n/g, '\\n') : str;
+    },
+
     singleQuote: function (str) {
-        return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/'/, '\\\'') : str;
+        return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/'/, '\\\'').replace(/\n/g, '\\n') : str;
     },
 
     render: function (options) {
@@ -176,7 +188,7 @@ var helpers = {
         data.codeType = Data[0];
         data.codeRequire = helpers.code_for_require(type);
         data.codeSetData = helpers.code_for_set('data', type) + Data[1] + ';';
-        data.codeSetTemplate = helpers.code_for_set('template', type) + "'" + helpers.singleQuote(template) + "';";
+        data.codeSetTemplate = helpers.code_for_set('template', type) + helpers.escapeString(template, type) + ";";
         data.codeCompile = helpers.code_for_compile(type, Option);
         data.codeRender = helpers.code_for_render(type);
 
