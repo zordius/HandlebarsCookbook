@@ -28,7 +28,7 @@ Keyboard Shortcuts: |
   <ul>
    <li><kbd>Up</kbd> and <kbd>Down</kbd> Move over the items.</li>
    <li><kbd>Enter</kbd> Go to the focused page.</li>
-   <li><kdb>ESC</kbd> Close the drop down menu.</li>
+   <li><kbd>ESC</kbd> Close the drop down menu.</li>
   </ul>
 Table of Content:
   toc: true
