@@ -156,14 +156,21 @@ var helpers = {
     },
 
     code: function (cx, options) {
-        var copy = options.hash.copy ? 'copy_' + shortid() : null;
+        var btn = [];
+        var id = 'code_' + shortid();
         var code = '';
         var result = '';
         var type = options.hash.type;
-        var className = options.hash.class ? (' class="' + options.hash.class + '"') : '';
-        var R;
+        var classes = options.hash.class ? [options.hash.class] : [];
+        var className;
 
         code = code + helpers.remove_dupe_cr(cx);
+
+        if (options.hash.collapse) {
+            classes.push('collapse');
+        }
+
+        className = classes.length ? (' class="' + classes.join(' ') + '"') : '';
 
         if (options.hash.result !== undefined) {
             result = helpers.result_for_code(code, options.hash.type);
@@ -177,7 +184,17 @@ var helpers = {
             }
         }
 
-        return '<pre' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>' + (copy ? '<textarea class="copy" id="' + copy + '">' + code + '</textarea><button class="btn btn-primary center-block" data-clipboard-target="#' + copy + '">Copy to clipboard</button>' : '') + result;
+        if (options.hash.collapse) {
+            btn.push('<button class="btn" data-toggle="collapse" data-target="#pre' + id + '">Show / Hide</button>');
+        }
+
+        if (options.hash.copy) {
+            btn.push('<textarea class="copy" id="' + id + '">' + code + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + id + '">Copy to clipboard</button>');
+        }
+
+        return '<pre id="pre' + id + '"' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>'
+               + (btn.length ? ('<div class="text-center">' + btn.join(' ') + '</div>') : '')
+               + result;
     },
 
     isStringThenOutput: function (cx, options) {
