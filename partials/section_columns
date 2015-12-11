@@ -1,0 +1,7 @@
+{{#section_builder (lookup . @section) column=true}}
+ {{#quicksample}}
+  {{> quicksample}}
+ {{else}}
+  {{> section sections=..}}
+ {{/quicksample}}
+{{/section_builder}}

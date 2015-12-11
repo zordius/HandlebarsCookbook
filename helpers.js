@@ -302,9 +302,9 @@ var helpers = {
     },
 
     quicksample: function (options) {
-        var samples = options.hash.type ? [options.hash.type] : ['lightncandy', 'handlebars.js', 'mustache'];
+        var samples = ['lightncandy', 'handlebars.js', 'mustache'];
         
-        if (options.data.section === (options.hash.name || 'quicksample')) {
+        if (options.data.section === 'quicksample') {
             var data = handlebars.createFrame(options.data);
             data.samples = samples;
             return options.fn(this, {data: data});

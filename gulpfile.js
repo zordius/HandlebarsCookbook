@@ -5,7 +5,8 @@ var browserSync = require('browser-sync').create();
 var lint_files = ['*.js'];
 
 gulp.task('watch', ['build'], function () {
-    gulp.watch(['partials/*', '*.js', 'bookdata/*'], ['lint', 'build']);
+    gulp.watch(lint_files, ['lint', 'build']);
+    gulp.watch(['partials/*', 'bookdata/*'], ['build']);
 });
 
 gulp.task('lint', function () {
