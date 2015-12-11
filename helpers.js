@@ -3,6 +3,7 @@ var handlebars = require('handlebars');
 var Prism = require('prismjs');
 var exec = require('shelljs').exec;
 var shortid = require('shortid').generate;
+var intercept = require('intercept-stdout');
 var defaultSP = '  ';
 var tmp_file = '.exec_tmp_file';
 
@@ -137,14 +138,24 @@ var helpers = {
 
     result_for_code: function (code, type) {
         var result;
+        var H;
         if (type === 'php') {
             fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
             result = exec('php ' + tmp_file, {silent: true});
+            fs.unlink(tmp_file);
         } else {
-            fs.writeFileSync(tmp_file, code);
-            result = exec('node ' + tmp_file, {silent: true});
+            try {
+                result = {
+                    code: 0,
+                    output: eval(code.replace(/console\.log\((.+)\)/, '$1'))
+                };
+            } catch (E) {
+                result = {
+                    code: E.code,
+                    output: E.message
+                };
+            }
         }
-        fs.unlink(tmp_file);
         return result;
     },
 
