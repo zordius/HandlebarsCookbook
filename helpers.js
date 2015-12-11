@@ -139,7 +139,7 @@ var helpers = {
         var result;
         if (type === 'php') {
             fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
-            result = exec('php -dopen_basedir=/ ' + tmp_file, {silent: true});
+            result = exec('php ' + tmp_file, {silent: true});
         } else {
             fs.writeFileSync(tmp_file, code);
             result = exec('node ' + tmp_file, {silent: true});
