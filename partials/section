@@ -1,0 +1,24 @@
+<h3>{{@section}}</h3>
+{{#with (lookup . @section)}}
+ {{{isStringThenOutput . tag='p'}}}
+ {{#if content}}
+  {{{content}}}
+ {{/if}}
+ {{#if file}}
+ <p>file name: <code>{{file}}</code></p>
+ {{/if}}
+ {{#if code}}
+  {{{code code type=(code_type)}}}
+ {{/if}}
+ {{#if code_use}}
+  {{{code (code_for_require @section) type=(code_type)}}}
+ {{/if}}
+ {{#if collectcode}}
+  {{{code (str_join
+    (code_for_require @section)
+    (join (collect (collect ../sections @section ignore=collectcode key="_key") "code" comment="_key") "
+") sep="
+"
+    ) type=(code_type) copy=true result=true}}}
+ {{/if}}
+{{/with}}

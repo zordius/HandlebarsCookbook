@@ -35,7 +35,10 @@ module.exports = function () {
 
     handlebars.compile('{{#book_writer .}}{{> template}}{{/book_writer}}', {
         preventIndent: true
-    })(Object.assign(data, {configs: configs}), {
+    })(data, {
+        data: {
+            configs: configs
+        },
         partials: partials,
         helpers: require('./helpers')
     });

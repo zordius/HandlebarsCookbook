@@ -254,14 +254,17 @@ var helpers = {
         }, {});
 
         data.forEach(function (D, I) {
-            var Data = {refs: refs};
+            var Data = handlebars.createFrame(options.data);
+
+            Data.refs = refs;
+
             if (I > 0) {
                 Data.page_prev = data[I - 1];
             }
             if (data[I + 1] !== undefined) {
                 Data.page_next = data[I + 1];
             }
-            fs.writeFileSync(data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}));
+            fs.writeFileSync(options.data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}));
         });
     },
 
@@ -299,9 +302,9 @@ var helpers = {
     },
 
     quicksample: function (options) {
-        var samples = ['lightncandy', 'handlebars.js', 'mustache'];
-
-        if (options.data.section === 'quicksample') {
+        var samples = options.hash.type ? [options.hash.type] : ['lightncandy', 'handlebars.js', 'mustache'];
+        
+        if (options.data.section === (options.hash.name || 'quicksample')) {
             var data = handlebars.createFrame(options.data);
             data.samples = samples;
             return options.fn(this, {data: data});

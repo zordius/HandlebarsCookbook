@@ -3,49 +3,9 @@
  {{isStringThenOutput . tag='p'}}
  {{#section_builder (lookup . @section) column=true}}
   {{#quicksample}}
-   {{#section_builder @samples column=true}}
-    {{#with (lookup . @section)}}
-<h3>{{.}}</h3>
-     {{#each ../../quicksample}}
-      {{#render type=..}}
-<hr />
-<div class="row">
- <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
- <div class="col-md-6">
-  <div><b>Tempalte:</b>{{{code @template type="handlebars"}}}</div>
-  <div><b>Result:</b>{{{code @result.output type="handlebars"}}}</div>
- </div>
-</div>
-       {{{code @code type=@codeType copy=true collapse=true}}}
-      {{/render}}
-     {{/each}}
-    {{/with}}
-   {{/section_builder}}
+   {{> quicksample}}
   {{else}}
-<h3>{{@section}}</h3>
-   {{#with (lookup . @section)}}
-    {{{isStringThenOutput . tag='p'}}}
-    {{#if content}}
-     {{{content}}}
-    {{/if}}
-    {{#if file}}
- <p>file name: <code>{{file}}</code></p>
-    {{/if}}
-    {{#if code}}
-     {{{code code type=(code_type)}}}
-    {{/if}}
-    {{#if code_use}}
-     {{{code (code_for_require @section) type=(code_type)}}}
-    {{/if}}
-    {{#if collectcode}}
-     {{{code (str_join
-       (code_for_require @section)
-       (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
-") sep="
-"
-     ) type=(code_type) copy=true result=true}}}
-    {{/if}}
-   {{/with}}
+   {{> section sections=..}}
   {{/quicksample}}
  {{/section_builder}}
 {{/main_section}}
