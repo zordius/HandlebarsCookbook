@@ -8,7 +8,7 @@
  <p>file name: <code>{{file}}</code></p>
  {{/if}}
  {{#if code}}
-  {{{code code type=(code_type)}}}
+  {{{code code type=(code_type) copy=copy}}}
  {{/if}}
  {{#if code_use}}
   {{{code (code_for_require @section) type=(code_type)}}}

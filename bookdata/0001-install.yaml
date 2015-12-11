@@ -5,6 +5,7 @@ description:
 Create project definition file:
   php: 
     file: composer.json
+    copy: true
     code: |
       {
           "name": "zordius/HandlebarsCookbook",
@@ -19,6 +20,7 @@ Create project definition file:
       }
   nodejs:
     file: package.json
+    copy: true
     code: |
       {
         "name": "handlebars.cookbook",
