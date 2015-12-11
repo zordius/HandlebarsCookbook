@@ -1,6 +1,8 @@
 {{#each quicksample}}
  {{#if content}}
   <h4>{{{content}}}</h4>
+ {{else}}
+  <hr/>
  {{/if}}
 {{#section_builder @samples column=true}}
  {{#with (lookup . @section)}}
