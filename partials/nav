@@ -1,14 +1,17 @@
 <nav class="navbar navbar-inverse">
  <div class="container">
   <div class="navbar-header">
-   <a class="navbar-brand" href="/">{{@configs.project_name}}</a>
+   <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> {{@configs.project_name}}</a>
   </div>
   <ul class="nav navbar-nav">
    <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Index <span class="caret"></span>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index <span class="caret"></span>
     </a>
     {{> toc class="dropdown-menu"}}
    </li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+   <li><a href="https://github.com/zordius/HandlebarsCookbook"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Go to Github</a></li>
   </ul>
  </div>
 </nav>
