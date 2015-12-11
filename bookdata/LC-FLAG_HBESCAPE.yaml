@@ -1,4 +1,3 @@
-title: "LightnCandy option: FLAG_HBESCAPE"
 description:
   Align <code>{{foo}}</code> escaping logic with handlebars.js. This causes <code>'</code>, <code>=</code> and <code>`</code> be escaped in different way.
 lcsample:

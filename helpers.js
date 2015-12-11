@@ -301,6 +301,7 @@ var helpers = {
 
         data.forEach(function (D, I) {
             var Data = handlebars.createFrame(options.data);
+            var T = D.pagename.match(/LC-(.+)/);
 
             Data.refs = refs;
 
@@ -310,7 +311,12 @@ var helpers = {
             if (data[I + 1] !== undefined) {
                 Data.page_next = data[I + 1];
             }
-            console.log('Writing the page:' + D.pagename);
+
+            if (T) {
+                D.title = 'LightnCandy option: ' + T[1];
+            }
+
+            console.log('>> Writing the page:' + D.pagename);
             fs.writeFileSync(options.data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}));
         });
     },
