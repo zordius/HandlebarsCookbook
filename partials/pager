@@ -1,8 +1,8 @@
 <ul class="pager">
  {{#if @page_prev}}
- <li class="previous"><a href="{{@page_prev.pagename}}.html">{{@page_prev.title}}</a></li>
+ <li class="previous"><a href="{{@page_prev.pagename}}.html"><span class="glyphicon glyphicon-arrow-left"></span> {{@page_prev.title}}</a></li>
  {{/if}}
  {{#if @page_next}}
- <li class="next"><a href="{{@page_next.pagename}}.html">{{@page_next.title}}</a></li>
+ <li class="next"><a href="{{@page_next.pagename}}.html">{{@page_next.title}} <span class="glyphicon glyphicon-arrow-right"></span></a></li>
  {{/if}}
 </ul>
