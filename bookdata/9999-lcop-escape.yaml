@@ -2,4 +2,6 @@ title: "LightnCandy option: FLAG_HBESCAPE"
 description:
   Align <code>{{foo}}</code> escaping logic with handlebars.js.
 lcsample:
-  - test: la
+  - template: {{foo}}
+    data:
+      foo: "Love & Peace"

@@ -131,7 +131,7 @@ var helpers = {
     },
 
     render: function (options) {
-        var type = options.hash.type;
+        var type = options.hash.type || this.type;
         var template = options.hash.template || this.template;
         var D = options.hash.data || this.data;
         var Data = helpers.code_for_data.apply(this, [D, type]);

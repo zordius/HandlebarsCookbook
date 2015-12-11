@@ -1,0 +1,11 @@
+{{#render}}
+<hr />
+<div class="row">
+ <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
+ <div class="col-md-6">
+  <div><b>Tempalte:</b>{{{code @template type="handlebars"}}}</div>
+  <div><b>Result:</b>{{{code @result.output type="handlebars"}}}</div>                                  
+ </div>
+</div>
+ {{{code @code type=@codeType copy=true collapse=true}}}
+{{/render}}
