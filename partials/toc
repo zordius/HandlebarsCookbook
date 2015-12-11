@@ -1,4 +1,4 @@
-<ul class="dropdown-menu">
+<ul {{#if class}}class="{{{class}}}"{{/if}}>
 {{#each @root}}
 <li><a href="{{pagename}}.html">{{addOne @index}}. {{title}}</a></li>
 {{/each}}

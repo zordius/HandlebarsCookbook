@@ -3,7 +3,11 @@
   {{>lcsample}}
  {{else}}
 <h2>{{@section}}</h2>
-  {{isStringThenOutput . tag='p'}}
-  {{>section_columns}}
+  {{#if (lookup (lookup . @section) "toc")}}
+   {{> toc}}
+  {{else}}
+   {{isStringThenOutput . tag='p'}}
+   {{>section_columns}}
+  {{/if}}
  {{/if}}
 {{/main_section}}

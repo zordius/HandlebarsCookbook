@@ -293,8 +293,11 @@ var helpers = {
     },
 
     section_builder: function (cx, options) {
+        if (!cx) {
+            return '';
+        }
         if (typeof cx !== 'object') {
-            return cx ? '<p>' + cx + '</p>' : '';
+            return '<p>' + cx + '</p>';
         }
         var sections = Object.keys(cx).reduce(function (ret, S) {
             var data = handlebars.createFrame(options.data);
