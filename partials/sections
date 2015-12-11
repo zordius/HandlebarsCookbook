@@ -7,14 +7,15 @@
     {{#with (lookup . @section)}}
 <h3>{{.}}</h3>
      {{#each ../../quicksample}}
+      {{#render type=..}}
 <div class="row">
- <div class="col-md-6"><b>Data:</b>{{{code data type="data" language=..}}}</div>
+ <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeDataType}}}</div>
  <div class="col-md-6">
-  <div><b>Tempalte:</b>{{{code template type="handlebars"}}}</div>
-  <div><b>Result:</b>{{{code result type="handlebars"}}}</div>
+  <div><b>Tempalte:</b>{{{code @template type="handlebars"}}}</div>
+  <div><b>Result:</b>{{{code @result type="handlebars"}}}</div>
  </div>
 </div>
-{{{collapsed_full_code}}}
+      {{/render}}
      {{/each}}
     {{/with}}
    {{/section_builder}}
@@ -35,9 +36,12 @@
      {{{code (code_for_require @section) type=(code_type)}}}
     {{/if}}
     {{#if collectcode}}
-     {{{code (str_join (code_for_require @section) (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
+     {{{code (str_join
+       (code_for_require @section)
+       (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
 ") sep="
-") type=(code_type) copy=true result=true}}}
+"
+     ) type=(code_type) copy=true result=true}}}
     {{/if}}
    {{/with}}
   {{/quicksample}}

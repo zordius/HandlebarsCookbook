@@ -24,15 +24,15 @@ var helpers = {
         return '';
     },
 
-    code_for_setdata: function (type, options) {
-        var D = this.data;
+    code_for_set: function (name, type) {
         switch (type) {
         case 'lightncandy':
-            return '$data = ' + helpers.php_array(D, '');
+            return '$' + name + ' = ';
         case 'handlebars.js':
         case 'mustache':
+            return 'var ' + name + ' = ';
         }
-        console.warn('unknown code type in code_for_setdata():' + type);
+        console.warn('unknown code type in code_for_set():' + type);
         return '';
     },
 
@@ -96,11 +96,21 @@ var helpers = {
         return result;
     },
 
-    collapsed_full_code: function (options) {
-        var copy = 'copy_' + shortid();
-        var type = options.data.samples[options.data.section];
-        var req = helpers.code_for_require(type);
-        var data = helpers.code_for_setdata.apply(this, [type, options]);
+    render: function (options) {
+        var type = options.hash.type;
+        var template = options.hash.template || this.template;
+        var D = options.hash.data || this.data;
+        var Data = helpers.code_for_data.apply(this, [D, type]);
+        var setData = helpers.code_for_set.apply(this, ['data', type]);
+        var data = handlebars.createFrame(options.data);
+
+        data.template = template;
+        data.codeData = Data[1];
+        data.codeDataType = Data[0];
+        data.codeRequire = helpers.code_for_require(type);
+        data.codeSetdata = setData + Data[1];
+
+        return options.fn(D, {data: data});
     },
 
     code: function (cx, options) {
@@ -110,12 +120,6 @@ var helpers = {
         var type = options.hash.type;
         var className = options.hash.class ? (' class="' + options.hash.class + '"') : '';
         var R;
-
-        if ((options.hash.language !== undefined) && (type === 'data')) {
-            R = helpers.code_for_data(cx, options.hash.language);
-            code = R[1];
-            type = R[0];
-        }
 
         code = code + helpers.remove_dupe_cr(cx);
 
