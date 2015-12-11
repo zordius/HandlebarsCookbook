@@ -3,7 +3,6 @@ var handlebars = require('handlebars');
 var Prism = require('prismjs');
 var exec = require('shelljs').exec;
 var shortid = require('shortid').generate;
-var intercept = require('intercept-stdout');
 var defaultSP = '  ';
 var tmp_file = '.exec_tmp_file';
 
