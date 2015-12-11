@@ -1,5 +1,5 @@
-<ul {{#if class}}class="{{{class}}}"{{/if}}>
+<ol {{#if class}}class="{{{class}}}"{{/if}}>
 {{#each @root}}
-<li><a href="{{pagename}}.html">{{addOne @index}}. {{title}}</a></li>
+<li><a href="{{pagename}}.html">{{#if ../number}}{{addOne @index}}. {{/if}}{{title}}</a></li>
 {{/each}}
-</ul>
+</ol>

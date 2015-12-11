@@ -7,7 +7,7 @@
    <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index <span class="caret"></span>
     </a>
-    {{> toc class="dropdown-menu"}}
+    {{> toc class="dropdown-menu" number=true}}
    </li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
