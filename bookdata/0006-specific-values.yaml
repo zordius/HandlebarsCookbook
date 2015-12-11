@@ -1,0 +1,11 @@
+title: Specific Values
+description:
+  Values other than string will be rendered is specific way.
+Samples:
+  quicksample:
+    - template: "{{{foo}}}"
+      option:
+        lightncandy:
+        - FLAG_JSTRUE
+      data:
+        foo: true
