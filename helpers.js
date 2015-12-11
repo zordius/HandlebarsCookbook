@@ -248,14 +248,20 @@ var helpers = {
     },
 
     book_writer: function (data, options) {
+        var refs = data.reduce(function (O, V) {
+            O[V.pagename] = V;
+            return O;
+        }, {});
+
         data.forEach(function (D, I) {
+            var Data = {refs: refs};
             if (I > 0) {
-                D.page_prev = data[I - 1];
+                Data.page_prev = data[I - 1];
             }
             if (data[I + 1] !== undefined) {
-                D.page_next = data[I + 1];
+                Data.page_next = data[I + 1];
             }
-            fs.writeFileSync(data.configs.out_dir + D.pagename + '.html', options.fn(D));
+            fs.writeFileSync(data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}));
         });
     },
 
@@ -282,11 +288,10 @@ var helpers = {
 
     main_section: function (options) {
         switch (options.data.section) {
-        case 'page_prev':
-        case 'page_next':
         case 'title':
         case 'description':
         case 'pagename':
+        case "ref":
             return '';
         default:
             return options.fn(this);

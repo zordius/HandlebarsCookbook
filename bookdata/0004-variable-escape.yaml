@@ -9,3 +9,5 @@ Samples:
     - template: "{{foo}}"
       data:
         foo: <p>Hello</p>
+ref:
+  - test
