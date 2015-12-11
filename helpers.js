@@ -4,7 +4,7 @@ var Prism = require('prismjs');
 var exec = require('shelljs').exec;
 var shortid = require('shortid').generate;
 var defaultSP = '  ';
-var tmp_file = 'tmp_file_exec';
+var tmp_file = '.exec_tmp_file';
 
 require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-php');

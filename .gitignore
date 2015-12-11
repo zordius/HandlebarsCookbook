@@ -2,3 +2,4 @@ node_modules/
 vendor/
 generated/
 composer.lock
+.exec_tmp_file
