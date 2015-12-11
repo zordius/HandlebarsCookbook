@@ -13,8 +13,8 @@
  <![endif]-->
 <style>
 .copy {position:absolute;top:-1000px;left:-1000px;height:0;width:0}
-h2 {border-top:1px dotted #ccc;padding-top:10px}
-h4 {color:#666}
+h2,h4 {border-top:1px dotted #ccc;padding-top:10px}
+h5 {color:#555}
 .result {background:#efe}
 .pager {border-top:1px solid #aaa;padding-top:30px}
 </style>

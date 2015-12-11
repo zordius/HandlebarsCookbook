@@ -1,8 +1,13 @@
+{{#each quicksample}}
+ {{#if content}}
+  <h4>{{{content}}}</h4>
+ {{/if}}
 {{#section_builder @samples column=true}}
  {{#with (lookup . @section)}}
-<h3>{{.}}</h3>
-  {{#each ../../quicksample}}
-   {{> sample type=.. collapse=true}}
-  {{/each}}
+<h5>{{.}}</h5>
+  {{#with ../..}}
+   {{> sample type=.. collapse=true content=0}}
+  {{/with}}
  {{/with}}
 {{/section_builder}}
+{{/each}}

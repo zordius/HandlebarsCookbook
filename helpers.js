@@ -104,9 +104,9 @@ var helpers = {
         }
 
         if (Array.isArray(D)) {
-            return 'array(' + spp + D.map(function (V, K) {
-                return spp + '"' + K.replace(/"/g, '\"/' + '"') + '" => ' + helpers.php_array(V, spp);
-            }).join(',') + ')';
+            return 'array(\n' + D.map(function (V) {
+                return spp + helpers.php_array(V, spp);
+            }).join(',\n') + '\n' + sp + ')';
         }
 
         if (typeof D === 'object') {

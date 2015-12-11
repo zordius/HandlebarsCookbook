@@ -1,5 +1,4 @@
 {{#render}}
-<hr />
 {{#if content}}
  {{{content}}}
 {{/if}}
@@ -10,5 +9,5 @@
   <div><b>Result:</b>{{{code @result.output type="handlebars"}}}</div>                                  
  </div>
 </div>
- {{{code @code type=@codeType copy=true collapse=../collapse}}}
+ {{{code @code type=@codeType copy=true collapse=collapse}}}
 {{/render}}

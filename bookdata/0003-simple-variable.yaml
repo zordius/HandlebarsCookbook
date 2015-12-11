@@ -6,6 +6,24 @@ Samples:
     - template: "{{foo}}"
       data:
         foo: Hello
-    - template: "{{foo}}"
+    - content: Missing value will be rendered as empty string
+      template: "{{foo}}"
       data:
         bar: missing
+    - content: <code>{{true}}</code> will lookup on the key:<code>true</code>.
+      template: "{{true}}"
+      data:
+        true: World
+    - content: <code>{{false}}</code> will lookup on the key:<code>false</code>.
+      template: "{{false}}"
+      data:
+        false: Earth
+    - content: <code>{{undefined}}</code> will lookup on the key:<code>undefined</code>.
+      template: "{{undefined}}"
+      data:
+        undefined: Word
+    - content: <code>{{1}}</code> will lookup on the second item.
+      template: "{{1}}"
+      data:
+        - Hello
+        - World
