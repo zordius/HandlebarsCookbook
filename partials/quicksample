@@ -2,7 +2,7 @@
  {{#with (lookup . @section)}}
 <h3>{{.}}</h3>
   {{#each ../../quicksample}}
-   {{> sample type=..}}
+   {{> sample type=.. collapse=true}}
   {{/each}}
  {{/with}}
 {{/section_builder}}
