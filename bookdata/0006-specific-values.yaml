@@ -1,6 +1,6 @@
 title: Specific Values
 description:
-  Values other than string will be rendered is specific way.
+  Values other than string will be rendered in specific way.
 Samples:
   quicksample:
     - template: "{{{foo}}}"
@@ -9,3 +9,26 @@ Samples:
         - FLAG_JSTRUE
       data:
         foo: true
+    - template: "{{{foo}}}"
+      option:
+        lightncandy:
+        - FLAG_JSTRUE
+      data:
+        foo: false
+    - template: "{{{foo}}}"
+      option:
+        lightncandy:
+        - FLAG_JSOBJECT
+      data:
+        foo:
+          bar: foo is object
+    - template: "{{{foo}}}"
+      option:
+        lightncandy:
+        - FLAG_JSOBJECT
+      data:
+        foo: [is, an, array]
+    - template: "{{{foo}}}"
+      option:
+        lightncandy:
+        - FLAG_JSOBJECT
