@@ -17,5 +17,18 @@ How it works...:
       }
   = result:
     code: Hello! My name is John and I am 18 years old.
+Keyboard Shortcuts: |
+  You may use keyboard to navigate fast:
+  <ul>
+   <li><kbd>Left</kbd> Go to previous page of this book.</li>
+   <li><kbd>Right</kbd> Go to next page of this book.</li>
+   <li><kbd>/</kbd> Toggle the Index drop down menu.</li>
+  </ul>
+  When the drop down menu is displayed, you can:
+  <ul>
+   <li><kbd>Up</kbd> and <kbd>Down</kbd> Move over the items.</li>
+   <li><kbd>Enter</kbd> Go to the focused page.</li>
+   <li><kdb>ESC</kbd> Close the drop down menu.</li>
+  </ul>
 Table of Content:
   toc: true
