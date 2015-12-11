@@ -2,6 +2,17 @@ title: "LightnCandy option: FLAG_HBESCAPE"
 description:
   Align <code>{{foo}}</code> escaping logic with handlebars.js.
 lcsample:
-  - template: "{{foo}}"
+  - content: <p>The default escaping is by <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a> only.</p>
+    template: "{{foo}}"
     data:
       foo: "Love & Peace"
+  - content: "<p>The default escaping for <code>'</code>:</p>"
+    template: "{{foo}}"
+    data:
+      foo: "Single Quote is '"
+  - content: "<p>Escaping <code>'</code> with <code>FLAG_HBESCAPE</code>:</p>"
+    template: "{{foo}}"
+    options:
+      - FLAG_HBESCAPE
+    data:
+      foo: "Single Quote is '"

@@ -156,7 +156,7 @@ var helpers = {
 
         data.result = helpers.result_for_code(data.code, data.codeType);
 
-        return options.fn(D, {data: data});
+        return options.fn(this, {data: data});
     },
 
     code: function (cx, options) {
