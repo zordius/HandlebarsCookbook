@@ -23,9 +23,13 @@ Used Software
 
 * https://packagist.org/packages/zordius/lightncandy
 * https://www.npmjs.com/package/browser-sync
+* https://www.npmjs.com/package/del
 * https://www.npmjs.com/package/gulp
 * https://www.npmjs.com/package/gulp-eslint
 * https://www.npmjs.com/package/handlebars
 * https://www.npmjs.com/package/js-yaml
 * https://www.npmjs.com/package/mustache
 * https://www.npmjs.com/package/object.assign
+* https://www.npmjs.com/package/prismjs
+* https://www.npmjs.com/package/shelljs
+* https://www.npmjs.com/package/shortid
