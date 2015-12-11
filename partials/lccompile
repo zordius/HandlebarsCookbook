@@ -1,0 +1,6 @@
+<h2>Compile Options:</h2>
+<dl>
+{{#lcpages}}
+ <dt><a href="{{pagename}}.html">LightnCandy::{{opt_name}}</a></dt><dd>{{{description}}}</dd>
+{{/lcpages}}
+</dl>

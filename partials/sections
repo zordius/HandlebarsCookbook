@@ -1,6 +1,8 @@
 {{#main_section}}
  {{#if lcsample}}
   {{>lcsample}}
+ {{else if lccompile}}
+  {{>lccompile}}
  {{else}}
 <h2>{{@section}}</h2>
   {{#if (lookup (lookup . @section) "toc")}}

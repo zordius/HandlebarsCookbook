@@ -293,6 +293,15 @@ var helpers = {
         return (cx && cx.join) ? cx.join(sep) : '';
     },
 
+    lcpages: function (options) {
+        return options.data.root.reduce(function (R, V) {
+            if (V.opt_name) {
+                R += options.fn(V);
+            }
+            return R;
+        }, '');
+    },
+
     book_writer: function (data, options) {
         var refs = data.reduce(function (O, V) {
             O[V.pagename] = V;
@@ -303,6 +312,7 @@ var helpers = {
             var T = D.pagename.match(/LC-(.+)/);
             if (T) {
                 D.title = 'LightnCandy option: ' + T[1];
+                D.opt_name = T[1];
             }
         });
 
