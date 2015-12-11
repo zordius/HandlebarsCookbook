@@ -159,7 +159,7 @@ var helpers = {
     },
 
     result_class: function (options) {
-        return options.data.result;
+        return (options.data.result.code > 0) ? 'error' : 'result';
     },
 
     escapeString: function (str, type) {
