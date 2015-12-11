@@ -139,7 +139,7 @@ var helpers = {
         var result;
         if (type === 'php') {
             fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
-            result = exec('php ' + tmp_file, {silent: true});
+            result = exec('php -dopen_basedir=/ ' + tmp_file, {silent: true});
         } else {
             fs.writeFileSync(tmp_file, code);
             result = exec('node ' + tmp_file, {silent: true});
@@ -288,6 +288,7 @@ var helpers = {
             if (data[I + 1] !== undefined) {
                 Data.page_next = data[I + 1];
             }
+            console.log('Writing the page:' + D.pagename);
             fs.writeFileSync(options.data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}));
         });
     },
