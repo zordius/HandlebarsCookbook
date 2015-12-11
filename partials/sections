@@ -32,12 +32,12 @@
      {{{code code type=(code_type)}}}
     {{/if}}
     {{#if code_use}}
-     {{{code "" type=(code_type) use=""}}}
+     {{{code (code_for_require @section) type=(code_type)}}}
     {{/if}}
     {{#if collectcode}}
-     {{{code (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
-") type=(code_type) copy=true result=true use="
-"}}}
+     {{{code (str_join (code_for_require @section) (join (collect (collect ../.. @section ignore=collectcode key="_key") "code" comment="_key") "
+") sep="
+") type=(code_type) copy=true result=true}}}
     {{/if}}
    {{/with}}
   {{/quicksample}}

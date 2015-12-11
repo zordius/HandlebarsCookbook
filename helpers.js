@@ -14,7 +14,7 @@ var helpers = {
     code_for_require: function (type) {
         switch (type) {
         case 'lightncandy':
-            return 'require \'./vendor/autoload.php\';\nuse LightnCandy\\LightnCandy;';
+            return 'require(\'./vendor/autoload.php\');\nuse LightnCandy\\LightnCandy;';
         case 'handlebars.js':
             return 'var Handlebars = require(\'handlebars\');';
         case 'mustache':
@@ -32,7 +32,7 @@ var helpers = {
         case 'handlebars.js':
         case 'mustache':
         }
-        console.warn('unknown code type in code_for_require():' + type);
+        console.warn('unknown code type in code_for_setdata():' + type);
         return '';
     },
 
@@ -111,10 +111,6 @@ var helpers = {
         var className = options.hash.class ? (' class="' + options.hash.class + '"') : '';
         var R;
 
-        if (options.hash.use !== undefined) {
-            code = helpers.code_for_require(options.data.section) + options.hash.use;
-        }
-
         if ((options.hash.language !== undefined) && (type === 'data')) {
             R = helpers.code_for_data(cx, options.hash.language);
             code = R[1];
@@ -168,6 +164,12 @@ var helpers = {
             }
             return O;
         }, []);
+    },
+    str_join: function () {
+        var arg = Array.prototype.slice.call(arguments);
+        var options = arg.pop();
+
+        return arg.join(options.hash.sep || '');
     },
     join: function (cx, sep) {
         return (cx && cx.join) ? cx.join(sep) : '';
