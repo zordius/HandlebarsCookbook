@@ -37,7 +37,9 @@ var helpers = {
     },
 
     code_for_option: function (option, type) {
-        if (! option) {
+        var opt = (option && option[type]) ? option[type] : option;
+
+        if (! opt) {
             return '';
         }
 
