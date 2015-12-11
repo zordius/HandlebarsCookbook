@@ -12,11 +12,16 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
  <![endif]-->
 <style>
-.copy {position:absolute;top:-1000px;left:-1000px;height:0;width:0}
+body > .container-fluid {padding-top: 70px;}
 h2,h4 {border-top:1px dotted #ccc;padding-top:10px}
 h5 {color:#555}
+.copy {position:absolute;top:-1000px;left:-1000px;height:0;width:0}
 .result {background:#efe}
 .pager {border-top:1px solid #aaa;padding-top:30px}
+@media (max-width: 768px) {
+  .navbar-fixed-top {position:relative}
+  body > .container-fluid {padding-top: 0px;}
+}
 </style>
 </head>
 <body>
