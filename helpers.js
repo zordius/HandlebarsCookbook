@@ -36,6 +36,24 @@ var helpers = {
         return '';
     },
 
+    code_for_option: function (option, type) {
+        if (! option) {
+            return '';
+        }
+
+        switch (type) {
+        case 'lightncandy':
+            return option.map(function (V) {
+                return 'LightnCandy::' + V;
+            }).join(' | ');
+        case 'handlebars.js':
+        case 'mustache':
+            return '';
+        }
+        console.warn('unknown code type in code_for_option():' + type);
+        return '';
+    },
+
     code_for_data: function (data, type) {
         switch (type) {
         case 'handlebars.js':
@@ -48,10 +66,12 @@ var helpers = {
         }
     },
 
-    code_for_compile: function (type) {
+    code_for_compile: function (type, opt) {
+        var EX;
         switch (type) {
         case 'lightncandy':
-            return '$php = LightnCandy::compile($template);\n$render = LightnCandy::prepare($php);';
+            EX = opt ? ', array(\'flags\' => ' + opt + ')' : '';
+            return '$php = LightnCandy::compile($template' + EX + ');\n$render = LightnCandy::prepare($php);';
         case 'handlebars.js':
             return 'var render = Handlebars.compile(template);';
         case 'mustache':
@@ -134,7 +154,9 @@ var helpers = {
         var type = options.hash.type || this.type;
         var template = options.hash.template || this.template;
         var D = options.hash.data || this.data;
-        var Data = helpers.code_for_data.apply(this, [D, type]);
+        var opt = options.hash.option || this.option;
+        var Data = helpers.code_for_data(D, type);
+        var Option = helpers.code_for_option(opt, type);
         var data = handlebars.createFrame(options.data);
 
         data.template = template;
@@ -143,7 +165,7 @@ var helpers = {
         data.codeRequire = helpers.code_for_require(type);
         data.codeSetData = helpers.code_for_set('data', type) + Data[1] + ';';
         data.codeSetTemplate = helpers.code_for_set('template', type) + "'" + helpers.singleQuote(template) + "';";
-        data.codeCompile = helpers.code_for_compile(type);
+        data.codeCompile = helpers.code_for_compile(type, Option);
         data.codeRender = helpers.code_for_render(type);
 
         data.code = [

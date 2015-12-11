@@ -1,18 +1,38 @@
 title: "LightnCandy option: FLAG_HBESCAPE"
 description:
-  Align <code>{{foo}}</code> escaping logic with handlebars.js.
+  Align <code>{{foo}}</code> escaping logic with handlebars.js. This causes <code>'</code>, <code>=</code> and <code>`</code> be escaped in different way.
 lcsample:
   - content: <p>The default escaping is by <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a> only.</p>
     template: "{{foo}}"
     data:
-      foo: "Love & Peace"
+      foo: "Love & <b>Peace</b>"
   - content: "<p>The default escaping for <code>'</code>:</p>"
     template: "{{foo}}"
     data:
       foo: "Single Quote is '"
   - content: "<p>Escaping <code>'</code> with <code>FLAG_HBESCAPE</code>:</p>"
     template: "{{foo}}"
-    options:
+    option:
       - FLAG_HBESCAPE
     data:
       foo: "Single Quote is '"
+  - content: "<p>The default escaping for <code>`</code>:</p>"
+    template: "{{foo}}"
+    data:
+      foo: "Backtick is `"
+  - content: "<p>Escaping <code>`</code> with <code>FLAG_HBESCAPE</code>:</p>"
+    template: "{{foo}}"
+    option:
+      - FLAG_HBESCAPE
+    data:
+      foo: "Backtick is `"
+  - content: "<p>The default escaping for <code>=</code>:</p>"
+    template: "{{foo}}"
+    data:
+      foo: "Equal is ="
+  - content: "<p>Escaping <code>`</code> with <code>FLAG_HBESCAPE</code>:</p>"
+    template: "{{foo}}"
+    option:
+      - FLAG_HBESCAPE
+    data:
+      foo: "Equal is ="
