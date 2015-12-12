@@ -1,6 +1,8 @@
 <h2>Compile Options:</h2>
 <dl>
-{{#lcpages}}
+{{#each @root}}
+ {{#if opt_name}}
  <dt><a href="{{pagename}}.html">LightnCandy::{{opt_name}}</a></dt><dd>{{{description}}}</dd>
-{{/lcpages}}
+ {{/if}}
+{{/each}}
 </dl>

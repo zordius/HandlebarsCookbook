@@ -295,15 +295,6 @@ var helpers = {
         return (cx && cx.join) ? cx.join(sep) : '';
     },
 
-    lcpages: function (options) {
-        return options.data.root.reduce(function (R, V) {
-            if (V.opt_name) {
-                R += options.fn(V);
-            }
-            return R;
-        }, '');
-    },
-
     book_writer: function (data, options) {
         var refs = data.reduce(function (O, V) {
             O[V.pagename] = V;
@@ -364,15 +355,16 @@ var helpers = {
         case 'title':
         case 'description':
         case 'pagename':
-        case "ref":
+        case 'ref':
+        case 'opt_name':
             return '';
         default:
             return options.fn(this);
         }
     },
 
-    eq: function (a, b, options) {
-        return (a === b) ? options.fn(this) : options.inverse(this);
+    eq: function (a, b) {
+        return (a === b);
     },
 
     code_type: function (options) {
