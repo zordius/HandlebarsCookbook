@@ -117,7 +117,7 @@ var helpers = {
         }
 
         if (typeof D === 'string') {
-            return '"' + D.replace(/\\/g, '\\\\').replace(/"/g, '\"/' + '"') + '"';
+            return '"' + D.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
         }
 
         if (D === true) {

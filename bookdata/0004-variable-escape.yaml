@@ -9,5 +9,8 @@ Samples:
     - template: "{{foo}}"
       data:
         foo: <p>Hello</p>
+    - template: "{{foo}}"
+      data:
+        foo: Quotes as ' and " and `
 ref:
   - LC-FLAG_HBESCAPE
