@@ -2,6 +2,7 @@
 {{#if content}}
  {{{content}}}
 {{/if}}
+{{> (str_join "option" type sep="_")}}
 <div class="row">
  <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
  <div class="col-md-6">

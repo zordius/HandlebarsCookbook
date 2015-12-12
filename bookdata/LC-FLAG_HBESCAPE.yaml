@@ -5,31 +5,31 @@ lcsample:
     template: "{{foo}}"
     data:
       foo: "Love & <b>Peace</b>"
-  - content: "<p>The default escaping for <code>'</code>:</p>"
+  - content: "<p>Escaping <code>'</code>:</p>"
     template: "{{foo}}"
     data:
       foo: "Single Quote is '"
-  - content: "<p>Escaping <code>'</code> with <code>FLAG_HBESCAPE</code>:</p>"
+  - content: "<p>Escaping <code>'</code>:</p>"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE
     data:
       foo: "Single Quote is '"
-  - content: "<p>The default escaping for <code>`</code>:</p>"
+  - content: "<p>Escaping <code>`</code>:</p>"
     template: "{{foo}}"
     data:
       foo: "Backtick is `"
-  - content: "<p>Escaping <code>`</code> with <code>FLAG_HBESCAPE</code>:</p>"
+  - content: "<p>Escaping <code>`</code>:</p>"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE
     data:
       foo: "Backtick is `"
-  - content: "<p>The default escaping for <code>=</code>:</p>"
+  - content: "<p>Escaping <code>`</code>:</p>"
     template: "{{foo}}"
     data:
       foo: "Equal is ="
-  - content: "<p>Escaping <code>`</code> with <code>FLAG_HBESCAPE</code>:</p>"
+  - content: "<p>Escaping <code>`</code>:</p>"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE
