@@ -1,6 +1,6 @@
 {{#render}}
-{{#if content}}
- {{{content}}}
+{{#if note}}
+<p>{{{note}}}</p>
 {{/if}}
 {{> (str_join "option" type sep="_")}}
 <div class="row">

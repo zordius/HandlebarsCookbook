@@ -1,11 +1,11 @@
 description:
   Do not do any HTML escape on <code>{{var}}</code>
 lcsample:
-  - content: <p>The default behavior is escaping values.</p>
+  - note: The default behavior is escaping values.
     template: "{{foo}}"
     data:
       foo: "Love & <b>Peace</b>"
-  - content: "<p>Do not escaping when <code>FLAG_NOESCAPE</code> is used.</p>"
+  - note: "Do not escaping when <code>FLAG_NOESCAPE</code> is used."
     template: "{{foo}}"
     option:
       - FLAG_NOESCAPE

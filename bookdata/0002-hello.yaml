@@ -37,13 +37,13 @@ Rendering the template:
 
 Reuse the render function:
   lightncandy:
-    content: <p>You do not need to compile template everytime. You can reuse the render function with different data. </p>
+    note: You do not need to compile template everytime. You can reuse the render function with different data.
     code: echo $render($another_data);
   handlebars.js:
-    content: <p>You do not need to compile template everytime. You can reuse the render function with different data. </p>
+    note: You do not need to compile template everytime. You can reuse the render function with different data.
     code: console.log(render(another_data));
   mustache:
-    content: <p>Mustache does not support pre-compile, so you need to compile the template everytime.</p>
+    note: Mustache does not support pre-compile, so you need to compile the template everytime.
     code: console.log(Mustache.render(template, data));
 
 The full code:

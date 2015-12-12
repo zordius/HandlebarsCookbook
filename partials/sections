@@ -1,7 +1,7 @@
 {{#main_section}}
- {{#if lcsample}}
+ {{#eq @section "lcsample"}}
   {{>lcsample}}
- {{else if lccompile}}
+ {{else eq @section "lccompile"}}
   {{>lccompile}}
  {{else}}
 <h2>{{@section}}</h2>
@@ -13,5 +13,5 @@
    {{isStringThenOutput . tag='p'}}
    {{>section_columns}}
   {{/if}}
- {{/if}}
+ {{/eq}}
 {{/main_section}}

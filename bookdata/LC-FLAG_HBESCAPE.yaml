@@ -1,35 +1,35 @@
 description:
   Align <code>{{foo}}</code> escaping logic with handlebars.js. This causes <code>'</code>, <code>=</code> and <code>`</code> be escaped in different way.
 lcsample:
-  - content: <p>The default escaping is by <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a> only.</p>
+  - note: The default escaping is by <a href="http://php.net/manual/en/function.htmlentities.php">htmlentities</a> only.
     template: "{{foo}}"
     data:
       foo: "Love & <b>Peace</b>"
-  - content: "<p>Escaping <code>'</code>:</p>"
+  - note: "Escaping <code>'</code>:"
     template: "{{foo}}"
     data:
       foo: "Single Quote is '"
-  - content: "<p>Escaping <code>'</code>:</p>"
+  - note: "Escaping <code>'</code>:"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE
     data:
       foo: "Single Quote is '"
-  - content: "<p>Escaping <code>`</code>:</p>"
+  - note: "Escaping <code>`</code>:"
     template: "{{foo}}"
     data:
       foo: "Backtick is `"
-  - content: "<p>Escaping <code>`</code>:</p>"
+  - note: "Escaping <code>`</code>:"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE
     data:
       foo: "Backtick is `"
-  - content: "<p>Escaping <code>`</code>:</p>"
+  - note: "Escaping <code>`</code>:"
     template: "{{foo}}"
     data:
       foo: "Equal is ="
-  - content: "<p>Escaping <code>`</code>:</p>"
+  - note: "Escaping <code>`</code>:"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE

@@ -1,6 +1,6 @@
 {{#each quicksample}}
- {{#if content}}
-  <h4>{{{content}}}</h4>
+ {{#if note}}
+  <h4>{{{note}}}</h4>
  {{else}}
   <hr/>
  {{/if}}
@@ -8,7 +8,7 @@
  {{#with (lookup . @section)}}
 <h5>{{.}}</h5>
   {{#with ../..}}
-   {{> sample type=.. collapse=true content=0}}
+   {{> sample type=.. collapse=true note=0}}
   {{/with}}
  {{/with}}
 {{/section_builder}}

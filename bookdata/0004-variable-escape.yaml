@@ -12,8 +12,8 @@ Samples:
     - template: "{{foo}}"
       data:
         foo: Quotes as ' and " and `
-    - content: The escaping behavior of Lightncandy can be configured to same with handlebars exactly.
-      template: "{{foo}}"
+    - template: "{{foo}}"
+      note: The escaping behavior of Lightncandy can be configured to same with handlebars exactly.
       option:
         lightncandy: [FLAG_HBESCAPE]
       data:

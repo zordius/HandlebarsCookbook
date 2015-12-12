@@ -6,36 +6,36 @@ Samples:
     - template: "{{foo}}"
       data:
         foo: Hello
-    - content: Missing value will be rendered as empty string
-      template: "{{foo}}"
+    - template: "{{foo}}"
+      note: Missing value will be rendered as empty string
       data:
         bar: missing
-    - content: <code>{{true}}</code> will lookup on the key:<code>true</code>.
-      template: "{{true}}"
+    - template: "{{true}}"
+      note: <code>{{true}}</code> will lookup on the key:<code>true</code>.
       data:
         true: World
-    - content: <code>{{false}}</code> will lookup on the key:<code>false</code>.
-      template: "{{false}}"
+    - template: "{{false}}"
+      note: <code>{{false}}</code> will lookup on the key:<code>false</code>.
       data:
         false: Earth
-    - content: <code>{{undefined}}</code> will lookup on the key:<code>undefined</code>.
-      template: "{{undefined}}"
+    - template: "{{undefined}}"
+      note: <code>{{undefined}}</code> will lookup on the key:<code>undefined</code>.
       data:
         undefined: Word
-    - content: <code>{{1}}</code> will lookup on the second item.
-      template: "{{1}}"
+    - template: "{{1}}"
+      note: <code>{{1}}</code> will lookup on the second item.
       data:
         - Hello
         - World
-    - content: Spaces before or after the name are allowed.
-      template: "{{ foo  }}"
+    - template: "{{ foo  }}"
+      note: Spaces before or after the name are allowed.
       data:
         foo: Good
-    - content: Line changes before or after the name are allowed.
-      template: |
+    - template: |
         {{
          foo
 
         }}
+      note: Line changes before or after the name are allowed.
       data:
         foo: Good

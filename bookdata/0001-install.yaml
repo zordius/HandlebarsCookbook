@@ -43,7 +43,7 @@ Install dependency:
     code: npm install
 Require the library:
   lightncandy:
-    content: <p>You may require <a href="https://getcomposer.org/doc/01-basic-usage.md#autoloading">composer autoloader</a> to do <a href="http://php.net/manual/en/language.oop5.autoload.php">autoload</a> for you, then you can use LightnCandy classed without require() class files.</p>
+    note: You may require <a href="https://getcomposer.org/doc/01-basic-usage.md#autoloading">composer autoloader</a> to do <a href="http://php.net/manual/en/language.oop5.autoload.php">autoload</a> for you, then you can use LightnCandy classed without require() class files.
     code_use: 1
   handlebars.js:
     code_use: 1
