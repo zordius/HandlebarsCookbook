@@ -369,16 +369,8 @@ var helpers = {
         }
     },
 
-    quicksample: function (options) {
-        var samples = ['lightncandy', 'handlebars.js', 'mustache'];
-        
-        if (options.data.section === 'quicksample') {
-            var data = handlebars.createFrame(options.data);
-            data.samples = samples;
-            return options.fn(this, {data: data});
-        } else {
-            return options.inverse(this);
-        }
+    eq: function (a, b, options) {
+        return (a === b) ? options.fn(this) : options.inverse(this);
     },
 
     code_type: function (options) {

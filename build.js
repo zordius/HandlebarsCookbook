@@ -37,7 +37,9 @@ module.exports = function () {
         preventIndent: true
     })(data, {
         data: {
-            configs: configs
+            samples: ['lightncandy', 'handlebars.js', 'mustache'],
+            configs: configs,
+            package: require('./package.json')
         },
         partials: partials,
         helpers: require('./helpers')

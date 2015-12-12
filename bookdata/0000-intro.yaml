@@ -31,5 +31,7 @@ Keyboard Shortcuts: |
    <li><kbd>Up</kbd> and <kbd>Down</kbd> Move over the items.</li>
    <li><kbd>ESC</kbd> Close the drop down menu.</li>
   </ul>
+Versions:
+  version: true
 Table of Content:
   toc: true

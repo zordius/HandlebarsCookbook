@@ -7,6 +7,8 @@
 <h2>{{@section}}</h2>
   {{#if (lookup (lookup . @section) "toc")}}
    {{> toc}}
+  {{else if (lookup (lookup . @section) "version")}}
+   {{> versions}}
   {{else}}
    {{isStringThenOutput . tag='p'}}
    {{>section_columns}}
