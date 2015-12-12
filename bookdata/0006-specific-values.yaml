@@ -32,3 +32,4 @@ Samples:
       option:
         lightncandy:
         - FLAG_JSOBJECT
+      data:
