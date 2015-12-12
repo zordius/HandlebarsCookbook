@@ -150,10 +150,14 @@ var helpers = {
                 };
             } catch (E) {
                 result = {
-                    code: E.code,
+                    code: 1,
                     output: E.message
                 };
             }
+        }
+        if (result.code) {
+            console.warn('## Bad result when execute code:\n' + code + '\n');
+            console.warn(result);
         }
         return result;
     },
@@ -228,8 +232,6 @@ var helpers = {
             if ((result.code === 0) && (result.output !== '')) {
                 result = '<h4>Output</h4><pre class="result">' + result.output + '</pre>';
             } else {
-                console.warn('Bad result when execute code:\n' + code);
-                console.warn(result);
                 result = '';
             }
         }

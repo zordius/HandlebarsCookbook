@@ -39,7 +39,8 @@ module.exports = function () {
         data: {
             samples: ['lightncandy', 'handlebars.js', 'mustache'],
             configs: configs,
-            package: require('./package.json')
+            package: require('./package.json'),
+            composer: require('./composer.json')
         },
         partials: partials,
         helpers: require('./helpers')

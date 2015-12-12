@@ -1,0 +1,5 @@
+<ul>
+ <li>The used version of mustache in this book is <b>{{@package.devDependencies.mustache}}</b> (<a href="https://www.npmjs.com/package/mustache">npm:mustache</a>)</li>
+ <li>The used version of handlebars in this book is <b>{{@package.devDependencies.handlebars}}</b> (<a href="https://www.npmjs.com/package/handlebars">npm:handlebars</a>)</li>
+ <li>The used version of lightncandy in this book is <b>{{@composer.require-dev.[zordius/lightncandy]}}</b> (<a href="https://packagist.org/packages/zordius/lightncandy">composer:zordius/lightncandy</a>)</li>
+</ul>
