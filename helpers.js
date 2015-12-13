@@ -187,6 +187,7 @@ var helpers = {
         var fail = options.fail || cx.fail;
 
         var ret = {
+            type: type,
             template: options.hash.template || cx.template,
             codeData: data[1],
             codeType: data[0],
@@ -217,7 +218,14 @@ var helpers = {
 
     render: function (options) {
         var data = handlebars.createFrame(options.data);
-        return options.fn(this, {data: Object.assign(data, helpers.data_for_render(this, options))});
+
+        if (data.standard && data.standard.type === (this.type || options.hash.type)) {
+            Object.assign(data, data.standard);
+        } else {
+            Object.assign(data, helpers.data_for_render(this, options));
+        }
+
+        return options.fn(this, {data: data});
     },
 
     code: function (cx, options) {
