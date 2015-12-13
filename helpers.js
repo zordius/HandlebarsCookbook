@@ -234,7 +234,7 @@ var helpers = {
             result = helpers.result_for_code(code, options.hash.type);
 
             if ((result.code === 0) && (result.output !== '')) {
-                result = '<h4>Output</h4><pre class="result">' + result.output + '</pre>';
+                result = options.fn(result.output);
             } else {
                 result = '';
             }

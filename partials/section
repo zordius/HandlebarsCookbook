@@ -14,11 +14,14 @@
   {{{code (code_for_require @section) type=(code_type)}}}
  {{/if}}
  {{#if collectcode}}
-  {{{code (str_join
+  {{#code (str_join
     (code_for_require @section)
     (join (collect (collect ../sections @section ignore=collectcode key="_key") "code" comment="_key") "
 ") sep="
 "
-    ) type=(code_type) copy=true result=true}}}
+    ) type=(code_type) copy=true result=true}}
+<h4>Output</h4>
+<pre class="result">{{.}}</pre>
+  {{/code}}
  {{/if}}
 {{/with}}
