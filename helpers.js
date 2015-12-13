@@ -178,16 +178,16 @@ var helpers = {
         return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/'/, '\\\'').replace(/\n/g, '\\n') : str;
     },
 
-    data_for_render: function (options) {
-        var type = options.hash.type || this.type;
-        var input = options.hash.data || this.data;
-        var opt = options.hash.option || this.option;
+    data_for_render: function (cx, options) {
+        var type = options.hash.type || cx.type;
+        var input = options.hash.data || cx.data;
+        var opt = options.hash.option || cx.option;
         var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
-        var fail = options.fail || this.fail;
+        var fail = options.fail || cx.fail;
 
         var ret = {
-            template: options.hash.template || this.template,
+            template: options.hash.template || cx.template,
             codeData: data[1],
             codeType: data[0],
             codeRequire: helpers.code_for_require(type),
@@ -217,7 +217,7 @@ var helpers = {
 
     render: function (options) {
         var data = handlebars.createFrame(options.data);
-        return options.fn(this, {data: Object.assign(data, helpers.data_for_render.apply(this, arguments))});
+        return options.fn(this, {data: Object.assign(data, helpers.data_for_render(this, options))});
     },
 
     code: function (cx, options) {
@@ -380,6 +380,24 @@ var helpers = {
 
     eq: function (a, b) {
         return (a === b);
+    },
+
+    or: function () {
+        var arg = Array.prototype.slice.call(arguments, 0, -1);
+
+        for (var I in arg) {
+            if (arg[I]) {
+                return arg[I];
+            }
+        }
+    },
+
+    set: function (name, value, options) {
+        var data = handlebars.createFrame(options.data);
+
+        data[name] = value;
+
+        return options.fn(this, {data: data});
     },
 
     code_type: function (options) {

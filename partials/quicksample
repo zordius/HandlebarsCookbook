@@ -4,12 +4,14 @@
  {{else}}
   <hr/>
  {{/if}}
-{{#section_builder @samples column=true}}
- {{#with (lookup . @section)}}
-<h5>{{.}}</h5>
-  {{#with ../..}}
-   {{> sample type=.. collapse=true note=0}}
-  {{/with}}
- {{/with}}
-{{/section_builder}}
+ {{#set "standard" (data_for_render . type="handlebars.js")}}
+  {{#section_builder @samples column=true}}
+   {{#with (lookup . @section)}}
+ <h5>{{.}}</h5>
+    {{#with ../..}}
+     {{> sample type=.. collapse=true note=0}}
+    {{/with}}
+   {{/with}}
+  {{/section_builder}}
+ {{/set}}
 {{/each}}
