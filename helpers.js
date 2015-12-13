@@ -135,7 +135,7 @@ var helpers = {
         return D;
     },
 
-    result_for_code: function (code, type) {
+    result_for_code: function (code, type, fail) {
         var result;
         var H;
         if (type === 'php') {
@@ -155,7 +155,7 @@ var helpers = {
                 };
             }
         }
-        if (result.code) {
+        if (result.code && (fail === undefined)) {
             console.warn('## Bad result when execute code:\n' + code + '\n');
             console.warn(result);
         }
@@ -186,6 +186,7 @@ var helpers = {
         var Data = helpers.code_for_data(D, type);
         var Option = helpers.code_for_option(opt, type);
         var data = handlebars.createFrame(options.data);
+        var fail = options.fail || this.fail;
 
         data.template = template;
         data.codeData = Data[1];
@@ -204,7 +205,11 @@ var helpers = {
             data.codeRender
         ].join('\n');
 
-        data.result = helpers.result_for_code(data.code, data.codeType);
+        if (typeof fail === 'object') {
+            fail = fail[type];
+        }
+
+        data.result = helpers.result_for_code(data.code, data.codeType, fail);
 
         return options.fn(this, {data: data});
     },

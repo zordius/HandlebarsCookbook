@@ -32,4 +32,6 @@ Samples:
       option:
         lightncandy:
         - FLAG_JSOBJECT
+      fail:
+        mustache: true
       data:
