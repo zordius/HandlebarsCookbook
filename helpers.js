@@ -178,40 +178,46 @@ var helpers = {
         return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/'/, '\\\'').replace(/\n/g, '\\n') : str;
     },
 
-    render: function (options) {
+    data_for_render: function (options) {
         var type = options.hash.type || this.type;
-        var template = options.hash.template || this.template;
-        var D = options.hash.data || this.data;
+        var input = options.hash.data || this.data;
         var opt = options.hash.option || this.option;
-        var Data = helpers.code_for_data(D, type);
+        var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
-        var data = handlebars.createFrame(options.data);
         var fail = options.fail || this.fail;
 
-        data.template = template;
-        data.codeData = Data[1];
-        data.codeType = Data[0];
-        data.codeRequire = helpers.code_for_require(type);
-        data.codeSetData = helpers.code_for_set('data', type) + Data[1] + ';';
-        data.codeSetTemplate = helpers.code_for_set('template', type) + helpers.escapeString(template, type) + ";";
-        data.codeCompile = helpers.code_for_compile(type, Option);
-        data.codeRender = helpers.code_for_render(type);
+        var ret = {
+            template: options.hash.template || this.template,
+            codeData: data[1],
+            codeType: data[0],
+            codeRequire: helpers.code_for_require(type),
+            codeSetData: helpers.code_for_set('data', type) + data[1] + ';',
+            codeCompile: helpers.code_for_compile(type, Option),
+            codeRender: helpers.code_for_render(type)
+        };
 
-        data.code = [
-            data.codeRequire,
-            data.codeSetTemplate,
-            data.codeCompile,
-            data.codeSetData,
-            data.codeRender
+        ret.codeSetTemplate = helpers.code_for_set('template', type) + helpers.escapeString(ret.template, type) + ";",
+
+        ret.code = [
+            ret.codeRequire,
+            ret.codeSetTemplate,
+            ret.codeCompile,
+            ret.codeSetData,
+            ret.codeRender
         ].join('\n');
 
         if (typeof fail === 'object') {
             fail = fail[type];
         }
 
-        data.result = helpers.result_for_code(data.code, data.codeType, fail);
+        ret.result = helpers.result_for_code(ret.code, ret.codeType, fail);
 
-        return options.fn(this, {data: data});
+        return ret;
+    },
+
+    render: function (options) {
+        var data = handlebars.createFrame(options.data);
+        return options.fn(this, {data: Object.assign(data, helpers.data_for_render.apply(this, arguments))});
     },
 
     code: function (cx, options) {
