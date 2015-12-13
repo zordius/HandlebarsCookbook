@@ -1,23 +1,31 @@
 title: Block
 description:
-  A block is started with <code>{{#foo}}</code> and end with <code>{{/foo}}</code>, it will loop when the value is an array.
+  A block is started with <code>{{#foo}}</code> and end with <code>{{/foo}}</code>.
 Samples:
   quicksample:
     - template: "{{#foo}}Ya!{{/foo}}"
+      note: A block will loop inner content on an array.
       data:
         foo: [1, 3, 5]
     - template: "{{#foo}}Ya!{{/foo}}"
+      note: A block will render inner content for an object.
       data:
         foo:
           bar:
           moo:
     - template: "{{#foo}}Ya!{{/foo}}"
+      note: A block will render inner content for a string.
       data:
         foo: test
     - template: "{{#foo}}Ya!{{/foo}}"
+      note: A block will render inner content for a number.
       data:
         foo: 0
     - template: "{{#foo}}Ya!{{/foo}}"
       note: When the value is <code>false</code>, the inner content will not be rendered.
       data:
         foo: false
+    - template: "{{#foo}}Ya!{{/foo}}"
+      note: When the value is <code>null</code> or <code>undefined</code>, the inner content will not be rendered.
+      data:
+        foo:
