@@ -163,7 +163,15 @@ var helpers = {
     },
 
     result_class: function (options) {
-        return (options.data.result.code > 0) ? 'error' : 'result';
+        if (options.data.result.code > 0) {
+            return 'error';
+        }
+
+        if (options.data.standard && (options.data.result.output !== options.data.standard.result.output)) {
+            return 'different';
+        }
+
+        return 'result';
     },
 
     escapeString: function (str, type) {
