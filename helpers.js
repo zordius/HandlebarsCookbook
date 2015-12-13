@@ -218,6 +218,10 @@ var helpers = {
         var classes = options.hash.class ? [options.hash.class] : [];
         var className;
 
+        if (typeof cx === 'function') {
+            cx = cx.apply(this, [options]);
+        }
+
         code = code + helpers.remove_dupe_cr(cx);
 
         if (options.hash.collapse) {

@@ -6,8 +6,9 @@ Create project definition file:
   php: 
     file: composer.json
     copy: true
-    code: |
-      {
+    code: !!js/function |
+      function (options) {
+        return JSON.stringify({
           "name": "zordius/HandlebarsCookbook",
           "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
           "homepage": "https://github.com/zordius/HandlebarsCookbook",
@@ -15,26 +16,29 @@ Create project definition file:
               "php": ">=5.3.0"
           },
           "require-dev": {
-              "zordius/lightncandy": "0.89"
+              "zordius/lightncandy": options ? options.data.composer['require-dev']['zordius/lightncandy'] : "*"
           }
+        }, null, '  ');
       }
   nodejs:
     file: package.json
     copy: true
-    code: |
-      {
-        "name": "handlebars.cookbook",
-        "version": "0.0.1",
-        "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
-        "repository": {
-          "type": "git",
-          "url": "git+https://github.com/zordius/HandlebarsCookbook.git"
-        },
-        "homepage": "https://github.com/zordius/HandlebarsCookbook",
-        "devDependencies": {
-          "handlebars": "4.0.5",
-          "mustache": "2.2.0"
-        }
+    code: !!js/function |
+      function (options) {
+        return JSON.stringify({
+          "name": "handlebars.cookbook",
+          "version": "0.0.1",
+          "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
+          "repository": {
+            "type": "git",
+            "url": "git+https://github.com/zordius/HandlebarsCookbook.git"
+          },
+          "homepage": "https://github.com/zordius/HandlebarsCookbook",
+          "devDependencies": {
+            "handlebars": options ? options.data.package.devDependencies.handlebars : "*",
+            "mustache": options ? options.data.package.devDependencies.mustache : "*"
+          }
+        }, null, '  ');
       }
 Install dependency:
   php:
