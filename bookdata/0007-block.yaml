@@ -48,6 +48,7 @@ Context Switching:
           bar: World
         bar: OK
     - template: "{{#foo}}{{#bar}}{{moo}}{{/bar}}{{/foo}}"
+      note: Lookup deeper value in this way.
       data:
         foo:
           bar:
