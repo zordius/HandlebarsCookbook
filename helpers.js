@@ -168,7 +168,7 @@ var helpers = {
         }
 
         if (options.data.standard && (options.data.result.output !== options.data.standard.result.output)) {
-            if (!options.data.different) {
+            if (!options.hash.different) {
                 console.warn('!!Render result is not same with standard.\n!Standard:\n' + options.data.standard.result.output + '\n!Result:\n' + options.data.result.output + '\n');
             }
             return 'different';

@@ -7,13 +7,18 @@ Samples:
       data:
         foo: Hello & Happy
     - template: "{{foo}}"
+      note: mustache.js also escapes <code>/</code>
+      different: true
       data:
         foo: <p>Hello</p>
     - template: "{{foo}}"
+      note: handlebars.js escapes <code>'</code> and <code>`</code> in his way
+      different: true
       data:
         foo: Quotes as ' and " and `
     - template: "{{foo}}"
       note: The escaping behavior of Lightncandy can be configured to same with handlebars exactly.
+      different: true
       option:
         lightncandy: [FLAG_HBESCAPE]
       data:

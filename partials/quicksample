@@ -9,7 +9,7 @@
    {{#with (lookup . @section)}}
  <h5>{{.}}</h5>
     {{#with ../..}}
-     {{> sample type=.. collapse=true note=0}}
+     {{> sample type=.. collapse=true note=0 different=different}}
     {{/with}}
    {{/with}}
   {{/section_builder}}
