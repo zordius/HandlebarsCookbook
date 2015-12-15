@@ -53,3 +53,10 @@ Context Switching:
         foo:
           bar:
             moo: MOO!
+    - template: "{{#foo}}{{bar}}{{/foo}}"
+      note: Loop then context switched into different items
+      data:
+        foo:
+          - bar: "Yes, "
+          - bar: "hello "
+          - bar: "world."
