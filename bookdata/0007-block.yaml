@@ -18,7 +18,8 @@ Samples:
       data:
         foo: test
     - template: "{{#foo}}Ya!{{/foo}}"
-      note: A block will render inner content for a number.
+      note: A block will render inner content for a number. But, mustache.js will think <code>0</code> is <code>false</code>.
+      different: true
       data:
         foo: 0
     - template: "{{#foo}}Ya!{{/foo}}"
