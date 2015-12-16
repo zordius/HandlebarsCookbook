@@ -1,0 +1,66 @@
+title: Block
+description:
+  A inverted block is started with <code>{{^foo}}</code> and end with <code>{{/foo}}</code>.
+Inverted Block for True:
+  quicksample:
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: A block will not render inner content for an array.
+      data:
+        foo: [1, 3, 5]
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: A block will not render inner content for an object.
+      data:
+        foo:
+          bar:
+          moo:
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: A block will not render inner content for a string.
+      data:
+        foo: test
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: A block will not render inner content for a number.
+      different: true
+      data:
+        foo: 1
+Inverted Block for False:
+  quicksample:
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: When the value is <code>false</code>, the inner content will be rendered.
+      data:
+        foo: false
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: When the value is <code>empty array</code>, the inner content will be rendered.
+      data:
+        foo: []
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: When the value is <code>null</code> or <code>undefined</code>, the inner content will be rendered.
+      data:
+        foo:
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: Mustache.js will think <code>0</code> is <code>false</code>.
+      different: true
+      data:
+        foo: 0
+    - template: "{{^foo}}Ya!{{/foo}}"
+      note: Mustache.js will think empty string is <code>false</code>.
+      different: true
+      data:
+        foo: ""
+Context Switching:
+  quicksample:
+    - template: |
+        {{foo}},{{bar}}
+        {{^foo}}{{foo}},{{bar}}{{/foo}}
+      note: When rendering inner block, the context will not be switched.
+      option:
+        lightncandy: [FLAG_JSOBJECT]
+      data:
+        foo:
+          foo: Hello
+          bar: World
+        bar: OK
+    - template: "{{^foo}}{{#bar}}{{moo}}{{/bar}}{{/foo}}"
+      data:
+        foo: false
+        bar:
+          moo: OH!
