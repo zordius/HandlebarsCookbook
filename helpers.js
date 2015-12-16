@@ -378,7 +378,7 @@ var helpers = {
         }.bind(this), []);
         if (options.hash.column && sections.length > 1) {
             return '<div class="row">' + sections.map(function (S) {
-                return '<div class="col-md-' + ((sections.length > 2) ? '4' : '6') + '">' + S + '</div>';
+                return '<div class="col-md-' + ((sections.length < 5) ? 12/sections.length : '3') + '">' + S + '</div>';
             }).join('') + '</div>';
         }
         return sections.join('');

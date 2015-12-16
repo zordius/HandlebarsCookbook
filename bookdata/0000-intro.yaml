@@ -31,6 +31,12 @@ Keyboard Shortcuts: |
    <li><kbd>Up</kbd> and <kbd>Down</kbd> Move over the items.</li>
    <li><kbd>ESC</kbd> Close the drop down menu.</li>
   </ul>
+Legend:
+  Codes: "<pre>codes</pre>"
+  Correct/Expected: "<pre class=\"result\">Sample output</pre>"
+  Different: "<pre class=\"different\">Different output</pre>"
+  Error/Unexpected: "<pre class=\"error\">Different output</pre>"
+
 Versions:
   version: true
 Table of Content:
