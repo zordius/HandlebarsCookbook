@@ -24,7 +24,7 @@ Keyboard Shortcuts: |
    <li><kbd>Right</kbd> Go to next page of this book.</li>
    <li><kbd>/</kbd> Toggle the Index drop down menu.</li>
    <li><kbd>.</kbd> Focus on the first item of <code>References</code> or <code>See Also...</code>.</li>
-   <li><kbd>Enter</kbd> Go to the focused page.</li>
+   <li><kbd>Enter</kbd> Go to the focused link.</li>
   </ul>
   When the drop down menu is displayed, you can:
   <ul>
