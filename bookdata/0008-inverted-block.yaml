@@ -49,18 +49,15 @@ Inverted Block for False:
 Context Switching:
   quicksample:
     - template: |
-        {{foo}},{{bar}}
         {{^foo}}{{foo}},{{bar}}{{/foo}}
       note: When rendering inner block, the context will not be switched.
       option:
-        lightncandy: [FLAG_JSOBJECT]
-      data:
-        foo:
-          foo: Hello
-          bar: World
-        bar: OK
-    - template: "{{^foo}}{{#bar}}{{moo}}{{/bar}}{{/foo}}"
+        lightncandy: [FLAG_JSTRUE]
       data:
         foo: false
-        bar:
-          moo: OH!
+        bar: Good!
+    - template: "{{^foo}}{{^bar}}{{moo}}{{/bar}}{{/foo}}"
+      data:
+        foo: false
+        bar: false
+        moo: OH!
