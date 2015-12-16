@@ -1,4 +1,4 @@
-title: Block
+title: Inverted Block
 description:
   A inverted block is started with <code>{{^foo}}</code> and end with <code>{{/foo}}</code>.
 Inverted Block for True:
