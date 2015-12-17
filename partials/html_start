@@ -7,27 +7,10 @@
  <title>{{@configs.project_name}}{{#if title}} - {{title}}{{/if}}</title>
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" rel="stylesheet">
+ <link href="style.css" rel="stylesheet">
  <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
  <![endif]-->
-<style>
-body > .container-fluid {padding-top: 70px;}
-h2,h4 {border-top:1px dotted #ccc;padding-top:10px}
-h5 {color:#555}
-.copy {position:absolute;top:-1000px;left:-1000px;height:0;width:0}
-.result {background:#efe}
-.different {background:#ffd}
-.error {background:#fdd}
-.pager {border-top:1px solid #aaa;padding-top:30px}
-.partials {width:100%}
-.partials tr:nth-child(odd) {background:#eef}
-.partials td {padding:3px 5px}
-.partials td:first-child {background:rgba(200,200,230,0.5);width:30%;text-align:right}
-@media (max-width: 768px) {
-  .navbar-fixed-top {position:relative}
-  body > .container-fluid {padding-top: 0px;}
-}
-</style>
 </head>
 <body>

@@ -8,10 +8,14 @@ Samples:
         world: "{{foo}}!"
       data:
         foo: World
-    - template: "Hello, {{> world}}\nFoo: {{#bar}}{{> world}}{{/bar}}"
+    - template: "{{>hello}}, {{> world}}\nFoo: {{#bar}}{{> world}}{{/bar}}"
+      option:
+        lightncandy:
+        - FLAG_JSOBJECT
       note: The partial will be rendered with current context
       partial:
         world: "{{foo}}!"
+        hello: "{{bar}}!"
       data:
         foo: World
         bar:

@@ -7,7 +7,7 @@
 <b>Partials:</b>
 <table class="partials">
  {{#each partial}}
- <tr><td>{{@key}}</td><td>{{.}}</td></tr>
+ <tr><th>{{@key}}</th><td>{{.}}</td></tr>
  {{/each}}
 </table>
 {{/if}}

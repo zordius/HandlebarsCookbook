@@ -29,6 +29,7 @@
     "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.1.1",
+    "gulp-less": "^3.0.5",
     "handlebars": "4.0.5",
     "js-yaml": "^3.4.6",
     "mustache": "2.2.1",
