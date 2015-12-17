@@ -180,7 +180,10 @@ var helpers = {
         var result;
         var H;
         if (type === 'php') {
-            fs.writeFileSync(tmp_file, '<?php\n' + code + '\n?>');
+            if (process.env.NODE_DEV !== 'development') {
+                code = 'error_reporting(E_ERROR | E_PARSE);\n' + code;
+            }
+            fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
             result = exec('php ' + tmp_file, {silent: true});
             fs.unlink(tmp_file);
         } else {

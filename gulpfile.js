@@ -7,6 +7,7 @@ var lint_files = ['*.js'];
 var less_files = ['*.less'];
 
 gulp.task('watch', ['build'], function () {
+    process.env.NODE_DEV = 'development';
     gulp.watch(lint_files, ['lint', 'build']);
     gulp.watch(['partials/*', 'bookdata/*'], ['build']);
 });
