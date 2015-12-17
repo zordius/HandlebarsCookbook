@@ -5,7 +5,6 @@ Samples:
   quicksample:
     - template: "{{#people}}\n{{..}}!\n{{/people}}"
       note: <code>{{..}}</code> means parent context.
-      different: true
       option:
         lightncandy:
         - FLAG_JSOBJECT
@@ -14,7 +13,6 @@ Samples:
         people: [John, Peter, Mary]
     - template: "{{#foo.bar}}\n{{../moo}}\n{{/foo.bar}}"
       note: "<code>{{../foo}}</code> will lookup parent context, then search for <code>foo</code>."
-      different: true
       option:
         lightncandy:
         - FLAG_PARENT
@@ -31,7 +29,6 @@ Samples:
          {{moo.zoo}} , {{../foo.bar.moo.zoo}}
         {{/foo.bar}}
       note: "Everytime context changes, the new context will be pushed into the context stack. <code>{{../../moo}}</code> means use 2 levels back item in the context stack as the base context, then search for <code>moo</code>."
-      different: true
       option:
         lightncandy:
         - FLAG_JSOBJECT
