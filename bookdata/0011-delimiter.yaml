@@ -1,4 +1,5 @@
 title: Set Delimiter
+description: "Use <code>=</code> to set delimiters from <code>{{</code> and <code>}}</code> to customized tag"
 Samples:
   quicksample:
     - template: "Hello, {{foo}}.\n{{=<* *>=}}Now, <*foo*>"
@@ -8,12 +9,13 @@ Samples:
         handlebars.js: true
       data:
         foo: World
-    - template: "Hello, {{=[[ ]]=}}\n[[> world]]"
+    - template: "Hello, {{=[[ ]]=}}\n[[> world]]\n[[> bar]]"
       note: Set delimiters will not change into a partial
       standard: mustache
       fail:
         handlebars.js: true
       partial:
         world: "{{foo}}!"
+        bar: "<<bar>>"
       data:
         foo: World
