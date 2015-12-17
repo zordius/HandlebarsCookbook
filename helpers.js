@@ -56,6 +56,31 @@ var helpers = {
         return '';
     },
 
+    code_for_partial: function (partial, type) {
+        var par = (partial && partial[type]) ? partial[type] : partial;
+
+        if (!par) {
+            return '';
+        }
+
+        switch (type) {
+        case 'lightncandy':
+            par = Object.keys(par).map(function (K) {
+                return helpers.escapeString(K, type) + ' => ' + helpers.escapeString(par[K], type);
+            });
+            return par.length ? 'array(\n    ' + par.join(',\n') + '\n  )' : '';
+        case 'handlebars.js':
+        case 'mustache':
+            par = Object.keys(par).map(function (K) {
+                return helpers.escapeString(K, type) + ': ' + helpers.escapeString(par[K], type);
+            });
+            return par.length ? '{\n    ' + par.join(',\n') + '\n}' : '';
+        }
+
+        console.warn('unknown code type in code_for_option():' + type);
+        return '';
+    },
+
     code_for_data: function (data, type) {
         switch (type) {
         case 'handlebars.js':
@@ -68,11 +93,17 @@ var helpers = {
         }
     },
 
-    code_for_compile: function (type, opt) {
-        var EX;
+    code_for_compile: function (type, opt, par) {
+        var EX = [];
         switch (type) {
         case 'lightncandy':
-            EX = opt ? ', array(\'flags\' => ' + opt + ')' : '';
+            if (opt) {
+                EX.push('"flags" => ' + opt);
+            }
+            if (par) {
+                EX.push('"partials" => ' + par);
+            }
+            EX = EX.length ? (', array(\n  ' + EX.join(',\n') + '\n)') : '';
             return '$php = LightnCandy::compile($template' + EX + ');\n$render = LightnCandy::prepare($php);';
         case 'handlebars.js':
             return 'var render = Handlebars.compile(template);';
@@ -83,14 +114,15 @@ var helpers = {
         return '';
     },
 
-    code_for_render: function (type) {
+    code_for_render: function (type, opt, par) {
+        var EX = [];
         switch (type) {
         case 'lightncandy':
             return 'echo $render($data);';
         case 'handlebars.js':
             return 'console.log(render(data));';
         case 'mustache':
-            return 'console.log(Mustache.render(template, data));';
+            return 'console.log(Mustache.render(template, data' + (par ? (', ' + par) : '') + '));';
         }
         console.warn('unknown code type in code_for_render():' + type);
         return '';
@@ -193,8 +225,10 @@ var helpers = {
         var type = options.hash.type || cx.type;
         var input = options.hash.data || cx.data;
         var opt = options.hash.option || cx.option;
+        var par = options.hash.partial || cx.partial;
         var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
+        var Partial = helpers.code_for_partial(par, type);
         var fail = options.fail || cx.fail;
 
         var ret = {
@@ -204,8 +238,9 @@ var helpers = {
             codeType: data[0],
             codeRequire: helpers.code_for_require(type),
             codeSetData: helpers.code_for_set('data', type) + data[1] + ';',
-            codeCompile: helpers.code_for_compile(type, Option),
-            codeRender: helpers.code_for_render(type)
+            codeCompile: helpers.code_for_compile(type, Option, Partial),
+            codeRender: helpers.code_for_render(type, Option, Partial),
+            codePartial: Partial
         };
 
         ret.codeSetTemplate = helpers.code_for_set('template', type) + helpers.escapeString(ret.template, type) + ";",
