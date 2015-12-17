@@ -54,7 +54,19 @@ h5 {
     word-wrap: break-word;
   }
 }
+
 @media (max-width: 768px) {
-  .navbar-fixed-top {position:relative}
-  body > .container-fluid {padding-top: 0px;}
+  .navbar-fixed-top {
+    position:relative;
+  }
+  body > .container-fluid {
+    padding-top: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }
