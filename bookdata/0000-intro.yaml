@@ -36,7 +36,11 @@ Legend:
   Correct/Expected: "<pre class=\"result\">Sample output</pre>"
   Different: "<pre class=\"different\">Different output</pre>"
   Error/Unexpected: "<pre class=\"error\">Different output</pre>"
-
+  Partials List: >
+    <table class="partials">
+     <tr><th>partial_name</th><td>partial template</td></tr>
+     <tr><th>partial_name2</th><td>partial template...</td></tr>
+    </table>
 Versions:
   version: true
 Table of Content:
