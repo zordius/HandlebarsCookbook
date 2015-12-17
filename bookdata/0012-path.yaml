@@ -1,0 +1,18 @@
+title: Dot Notation
+description: Lots of mustache implementation extends the variable lookup by dot notation.
+Samples:
+  quicksample:
+    - template: "Hello, {{foo.bar}}"
+      note: "<code>{{foo.bar}}</code> will lookup the <code>bar</code> under the <code>foo</code>."
+      data:
+        foo:
+          bar: World!
+    - template: "Hello, {{foo.bar}}\n{{foo.bar.moo}}"
+      note: It is fine when something is not found.
+      data:
+        foo:
+          bar: World!
+    - template: "{{#people}}\nHello, {{.}}!\n{{/people}}"
+      note: <code>{{.}}</code> means current context.
+      data:
+        people: [John, Peter, Mary]
