@@ -1,0 +1,19 @@
+description:
+  Align object conversion logic with JavaScript.
+lcsample:
+  - note: "The default behavior: may cause 'Array to string conversion' warning in PHP > 5.4"
+    template: "{{foo}}"
+    data:
+      foo:
+        bar: "OK"
+  - note: "The default behavior: may cause 'Array to string conversion' warning in PHP > 5.4"
+    template: "{{foo}}"
+    data:
+      foo: [1, 3, 5]
+  - note: Same behavior with handlebars.js and mustache.js.
+    template: "{{foo}}"
+    option:
+      - FLAG_JSOBJECT
+    data:
+      foo:
+        bar: "OK"
