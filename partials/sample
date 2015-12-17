@@ -3,6 +3,14 @@
 <p>{{{note}}}</p>
 {{/if}}
 {{> (str_join "option" type sep="_")}}
+{{#if partial}}
+<b>Partials:</b>
+<table class="partials">
+ {{#each partial}}
+ <tr><td>{{@key}}</td><td>{{.}}</td></tr>
+ {{/each}}
+</table>
+{{/if}}
 <div class="row">
  <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
  <div class="col-md-6">

@@ -20,6 +20,10 @@ h5 {color:#555}
 .different {background:#ffd}
 .error {background:#fdd}
 .pager {border-top:1px solid #aaa;padding-top:30px}
+.partials {width:100%}
+.partials tr:nth-child(odd) {background:#eef}
+.partials td {padding:3px 5px}
+.partials td:first-child {background:rgba(220,240,240,0.7);width:30%;text-align:right}
 @media (max-width: 768px) {
   .navbar-fixed-top {position:relative}
   body > .container-fluid {padding-top: 0px;}
