@@ -1,6 +1,5 @@
 title: Comment
-description:
-  A comment begin with<code>!</code> and will be ignored.
+description: "A comment begin with<code>!</code> and will be ignored. For example: <code>{{! this is a comment}}</code>"
 Samples:
   quicksample:
     - template: "{{#foo}}Ya!{{! ignored this comment}}{{/foo}}"
