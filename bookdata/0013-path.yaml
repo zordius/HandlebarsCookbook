@@ -1,0 +1,43 @@
+title: "Handlbars: Path"
+description: Handlebars extends mustache variable lookup with many path syntax
+Samples:
+  quicksample:
+    - template: "{{#people}}\n{{..}}!\n{{/people}}"
+      note: <code>{{..}}</code> means parent context. Mustache do not suppor this.
+      different: true
+      option:
+        lightncandy:
+        - FLAG_JSOBJECT
+        - FLAG_PARENT
+      data:
+        people: [John, Peter, Mary]
+    - template: "{{#foo.bar}}\n{{../moo}}\n{{/foo.bar}}"
+      note: "<code>{{../foo}}</code> will lookup parent context, then search for <code>foo</code>. Mustache do not suppor this."
+      different: true
+      option:
+        lightncandy:
+        - FLAG_PARENT
+      data:
+        foo:
+          bar:
+           moo: No
+        moo: Yes!
+    - template: |
+        {{#foo.bar}}{{! <= first context push }}
+         {{#moo}}{{! <= second context push }}
+          {{zoo}} , {{../../moo}}
+         {{/moo}}
+         {{moo.zoo}} , {{../foo.bar.moo.zoo}}
+        {{/foo.bar}}
+      note: "Everytime context changes, the new context will be pushed into the context stack. <code>{{../../moo}}</code> means use 2 levels back item in the context stack as the base context, then search for <code>moo</code>."
+      different: true
+      option:
+        lightncandy:
+        - FLAG_JSOBJECT
+        - FLAG_PARENT
+      data:
+        foo:
+          bar:
+           moo:
+             zoo: No
+        moo: Yes!
