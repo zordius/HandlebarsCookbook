@@ -17,7 +17,9 @@ Compile the template:
       $render = LightnCandy::prepare($php);
   handlebars.js:
     code: var render = Handlebars.compile(template);
-  mustache: mustache do not support compile, so you can just go to next step.
+  mustache:
+    content: mustache.js supports pre-parsing. The parsed token tree will be cached.
+    code: Mustache.parse(template);
 
 Define the data:
   lightncandy:

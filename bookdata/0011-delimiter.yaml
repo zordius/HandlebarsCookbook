@@ -1,0 +1,19 @@
+title: Set Delimiter
+Samples:
+  quicksample:
+    - template: "Hello, {{foo}}.\n{{=<* *>=}}Now, <*foo*>"
+      note: handlebars.js do not support changing delimiters
+      standard: mustache
+      fail:
+        handlebars.js: true
+      data:
+        foo: World
+    - template: "Hello, {{=[[ ]]=}}\n[[> world]]"
+      note: Set delimiters will not change into a partial
+      standard: mustache
+      fail:
+        handlebars.js: true
+      partial:
+        world: "{{foo}}!"
+      data:
+        foo: World

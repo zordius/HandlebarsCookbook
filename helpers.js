@@ -227,7 +227,7 @@ var helpers = {
     },
 
     data_for_render: function (cx, options) {
-        var type = options.hash.type || cx.type;
+        var type = options.hash.type || cx.type || 'handlebars.js';
         var input = options.hash.data || cx.data;
         var opt = options.hash.option || cx.option;
         var par = options.hash.partial || cx.partial;

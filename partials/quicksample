@@ -4,7 +4,7 @@
  {{else}}
   <hr/>
  {{/if}}
- {{#set "standard" (data_for_render . type="handlebars.js")}}
+ {{#set "standard" (data_for_render . type=standard)}}
   {{#section_builder @samples column=true}}
    {{#with (lookup . @section)}}
  <h5>{{.}}</h5>
