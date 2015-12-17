@@ -1,7 +1,9 @@
-{{#section_builder (lookup . @section) column=true}}
- {{#if (eq @section "quicksample")}}
-  {{> quicksample}}
- {{else}}
-  {{> section sections=..}}
- {{/if}}
-{{/section_builder}}
+{{#set "samples" (nomustache)}}
+ {{#section_builder (lookup . @section) column=true}}
+  {{#if (eq @section "quicksample")}}
+   {{> quicksample}}
+  {{else}}
+   {{> section sections=..}}
+  {{/if}}
+ {{/section_builder}}
+{{/set}}

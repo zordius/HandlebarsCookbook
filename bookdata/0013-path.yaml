@@ -1,9 +1,10 @@
 title: "Handlbars: Path"
 description: Handlebars extends mustache variable lookup with many path syntax
+nomustache: true
 Samples:
   quicksample:
     - template: "{{#people}}\n{{..}}!\n{{/people}}"
-      note: <code>{{..}}</code> means parent context. Mustache do not support this.
+      note: <code>{{..}}</code> means parent context.
       different: true
       option:
         lightncandy:
@@ -12,7 +13,7 @@ Samples:
       data:
         people: [John, Peter, Mary]
     - template: "{{#foo.bar}}\n{{../moo}}\n{{/foo.bar}}"
-      note: "<code>{{../foo}}</code> will lookup parent context, then search for <code>foo</code>. Mustache do not support this."
+      note: "<code>{{../foo}}</code> will lookup parent context, then search for <code>foo</code>."
       different: true
       option:
         lightncandy:

@@ -115,6 +115,10 @@ var helpers = {
         return '';
     },
 
+    nomustache: function (options) {
+        return this.nomustache ? ['lightncandy', 'handlebars.js'] : options.data.samples;
+    },
+
     code_for_render: function (type, opt, par) {
         var EX = [];
         switch (type) {
@@ -431,6 +435,7 @@ var helpers = {
         case 'pagename':
         case 'ref':
         case 'opt_name':
+        case 'nomustache':
             return '';
         default:
             return options.fn(this);
