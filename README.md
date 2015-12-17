@@ -5,6 +5,8 @@ HandlebarsCookbook
 
 A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage.
 
+https://zordius.github.io/HandlebarsCookbook/
+
 How to Build
 ------------
 
@@ -26,6 +28,7 @@ Used Software
 * https://www.npmjs.com/package/del
 * https://www.npmjs.com/package/gulp
 * https://www.npmjs.com/package/gulp-eslint
+* https://www.npmjs.com/package/gulp-less
 * https://www.npmjs.com/package/handlebars
 * https://www.npmjs.com/package/js-yaml
 * https://www.npmjs.com/package/mustache
