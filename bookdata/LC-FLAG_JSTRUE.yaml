@@ -1,0 +1,15 @@
+description:
+  Align boolean conversion logic with JavaScript.
+lcsample:
+  - note: "The default behavior: <code>true</code> converts to <code>1</code>, <code>false</code> converts to empty string."
+    template: "{{foo}}, {{bar}}"
+    data:
+      foo: true
+      bar: false
+  - note: Same behavior with handlebars.js and mustache.js.
+    template: "{{foo}}, {{bar}}"
+    option:
+      - FLAG_JSTRUE
+    data:
+      foo: true
+      bar: false
