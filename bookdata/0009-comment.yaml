@@ -9,5 +9,5 @@ Samples:
     - template: "{{#foo}}Yes{{! foo is true}}{{/foo}}\n{{^foo}}No{{! foo is false}}{{/foo}}"
       data:
         foo: true
-    - template: "Comment example: {{! comment with }}is not ok}}"
+    - template: "Comment example: {{! comment with }} is not ok }}"
       note: <code>}}</code> can not be placed inside a comment.
