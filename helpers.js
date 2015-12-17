@@ -10,6 +10,10 @@ require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-php');
 require('prismjs/components/prism-handlebars');
 
+var console_log = function (O) {
+    return O;
+};
+
 var helpers = {
     code_for_require: function (type) {
         switch (type) {
@@ -71,10 +75,7 @@ var helpers = {
             return par.length ? 'array(\n    ' + par.join(',\n') + '\n  )' : '';
         case 'handlebars.js':
         case 'mustache':
-            par = Object.keys(par).map(function (K) {
-                return helpers.escapeString(K, type) + ': ' + helpers.escapeString(par[K], type);
-            });
-            return par.length ? '{\n    ' + par.join(',\n') + '\n}' : '';
+            return JSON.stringify(par, undefined, defaultSP);
         }
 
         console.warn('unknown code type in code_for_option():' + type);
@@ -120,7 +121,11 @@ var helpers = {
         case 'lightncandy':
             return 'echo $render($data);';
         case 'handlebars.js':
-            return 'console.log(render(data));';
+            if (par) {
+                EX.push(' partials: ' + par);
+            }
+            EX = EX.length ? (', {\n' + EX.join(',\n') + '}') : '';
+            return 'console.log(render(data' + EX + '));';
         case 'mustache':
             return 'console.log(Mustache.render(template, data' + (par ? (', ' + par) : '') + '));';
         }
@@ -178,7 +183,7 @@ var helpers = {
             try {
                 result = {
                     code: 0,
-                    output: eval(code.replace(/console\.log\((.+)\)/, '$1'))
+                    output: eval(code.replace(/console\.log/, 'console_log'))
                 };
             } catch (E) {
                 result = {
