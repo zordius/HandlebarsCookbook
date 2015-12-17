@@ -8,3 +8,11 @@ Samples:
         world: "{{foo}}!"
       data:
         foo: World
+    - template: "Hello, {{> world}}\nFoo: {{#bar}}{{> world}}{{/bar}}"
+      note: The partial will be rendered with current context
+      partial:
+        world: "{{foo}}!"
+      data:
+        foo: World
+        bar:
+          foo: YA!
