@@ -1,4 +1,4 @@
-{{#set "samples" (nomustache)}}
+{{#set "samples" (hbonly)}}
  {{#section_builder (lookup . @section) column=true}}
   {{#if (eq @section "quicksample")}}
    {{> quicksample}}

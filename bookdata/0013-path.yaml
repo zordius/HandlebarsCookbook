@@ -1,6 +1,6 @@
-title: "Handlbars: Path"
+title: Path
 description: Handlebars extends mustache variable lookup with many path syntax
-nomustache: true
+hbonly: true
 Samples:
   quicksample:
     - template: "{{#people}}\n{{..}}!\n{{/people}}"
@@ -22,13 +22,13 @@ Samples:
            moo: No
         moo: Yes!
     - template: |
-        {{#foo.bar}}{{! <= first context push }}
-         {{#moo}}{{! <= second context push }}
+        {{#foo.bar}}{{!<=first context push}}
+         {{#moo}}{{!<=second context push}}
           {{zoo}} , {{../../moo}}
          {{/moo}}
          {{moo.zoo}} , {{../foo.bar.moo.zoo}}
         {{/foo.bar}}
-      note: "Everytime context changes, the new context will be pushed into the context stack. <code>{{../../moo}}</code> means use 2 levels back item in the context stack as the base context, then search for <code>moo</code>."
+      note: "Everytime context changes, the new context will be pushed into the context stack. <code>{{../../moo}}</code> means use the item before previous item in the context stack as the base, then search for <code>moo</code>."
       option:
         lightncandy:
         - FLAG_JSOBJECT

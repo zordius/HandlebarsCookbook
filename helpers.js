@@ -115,8 +115,8 @@ var helpers = {
         return '';
     },
 
-    nomustache: function (options) {
-        return this.nomustache ? ['lightncandy', 'handlebars.js'] : options.data.samples;
+    hbonly: function (options) {
+        return this.hbonly ? ['lightncandy', 'handlebars.js'] : options.data.samples;
     },
 
     code_for_render: function (type, opt, par) {
@@ -385,6 +385,9 @@ var helpers = {
                 D.title = 'LightnCandy option: ' + T[1];
                 D.opt_name = T[1];
             }
+            if (D.hbonly) {
+                D.title = 'Handlebars: ' + D.title;
+            }
         });
 
         data.forEach(function (D, I) {
@@ -435,7 +438,7 @@ var helpers = {
         case 'pagename':
         case 'ref':
         case 'opt_name':
-        case 'nomustache':
+        case 'hbonly':
             return '';
         default:
             return options.fn(this);
