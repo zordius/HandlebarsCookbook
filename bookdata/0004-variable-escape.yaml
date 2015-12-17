@@ -12,16 +12,16 @@ Samples:
       data:
         foo: <p>Hello</p>
     - template: "{{foo}}"
-      note: handlebars.js escapes <code>'</code> and <code>`</code> in his way
+      note: handlebars.js escapes <code>'</code> , <code>`</code> and <code>=</code> in his way
       different: true
       data:
-        foo: Quotes as ' and " and `
+        foo: Quotes as ' and " and ` , equal is =
     - template: "{{foo}}"
       note: The escaping behavior of Lightncandy can be configured to same with handlebars exactly.
       different: true
       option:
         lightncandy: [FLAG_HBESCAPE]
       data:
-        foo: Quotes as ' and " and `
+        foo: Quotes as ' and " and ` , equal is =
 ref:
   - LC-FLAG_HBESCAPE
