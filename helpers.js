@@ -438,7 +438,6 @@ var helpers = {
         case 'pagename':
         case 'ref':
         case 'opt_name':
-        case 'hbonly':
             return '';
         default:
             return options.fn(this);
