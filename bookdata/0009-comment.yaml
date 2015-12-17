@@ -1,0 +1,11 @@
+title: Comment
+description:
+  A comment begin with<code>!</code> and will be ignored.
+Samples:
+  quicksample:
+    - template: "{{#foo}}Ya!{{! ignored this comment}}{{/foo}}"
+      data:
+        foo: "OK"
+    - template: "{{#foo}}Yes{{! foo is true}}{{/foo}}\n{{^foo}}No{{! foo is false}}{{/foo}}"
+      data:
+        foo: true
