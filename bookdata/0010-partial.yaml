@@ -1,0 +1,10 @@
+title: Partials
+description:
+  "Partials begins with <code>&gt;</code>, for example: <code>{{> partial_name}}</code>."
+Samples:
+  quicksample:
+    - template: "Hello, {{> world}}"
+      partial:
+        world: "{{foo}}!"
+      data:
+        foo: World
