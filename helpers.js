@@ -182,7 +182,6 @@ var helpers = {
         if (type === 'php') {
             if (process.env.NODE_DEV !== 'development') {
                 code = 'error_reporting(E_ERROR | E_PARSE);\n' + code;
-            } else {
                 code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code;
             }
             fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
