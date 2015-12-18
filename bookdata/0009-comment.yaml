@@ -10,3 +10,5 @@ Samples:
         foo: true
     - template: "Comment example: {{! comment with }} is not ok }}"
       note: <code>}}</code> can not be placed inside a comment.
+ref:
+  - 0014-hbcomment
