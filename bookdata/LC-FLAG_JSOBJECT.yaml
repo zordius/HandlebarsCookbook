@@ -1,5 +1,5 @@
 description:
-  Align object conversion logic with JavaScript.
+  Align object or associative array conversion logic with JavaScript.
 lcsample:
   - note: "The default behavior: may cause 'Array to string conversion' warning in PHP > 5.4"
     template: "{{foo}}"
