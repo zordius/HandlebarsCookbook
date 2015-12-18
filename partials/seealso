@@ -1,10 +1,12 @@
-{{#ref}}
+{{#if ref}}
 <h2>See Also...</h2>
 <ul class="ref">
-{{#with (lookup @refs .)}}
+{{#each ref}}
+ {{#with (lookup @refs .)}}
  <li><a href="{{pagename}}.html">{{title}}</a></li>
-{{else}}
+ {{else}}
  {{log "Warning! Can not reference page name:" .}}
-{{/with}}
+ {{/with}}
+{{/each}}
 </ul>
-{{/ref}}
+{{/if}}

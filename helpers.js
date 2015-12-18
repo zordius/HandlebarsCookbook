@@ -186,7 +186,7 @@ var helpers = {
                 code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code;
             }
             fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
-            result = exec('php ' + tmp_file, {silent: true});
+            result = exec('php ' + tmp_file + ' 2>/dev/null', {silent: true});
             fs.unlink(tmp_file);
         } else {
             try {
@@ -244,7 +244,7 @@ var helpers = {
         var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
         var Partial = helpers.code_for_partial(par, type);
-        var fail = options.fail || cx.fail;
+        var fail = options.fail || cx.fail || norender;
 
         var ret = {
             type: type,
