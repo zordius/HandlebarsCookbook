@@ -182,6 +182,8 @@ var helpers = {
         if (type === 'php') {
             if (process.env.NODE_DEV !== 'development') {
                 code = 'error_reporting(E_ERROR | E_PARSE);\n' + code;
+            } else {
+                code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code;
             }
             fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
             result = exec('php ' + tmp_file, {silent: true});
@@ -238,6 +240,7 @@ var helpers = {
         var input = options.hash.data || cx.data;
         var opt = options.hash.option || cx.option;
         var par = options.hash.partial || cx.partial;
+        var norender = options.hash.compileerror || cx.compileerror;
         var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
         var Partial = helpers.code_for_partial(par, type);
@@ -261,8 +264,8 @@ var helpers = {
             ret.codeRequire,
             ret.codeSetTemplate,
             ret.codeCompile,
-            ret.codeSetData,
-            ret.codeRender
+            norender ? '' : ret.codeSetData,
+            norender ? '' : ret.codeRender
         ].join('\n');
 
         if (typeof fail === 'object') {

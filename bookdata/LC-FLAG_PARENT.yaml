@@ -1,0 +1,15 @@
+description: |
+  support <code>{{..}}</code> or <code>{{../foo}}</code> in template. Otherwise, <code>{{..}}</code> or <code>{{../foo}}</code> will cause template error.
+lcsample:
+  - note: "Error when compile <code>{{..}}</code>"
+    compileerror: true
+    template: "{{../foo}}OK"
+    option:
+      - FLAG_ERROR_EXCEPTION
+    data:
+  - note: "Enable handlebars.js extension {{..}}"
+    template: "{{../foo}}OK"
+    option:
+      - FLAG_PARENT
+      - FLAG_ERROR_LOG
+    data:
