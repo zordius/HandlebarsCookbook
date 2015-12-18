@@ -1,0 +1,13 @@
+description: 
+  Throw exception when template error.
+lcsample:
+  - template: "{{../foo}}}OK"
+    compileerror: true
+    option:
+      - FLAG_ERROR_EXCEPTION
+    data:
+  - template: "{{> not_found}}"
+    compileerror: true
+    option:
+      - FLAG_ERROR_EXCEPTION
+    data:
