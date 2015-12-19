@@ -1,0 +1,48 @@
+title: "Built-in block helper - #if"
+hbonly: true
+description: "Provide simple if/else rendering logic. "
+Samples:
+  quicksample:
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: True!
+      data:
+        foo: true
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: None empty string means <code>true</code>
+      data:
+        foo: "String"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: None empty array means <code>true</code>
+      data:
+        foo: [1]
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: Numbers other than 0 means <code>true</code>
+      data:
+        foo: 1
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: Numbers other than 0 means <code>true</code>
+      data:
+        foo: -1
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: Object or associative array means <code>true</code>
+      data:
+        foo:
+          bar:
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: False!
+      data:
+        foo: false
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: Empty string means <code>false</code>
+      data:
+        foo: ""
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: Empty array means <code>false</code>
+      data:
+        foo: []
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
+      note: <code>0</code> means <code>false</code>
+      data:
+        foo: 0
+ref:
+  - 0007-block
