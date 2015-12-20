@@ -1,0 +1,27 @@
+title: "Built-in block helper - #with"
+hbonly: true
+description: "Switch current context"
+Samples:
+  quicksample:
+    - template: "{{#with foo}}{{bar}}{{/with}}"
+      data:
+        foo:
+          bar: Yes!
+    - template: "{{#with foo.bar}}{{hey}}, {{ha}}{{/with}}"
+      data:
+        foo:
+          bar:
+            hey: Hello
+            ha: world
+    - template: "{{#with foo.bar}}{{moo}}, {{../bar}}{{/with}}"
+      note: Use <code>{{..}}</code> to access original context.
+      option:
+        lightncandy:
+        - FLAG_PARENT
+      data:
+        foo:
+          bar:
+            moo: Hello
+        bar: world
+ref:
+  - 0007-block
