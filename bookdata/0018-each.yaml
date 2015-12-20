@@ -27,5 +27,16 @@ Samples:
         foo:
           first: Hello
           second: World
+    - template: "{{#each foo}}\n{{../title}}:{{.}}!\n{{/each}}"
+      note: "Use <code>..</code> to access parent content inside the <code>#each</code>"
+      option:
+        lightncandy:
+          - FLAG_SPVARS
+          - FLAG_PARENT
+      data:
+        foo:
+          first: Hello
+          second: World
+        title: Values
 ref:
   - 0007-block
