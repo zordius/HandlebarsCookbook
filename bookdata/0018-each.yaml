@@ -7,7 +7,7 @@ Samples:
       note: Loop on an array.
       data:
         foo: [Hello, World]
-    - template: "{{#each foo}}{{@index}}: {{.}}!{{/each}}"
+    - template: "{{#each foo}}\n{{@index}}: {{.}}!\n{{/each}}"
       note: "When looping on an array, use <code>{{@index}}</code> for current index in the loop."
       option:
         lightncandy: [FLAG_SPVARS]
