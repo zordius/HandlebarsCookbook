@@ -1,0 +1,27 @@
+title: "Built-in block helper - #each"
+hbonly: true
+description: "Loop on an Array or Object."
+Samples:
+  quicksample:
+    - template: "{{#each foo}}{{.}}!{{/each}}"
+      note: Loop on an array.
+      data:
+        foo: [Hello, World]
+    - template: "{{#each foo}}{{@index}}: {{.}}!{{/each}}"
+      note: "When looping on an array, use <code>{{@index}}</code> for current index in the loop."
+      data:
+        foo: [Hello, World]
+    - template: "{{#each foo}}{{.}}!{{/each}}"
+      note: Loop on an Object.
+      data:
+        foo:
+          key: Hello
+          key2: World
+    - template: "{{#each foo}}\n{{@key}}:{{.}}!\n{{/each}}"
+      note: "When looping on an object, use <code>{{@key}}</code> for current key in the loop."
+      data:
+        foo:
+          first: Hello
+          second: World
+ref:
+  - 0007-block
