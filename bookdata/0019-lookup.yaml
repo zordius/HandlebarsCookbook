@@ -1,0 +1,26 @@
+title: "Built-in block helper - lookup"
+hbonly: true
+description: "Lookup value by provided base and key"
+Samples:
+  quicksample:
+    - template: "{{#each foo}}\n{{lookup ../bar .}}:{{.}}!\n{{/each}}"
+      option:
+        lightncandy:
+          - FLAG_PARENT
+      data:
+        foo: [Hello, World]
+        bar:
+          Hello: first
+          World: second
+    - template: "{{#each foo}}{{@key}}:{{.}} => {{lookup ../bar .}}\n{{/each}}"
+      option:
+        lightncandy:
+          - FLAG_PARENT
+          - FLAG_SPVARS
+      data:
+        foo:
+          Hello: first
+          World: second
+        bar:
+          first: 1
+          second: 2
