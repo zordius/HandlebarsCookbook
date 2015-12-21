@@ -1,0 +1,13 @@
+description: |
+  Support <code>{{foo.[0].[#te#st].bar}}</code> or <code>{{"some string"}}</code> or <code>{{helper (subexpression ...)}}</code> handlebars style extensions.
+lcsample:
+  - template: "{{[foo.bar]}}"
+    note: Protect variable names by <code>[</code> and <code>]</code> when they contains special characters.
+    option:
+      - FLAG_ADVARNAME
+    data:
+      foo.bar: GOOD!
+      foo:
+        bar: BAD!
+ref:
+  - 0013-path
