@@ -153,12 +153,12 @@ var helpers = {
         if (typeof D === 'object') {
             return 'array(\n' + Object.keys(D).map(function (K) {
                 var V = D[K];
-                return spp + '"' + K.replace(/"/g, '\"/' + '"') + '" => ' + helpers.php_array(V, spp);
+                return spp + helpers.escapeString(K, 'lightncandy') + ' => ' + helpers.php_array(V, spp);
             }).join(',\n') + '\n' + sp + ')';
         }
 
         if (typeof D === 'string') {
-            return '"' + D.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+            return helpers.escapeString(D, 'lightncandy');
         }
 
         if (D === true) {
@@ -191,7 +191,7 @@ var helpers = {
             try {
                 result = {
                     code: 0,
-                    output: eval(code.replace(/console\.log/, 'console_log'))
+                    output: eval(code.replace(/console\.log/g, 'console_log'))
                 };
             } catch (E) {
                 result = {
@@ -227,11 +227,11 @@ var helpers = {
     },
 
     doubleQuote: function (str) {
-        return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/"/, '\\\"').replace(/\n/g, '\\n') : str;
+        return (str && str.replace) ? str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n') : str;
     },
 
     singleQuote: function (str) {
-        return (str && str.replace) ? str.replace(/\\/, '\\\\').replace(/'/, '\\\'').replace(/\n/g, '\\n') : str;
+        return (str && str.replace) ? str.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') : str;
     },
 
     data_for_render: function (cx, options) {
