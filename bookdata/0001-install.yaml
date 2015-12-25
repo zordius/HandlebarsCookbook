@@ -13,7 +13,7 @@ Create project definition file:
           "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
           "homepage": "https://github.com/zordius/HandlebarsCookbook",
           "require": {
-              "php": ">=5.3.0"
+              "php": ">=5.4.0"
           },
           "require-dev": {
               "zordius/lightncandy": options ? options.data.composer['require-dev']['zordius/lightncandy'] : "*"
