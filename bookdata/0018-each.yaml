@@ -28,7 +28,7 @@ Samples:
           first: Hello
           second: World
     - template: "{{#each foo}}\n{{../title}}:{{.}}!\n{{/each}}"
-      note: "Use <code>..</code> to access parent content inside the <code>#each</code>"
+      note: "Use <code>..</code> to access parent context inside the <code>#each</code>"
       option:
         lightncandy:
           - FLAG_SPVARS
