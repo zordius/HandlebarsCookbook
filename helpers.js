@@ -176,7 +176,7 @@ var helpers = {
         return D;
     },
 
-    result_for_code: function (code, type, fail) {
+    result_for_code: function (code, type, fail, log) {
         var result;
         var H;
         if (type === 'php') {
@@ -185,7 +185,10 @@ var helpers = {
                 code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code;
             }
             fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
-            result = exec('php ' + tmp_file + ' 2>/dev/null', {silent: true});
+            result = exec('php ' + tmp_file + (log ? '' : ' 2>/dev/null'), {silent: true});
+            if (log) {
+                result.code = 99999;
+            }
             fs.unlink(tmp_file);
         } else {
             try {
@@ -244,6 +247,7 @@ var helpers = {
         var Option = helpers.code_for_option(opt, type);
         var Partial = helpers.code_for_partial(par, type);
         var fail = options.fail || cx.fail || norender;
+        var errlog = options.errorlog || cx.errorlog;
 
         var ret = {
             type: type,
@@ -271,7 +275,7 @@ var helpers = {
             fail = fail[type];
         }
 
-        ret.result = helpers.result_for_code(ret.code, ret.codeType, fail);
+        ret.result = helpers.result_for_code(ret.code, ret.codeType, fail, errlog);
 
         return ret;
     },
