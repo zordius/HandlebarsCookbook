@@ -1,0 +1,15 @@
+description: 
+  Print error log to stderr when template error.
+lcsample:
+  - template: "{{../foo}}}OK"
+    compileerror: true
+    errorlog: true
+    option:
+      - FLAG_ERROR_LOG
+    data:
+  - template: "{{> not_found}}"
+    compileerror: true
+    errorlog: true
+    option:
+      - FLAG_ERROR_LOG
+    data:
