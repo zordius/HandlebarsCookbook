@@ -1,5 +1,5 @@
 description: |
-  generate stand-alone PHP codes which can be execute without LightnCandy\Runtime class. The compiled PHP code will contain scoped Runtime functions and the file size will be bigger. And, the performance will slower 1 ~10%.
+  generate stand-alone PHP codes which can be execute without LightnCandy\Runtime class. The compiled PHP code will contain scoped Runtime functions and the file size will be bigger. And, the performance will faster 5 ~10%.
 lcsample:
   - template: "{{{foo}}}"
     note: Default, require LightnCandy\Runtime.
