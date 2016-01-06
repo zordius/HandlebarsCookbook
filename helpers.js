@@ -94,7 +94,7 @@ var helpers = {
         }
     },
 
-    code_for_compile: function (type, opt, par) {
+    code_for_compile: function (type, opt, par, norender) {
         var EX = [];
         switch (type) {
         case 'lightncandy':
@@ -105,9 +105,9 @@ var helpers = {
                 EX.push('"partials" => ' + par);
             }
             EX = EX.length ? (', array(\n  ' + EX.join(',\n') + '\n)') : '';
-            return '$php = LightnCandy::compile($template' + EX + ');\n$render = LightnCandy::prepare($php);';
+            return '$php = LightnCandy::compile($template' + EX + ');' + (norender ? '': '\n$render = LightnCandy::prepare($php);');
         case 'handlebars.js':
-            return 'var render = Handlebars.compile(template);';
+            return (norender ? '' : 'var render = ') + 'Handlebars.compile(template);';
         case 'mustache':
             return '';
         }
@@ -242,7 +242,8 @@ var helpers = {
         var input = options.hash.data || cx.data;
         var opt = options.hash.option || cx.option;
         var par = options.hash.partial || cx.partial;
-        var norender = options.hash.compileerror || cx.compileerror;
+        var showcode = options.hash.showcode || cx.showcode;
+        var norender = options.hash.compileerror || cx.compileerror || showcode;
         var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
         var Partial = helpers.code_for_partial(par, type);
@@ -256,7 +257,7 @@ var helpers = {
             codeType: data[0],
             codeRequire: helpers.code_for_require(type),
             codeSetData: helpers.code_for_set('data', type) + data[1] + ';',
-            codeCompile: helpers.code_for_compile(type, Option, Partial),
+            codeCompile: helpers.code_for_compile(type, Option, Partial, norender),
             codeRender: helpers.code_for_render(type, Option, Partial),
             codePartial: Partial
         };
@@ -268,7 +269,8 @@ var helpers = {
             ret.codeSetTemplate,
             ret.codeCompile,
             norender ? '' : ret.codeSetData,
-            norender ? '' : ret.codeRender
+            norender ? '' : ret.codeRender,
+            showcode ? 'echo $php' : ''
         ].join('\n');
 
         if (typeof fail === 'object') {
