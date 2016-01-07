@@ -16,3 +16,20 @@ lcsample:
       - FLAG_RUNTIMEPARTIAL
     partial:
       foo: "{{hello}}"
+  - template: "OK{{> foo bar}}!"
+    note: Default to not support context change on partial
+    compileerror: true
+    errorlog: true
+    option:
+      - FLAG_ERROR_LOG
+    partial:
+      foo: "{{hello}}"
+  - template: "OK{{> foo bar}}!"
+    note: Use another context for the partial
+    data:
+      bar:
+        hello: World
+    option:
+      - FLAG_RUNTIMEPARTIAL
+    partial:
+      foo: "{{hello}}"
