@@ -3,9 +3,10 @@ description: |
 lcsample:
   - note: "Error when compile <code>{{..}}</code>"
     compileerror: true
+    errorlog: true
     template: "{{../foo}}OK"
     option:
-      - FLAG_ERROR_EXCEPTION
+      - FLAG_ERROR_LOG
     data:
   - note: "Enable handlebars.js extension {{..}}"
     template: "{{../foo}}OK"
