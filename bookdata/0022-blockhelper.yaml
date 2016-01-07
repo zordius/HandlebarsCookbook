@@ -4,9 +4,6 @@ description: "You can provide block custom helper to handle a block"
 Samples:
   quicksample:
     - template: "{{#myloop foo}}Hello, {{.}}!{{/myloop}}"
-      option:
-        lightncandy:
-          - FLAG_RUNTIMEPARTIAL
       helper:
         myloop: >
           function ($arg1, $options) {
