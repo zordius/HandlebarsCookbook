@@ -17,4 +17,5 @@ Samples:
       data:
         people: [John, Peter, Mary]
 ref:
+  - 0014-path
   - LC-FLAG_THIS
