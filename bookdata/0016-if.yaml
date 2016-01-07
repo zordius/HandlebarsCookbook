@@ -1,49 +1,49 @@
-title: "Built-in block helper - #unless"
+title: "Built-in block helper - #if"
 hbonly: true
-description: "Provide simple unless/else rendering logic which reversed from <code>#if</code>"
+description: "Provide simple if/else rendering logic. "
 Samples:
   quicksample:
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: True!
       data:
         foo: true
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: None empty string means <code>true</code>
       data:
         foo: "String"
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: None empty array means <code>true</code>
       data:
         foo: [1]
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: Numbers other than 0 means <code>true</code>
       data:
         foo: 1
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: Numbers other than 0 means <code>true</code>
       data:
         foo: -1
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: Object or associative array means <code>true</code>
       data:
         foo:
           bar:
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: False!
       data:
         foo: false
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: Empty string means <code>false</code>
       data:
         foo: ""
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: Empty array means <code>false</code>
       data:
         foo: []
-    - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
+    - template: "{{#if foo}}YES{{else}}no{{/if}}"
       note: <code>0</code> means <code>false</code>
       data:
         foo: 0
 ref:
-  - 0007-block
-  - 0015-if
+  - 0008-block
+  - 0017-unless

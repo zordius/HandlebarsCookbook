@@ -24,4 +24,4 @@ Samples:
             moo: Hello
         bar: world
 ref:
-  - 0007-block
+  - 0008-block

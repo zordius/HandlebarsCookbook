@@ -8,4 +8,4 @@ Samples:
     - template: "Comment example: {{!-- comment with }} is not ok --}}"
       note: <code>}}</code> can be placed inside an extended comment.
 ref:
-  - 0009-comment
+  - 0010-comment
