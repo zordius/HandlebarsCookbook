@@ -1,0 +1,16 @@
+title: Block Custom Helper
+hbonly: true
+description: "You can provide block custom helper to handle a block"
+Samples:
+  quicksample:
+    - template: "{{#myloop foo}}Hello, {{.}}!{{/myloop}}"
+      option:
+        lightncandy:
+          - FLAG_RUNTIMEPARTIAL
+      helper:
+        myloop: >
+          function ($arg1, $options) {
+              return $options['fn']($arg1);
+            }
+      data:
+        foo: World

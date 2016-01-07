@@ -40,7 +40,7 @@ var helpers = {
         return '';
     },
 
-    jstophp: function (code) {
+    phptojs: function (code) {
         return code.replace(/\$/g, '');
     },
 
@@ -56,7 +56,7 @@ var helpers = {
             }).join(',') + ')';
         default:
             return '{\n' + Object.keys(helper).map(function (K) {
-                return '  ' + helpers.escapeString(K, type) + ': ' + helpers.jstophp(helper[K]);
+                return '  ' + helpers.escapeString(K, type) + ': ' + helpers.phptojs(helper[K]);
             }).join(',') + '}';
         }
     },

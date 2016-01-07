@@ -4,9 +4,6 @@ description: "You can provide custom helper to handle logic"
 Samples:
   quicksample:
     - template: "{{isequal foo bar}}"
-      option:
-        lightncandy:
-          - FLAG_RUNTIMEPARTIAL
       helper:
         isequal: >
           function ($arg1, $arg2) {
