@@ -1,0 +1,14 @@
+description: 
+  Skip 'partial not found' error or exception. Use this to align with mustache specification.
+lcsample:
+  - template: "{{> not_found}}"
+    note: Error when compile() and partial not found
+    errorlog: ture
+    compileerror: true
+    option:
+      - FLAG_ERROR_LOG
+  - template: "OK{{> not_found}}!"
+    note: Skip the error
+    option:
+      - FLAG_ERROR_EXCEPTION
+      - FLAG_ERROR_SKIPPARTIAL
