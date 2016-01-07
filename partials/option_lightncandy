@@ -1,10 +1,10 @@
 {{#if option}}
 <p>Used option:
 {{#each option.lightncandy}}
- <a href="LC-{{.}}.html"> {{.}}</a>
+ <a class="lcflag" href="LC-{{.}}.html"> {{.}}</a>
 {{else}}
  {{#each option}}
- <a href="LC-{{.}}.html"> {{.}}</a>
+ <a class="lcflag" href="LC-{{.}}.html"> {{.}}</a>
  {{/each}}
 {{/each}}
 </p>

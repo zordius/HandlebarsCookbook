@@ -41,6 +41,9 @@ Legend:
      <tr><th>partial_name</th><td>partial template</td></tr>
      <tr><th>partial_name2</th><td>partial template...</td></tr>
     </table>
+  Options: >
+    <a class='lcflag' href='#'>Option1</a>
+    <a class='lcflag' href='#'>Option2</a>
 Versions:
   version: true
 Table of Content:
