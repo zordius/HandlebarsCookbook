@@ -1,0 +1,18 @@
+description: 
+  Compile the partial as callable. This enables recursive partials or context change for partials.
+lcsample:
+  - template: "OK{{> foo}}!"
+    note: Default is to compile the partial as static code
+    showcode: true
+    option:
+      - FLAG_JSOBJECT
+    partial:
+      foo: "{{hello}}"
+  - template: "OK{{> foo}}!"
+    note: Compile the partial as embed callable code
+    showcode: true
+    option:
+      - FLAG_JSOBJECT
+      - FLAG_RUNTIMEPARTIAL
+    partial:
+      foo: "{{hello}}"
