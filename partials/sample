@@ -11,9 +11,6 @@
  {{/each}}
 </table>
 {{/if}}
-{{#if helper}}
-<p class="helperhint"><span class="glyphicon glyphicon-star"></span> Check the code to know used helper codes</p>
-{{/if}}
 <div class="row">
  <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
  <div class="col-md-6">
@@ -21,5 +18,8 @@
   <div><b>Result:</b>{{{code @result.output type="handlebars" class=(result_class different=different)}}}</div>
  </div>
 </div>
+{{#if helper}}
+<p class="helperhint"><span class="glyphicon glyphicon-star"></span> Check the code to know used helper codes</p>
+{{/if}}
  {{{code @code type=@codeType copy=true collapse=collapse}}}
 {{/render}}
