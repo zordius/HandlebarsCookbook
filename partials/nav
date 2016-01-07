@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
  <div class="container">
   <div class="navbar-header">
-   <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> {{@configs.project_name}}</a>
+   <a class="navbar-brand" href="./"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> {{@configs.project_name}}</a>
   </div>
   <ul class="nav navbar-nav">
    <li class="dropdown">
