@@ -1,0 +1,16 @@
+description:
+  resolve <code>{{this}}</code> as <code>{{.}}</code> . Otherwise, <code>{{this}}</code> will lookup the variable 'this'.
+lcsample:
+  - note: "The default behavior: <code>{{this}}</code> will look for the value of 'this' key."
+    template: "{{this}} == {{.}}"
+    option:
+      - FLAG_JSOBJECT
+    data:
+      this: is good
+  - note: "<code>{{this}}</code> means <code>{{.}}</code>"
+    template: "{{this}} == {{.}}"
+    option:
+      - FLAG_JSOBJECT
+      - FLAG_THIS
+    data:
+      this: is good
