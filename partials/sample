@@ -11,6 +11,9 @@
  {{/each}}
 </table>
 {{/if}}
+{{#if helper}}
+<p class="helperhint"><span class="glyphicon glyphicon-star"></span> Check the code to know used helper codes</p>
+{{/if}}
 <div class="row">
  <div class="col-md-6"><b>Data:</b>{{{code @codeData type=@codeType}}}</div>
  <div class="col-md-6">

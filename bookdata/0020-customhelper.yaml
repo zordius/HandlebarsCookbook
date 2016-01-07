@@ -1,0 +1,17 @@
+title: Custom Helper
+hbonly: true
+description: "You can provide custom helper to handle logic"
+Samples:
+  quicksample:
+    - template: "{{isequal foo bar}}"
+      option:
+        lightncandy:
+          - FLAG_RUNTIMEPARTIAL
+      helper:
+        isequal: >
+          function ($arg1, $arg2) {
+              return ($arg1 === $arg2) ? 'Yes' : 'No';
+            }
+      data:
+        foo: 1
+        bar: "1"
