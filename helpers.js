@@ -40,6 +40,27 @@ var helpers = {
         return '';
     },
 
+    jstophp: function (code) {
+        return code.replace(/\$/g, '');
+    },
+
+    code_for_helper: function (helper, type) {
+        if (!helper) {
+            return '';
+        }
+
+        switch (type) {
+        case 'lightncandy':
+            return 'array(\n' + Object.keys(helper).map(function (K) {
+                return '  ' + helpers.escapeString(K, type) + ' => ' + helper[K];
+            }).join(',') + ')';
+        default:
+            return '{\n' + Object.keys(helper).map(function (K) {
+                return '  ' + helpers.escapeString(K, type) + ': ' + helpers.jstophp(helper[K]);
+            }).join(',') + '}';
+        }
+    },
+
     code_for_option: function (option, type) {
         var opt = (option && option[type]) ? option[type] : option;
 
@@ -94,7 +115,7 @@ var helpers = {
         }
     },
 
-    code_for_compile: function (type, opt, par, norender) {
+    code_for_compile: function (type, opt, par, hlp, norender) {
         var EX = [];
         switch (type) {
         case 'lightncandy':
@@ -104,10 +125,16 @@ var helpers = {
             if (par) {
                 EX.push('"partials" => ' + par);
             }
+            if (hlp) {
+                EX.push('"helpers" => ' + hlp);
+            }
             EX = EX.length ? (', array(\n  ' + EX.join(',\n') + '\n)') : '';
             return '$php = LightnCandy::compile($template' + EX + ');' + (norender ? '': '\n$render = LightnCandy::prepare($php);');
         case 'handlebars.js':
-            return (norender ? '' : 'var render = ') + 'Handlebars.compile(template);';
+            if (hlp) {
+                EX.push('Handlebars.registerHelper(' + hlp + ');\n');
+            }
+            return EX.join('') + (norender ? '' : 'var render = ') + 'Handlebars.compile(template);';
         case 'mustache':
             return '';
         }
@@ -246,6 +273,7 @@ var helpers = {
         var norender = options.hash.compileerror || cx.compileerror || showcode;
         var data = helpers.code_for_data(input, type);
         var Option = helpers.code_for_option(opt, type);
+        var Helper = helpers.code_for_helper(options.hash.helper || cx.helper, type);
         var Partial = helpers.code_for_partial(par, type);
         var fail = options.fail || cx.fail || norender;
         var errlog = options.errorlog || cx.errorlog;
@@ -257,7 +285,7 @@ var helpers = {
             codeType: data[0],
             codeRequire: helpers.code_for_require(type),
             codeSetData: helpers.code_for_set('data', type) + data[1] + ';',
-            codeCompile: helpers.code_for_compile(type, Option, Partial, norender),
+            codeCompile: helpers.code_for_compile(type, Option, Partial, Helper, norender),
             codeRender: helpers.code_for_render(type, Option, Partial),
             codePartial: Partial
         };
