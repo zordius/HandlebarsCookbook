@@ -16,3 +16,5 @@ Samples:
       note: <code>{{.}}</code> means current context.
       data:
         people: [John, Peter, Mary]
+ref:
+  - LC-FLAG_THIS

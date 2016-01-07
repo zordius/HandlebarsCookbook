@@ -14,3 +14,5 @@ lcsample:
       - FLAG_THIS
     data:
       this: is good
+ref:
+  - 0012-dotnotation
