@@ -34,4 +34,4 @@ lcsample:
     partial:
       foo: "{{hello}}"
 ref:
-  - 0023-partialcontext
+  - 0024-partialcontext

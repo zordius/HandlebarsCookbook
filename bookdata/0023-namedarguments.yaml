@@ -1,0 +1,23 @@
+title: Named Arguments
+hbonly: true
+description: "You can pass named arguments into custom helper or partial."
+Samples:
+  quicksample:
+    - template: "{{helper bar foo=123}}"
+      helper:
+        helper: >
+          function ($arg0, $options) {
+              return $arg0 . ',' . $options['hash']['foo'];
+            }
+      option:
+        lightncandy:
+          - FLAG_NAMEDARG
+      data:
+        bar: ABC
+        foo: DEF
+ref:
+  - 0021-customhelper
+  - 0022-blockhelper
+  - 0024-partialcontext
+  - LC-FLAG_RUNTIMEPARTIAL
+  - LC-FLAG_NAMEDARG

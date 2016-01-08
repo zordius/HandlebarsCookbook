@@ -1,0 +1,28 @@
+description: 
+  Enable named arguments support for partials and helpers.
+lcsample:
+  - template: "{{foo abc=123}}!"
+    note: Default is not supporting named arguments, 
+    data:
+      abc: NO
+      "abc=123": YES
+    helper:
+      foo: >
+        function ($a) {
+            return "OK=$a";
+          }
+  - template: "{{foo abc=123}}!"
+    note: Default is not supporting named arguments, 
+    data:
+      abc: NO
+      "abc=123": YES
+    option:
+      - FLAG_NAMEDARG
+    helper:
+      foo: >
+        function ($option) {
+            return "OK={$option['hash']['abc']}";
+          }
+ref:
+  - 0021-customhelper
+  - 0022-blockhelper

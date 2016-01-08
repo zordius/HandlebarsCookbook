@@ -23,3 +23,6 @@ Samples:
       data:
         bar:
           moo: GOOD!
+ref:
+  - LC-FLAG_RUNTIMEPARTIAL
+  - LC-FLAG_NAMEDARG
