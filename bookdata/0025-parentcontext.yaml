@@ -1,0 +1,44 @@
+title: "Parent Context"
+hbonly: true
+description: "You can use <code>{{..}}</code> to access parent context"
+Samples:
+  quicksample:
+    - template: "{{#each foo}}{{bar}}, {{../bar}}{{/each}}"
+      option:
+        - FLAG_PARENT
+      data:
+        foo:
+          - bar: Yes!
+        bar: Another World
+    - template: >
+        {{#each foo}}
+          {{#each bar}}
+            {{.}},{{../qoo}},{{../../qoo}}
+          {{/each}}
+        {{/each}}
+      option:
+        - FLAG_PARENT
+      data:
+        foo:
+          0:
+            bar:
+              0: ABC
+              1: DEF
+              qoo: GHI
+            bar:
+              0: JKL
+              1: MNO
+              qoo: PQR
+            qoo: STU
+          1:
+            bar:
+              0: V
+              1: W
+              qoo: XYZ
+            qoo: YO!
+        qoo: YA!
+ref:
+  - 0008-block
+  - 0014-path
+  - 0022-blockhelper
+  - 0024-partialcontext
