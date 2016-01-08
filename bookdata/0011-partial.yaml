@@ -20,3 +20,5 @@ Samples:
         foo: World
         bar:
           foo: YA!
+ref:
+  - 0024-partialcontext
