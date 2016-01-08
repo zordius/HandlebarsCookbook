@@ -40,4 +40,6 @@ Samples:
              zoo: No
         moo: Yes!
 ref:
+  - 0008-block
+  - 0022-blockhelper
   - 0025-parentcontext
