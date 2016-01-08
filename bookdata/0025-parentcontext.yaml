@@ -40,5 +40,6 @@ Samples:
 ref:
   - 0008-block
   - 0014-path
+  - 0019-each
   - 0022-blockhelper
   - 0024-partialcontext
