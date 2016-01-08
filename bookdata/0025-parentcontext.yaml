@@ -1,6 +1,6 @@
 title: "Parent Context"
 hbonly: true
-description: "You can use <code>{{..}}</code> to access parent context"
+description: "Everytime when you enter a new block and current context changed, the new context will be pushed into the context stack. The old context becomes <b>parent context</b>, you can use <code>{{..}}</code> to access parent context."
 Samples:
   quicksample:
     - template: "{{#each foo}}{{bar}}, {{../bar}}{{/each}}"
