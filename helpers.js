@@ -216,7 +216,7 @@ var helpers = {
             if (log) {
                 result.code = 99999;
             }
-            fs.unlink(tmp_file);
+            fs.unlinkSync(tmp_file);
         } else {
             try {
                 result = {
