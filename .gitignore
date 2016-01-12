@@ -3,3 +3,4 @@ vendor/
 generated/
 composer.lock
 .exec_tmp_file
+render.php

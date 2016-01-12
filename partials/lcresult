@@ -1,0 +1,10 @@
+{{#each lcresult}}
+<h2>{{@key}}</h2>
+{{#if note}}
+<p>{{{note}}}</p>
+{{/if}}
+ {{#code code type="php" copy=true result=true}}
+<h3>Output</h3>
+<pre><code>{{.}}</code></pre>
+ {{/code}}
+{{/each}}

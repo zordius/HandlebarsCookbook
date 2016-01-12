@@ -1,0 +1,47 @@
+title: "LightnCandy: Quick Start"
+Install: |
+  You may use <a href="https://getcomposer.org/">composer</a> to install LighcnCandy:
+  <pre>
+   <code>composer require zordius/lightncandy:dev-master</code>
+  </pre>
+lcresult:
+  Usage:
+    note: The best practice is compile template into PHP code and save it for later use.
+    code: |
+      // Use composer autoloader
+      require_once('./vendor/autoload.php');
+
+      use LightnCandy\LightnCandy;
+
+      $template = "Welcome {{name}} , You win \${{value}} dollars!!\n";
+      $phpStr = LightnCandy::compile($template);  // set compiled PHP code into $phpStr
+
+      // Save the compiled PHP code into a php file
+      file_put_contents('render.php', '<?php ' . $phpStr . '?>');
+
+      // Get the render function from the php file
+      $renderer = include('render.php');
+
+      // Render by different data
+      echo "Template is:\n$template\n";
+      echo $renderer(Array('name' => 'John', 'value' => 10000));
+      echo $renderer(Array('name' => 'Peter', 'value' => 1000));
+  Deprecated way:
+    note: You can use <code>LightnCandy::prepare($phpStr)</code> to get the render function. This is a deprecated way and should only be use for developing or testing.
+    code: |
+      // Use composer autoloader
+      require_once('./vendor/autoload.php');
+
+      use LightnCandy\LightnCandy;
+
+      $template = "Welcome {{name}} , You win \${{value}} dollars!!\n";
+      $phpStr = LightnCandy::compile($template);  // set compiled PHP code into $phpStr
+
+      // Quick and deprecated way to get render function
+      $renderer = LightnCandy::prepare($phpStr);
+
+      // Render by different data
+      echo "Template is:\n$template\n";
+      echo $renderer(Array('name' => 'John', 'value' => 10000));
+ref:
+  - 0002-install

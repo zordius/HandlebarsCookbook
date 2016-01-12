@@ -3,6 +3,8 @@
   {{>lcsample}}
  {{else if (eq @section "lccompile")}}
   {{>lccompile}}
+ {{else if (eq @section "lcresult")}}
+  {{>lcresult}}
  {{else if (eq @section "hbonly")}}
 <p class="hbonly"><span class="glyphicon glyphicon-tag"></span> This is a handlebars.js extension, mustache do not support this.</p>
  {{else}}
