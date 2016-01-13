@@ -19,3 +19,4 @@ lcsample:
         bar: BAD!
 ref:
   - 0014-path
+  - 0027-advancedvariable

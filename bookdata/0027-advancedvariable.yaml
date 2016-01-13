@@ -1,0 +1,36 @@
+title: "Advanced Variable"
+hbonly: true
+description: Some special charactors are not allowed to be in an expression. You can use <code>[</code> and <code>]</code> to surround an expression, then you can place special charactors inside it.
+Samples:
+  quicksample:
+    - template: "{{foo.bar}}"
+      note: <code>.</code> means path
+      option:
+        - FLAG_ADVARNAME
+      data:
+        foo:
+          bar: path
+        "foo.bar": protected
+    - template: "{{[foo.bar]}}"
+      note: Now 'foo.bar' is protected by <code>[</code> and <code>]</code> and means to look up the key 'foo.bar' .
+      option:
+        - FLAG_ADVARNAME
+      data:
+        foo:
+          bar: path
+        "foo.bar": protected
+    - template: "{{[1 2]}}"
+      note: Now '1 2' also feels good.
+      option:
+        - FLAG_ADVARNAME
+      data:
+        "1 2": I feel good.
+    - template: "{{[1 2].[#!@]}}"
+      option:
+        - FLAG_ADVARNAME
+      data:
+        "1 2":
+          "#!@": Safe!
+ref:
+ref:
+  - LC-FLAG_ADVARNAME
