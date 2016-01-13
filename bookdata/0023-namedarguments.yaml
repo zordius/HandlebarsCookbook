@@ -15,6 +15,18 @@ Samples:
       data:
         bar: ABC
         foo: DEF
+    - template: "{{{link href=foo title=bar}}}"
+      helper:
+        link: >
+          function ($options) {
+              return '<a href="' . $options['hash']['href'] . '">' . $options['hash']['title'] . '</a>';
+            }
+      option:
+        lightncandy:
+          - FLAG_NAMEDARG
+      data:
+        bar: Yahoo!
+        foo: http://yahoo.com/
 ref:
   - 0021-customhelper
   - 0022-blockhelper
