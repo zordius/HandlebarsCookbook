@@ -1,0 +1,17 @@
+title: "Subexpression"
+hbonly: true
+description: "Subexpressions allow you to invoke multiple helpers inside a tag. The result of inner helper will be arguments of outer helpers."
+Samples:
+  quicksample:
+    - template: "{{#if (iszero foo)}}Foo is zero{{/if}}"
+      helper:
+        iszero: >
+          function ($arg1) {
+              return ($arg1 === 0);
+            }
+      option:
+        - FLAG_ADVARNAME
+      data:
+        foo: 0
+ref:
+  - LC-FLAG_ADVARNAME

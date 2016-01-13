@@ -45,3 +45,4 @@ lcresult:
       echo $renderer(Array('name' => 'John', 'value' => 10000));
 ref:
   - 0002-install
+  - 0003-hello
