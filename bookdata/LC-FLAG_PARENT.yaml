@@ -1,5 +1,5 @@
 description: |
-  support <code>{{..}}</code> or <code>{{../foo}}</code> in template. Otherwise, <code>{{..}}</code> or <code>{{../foo}}</code> will cause template error.
+  Support <code>{{..}}</code> or <code>{{../foo}}</code> in template. Otherwise, <code>{{..}}</code> or <code>{{../foo}}</code> will cause template error.
 lcsample:
   - note: "Error when compile <code>{{..}}</code>"
     compileerror: true

@@ -1,5 +1,5 @@
 description:
-  resolve <code>{{this}}</code> as <code>{{.}}</code> . Otherwise, <code>{{this}}</code> will lookup the variable 'this'.
+  Resolve <code>{{this}}</code> as <code>{{.}}</code> . Otherwise, <code>{{this}}</code> will lookup the variable 'this'.
 lcsample:
   - note: "The default behavior: <code>{{this}}</code> will look for the value of 'this' key."
     template: "{{this}} == {{.}}"
