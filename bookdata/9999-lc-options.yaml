@@ -5,16 +5,18 @@ Example:
   phpcode: >
     $phpStr = LightnCandy::compile($template, array(
         'flags' => LightnCandy::FLAG_ERROR_LOG | LightnCandy::FLAG_STANDALONEPHP, // Compile Flags
-        'helpers' => array(                                                       // List of custom helpers
+        'helpers' => array(                                             // list of custom helpers
             'custom_helper_name' => function () { .... }
         ),
-        'partials' => array(                                                      // List of partials
+        'partials' => array(                                            // list of partials
             'partial_name' => 'partial {{foo}} template',
         ),
-        'delimiters' => array('<%', '%>'),                                        // change default delimiters
-        'prepartial' => function ($context, $template, $name) { .... },           // callback to preprocess partials
-        'renderex' => '// Compiled at ' . date('Y-m-d h:i:s'),                    // extend PHP code into generated render
-        'runtime' => 'MyNameSpace\\MyCustomRuntime',                              // Customized Runtime class
+        'partialresolver' => function ($context, $name) { .... },       // callback to load missing partial with name
+        'prepartial' => function ($context, $template, $name) { .... }, // callback to preprocess partials
+
+        'delimiters' => array('<%', '%>'),                              // change default delimiters
+        'renderex' => '// Compiled at ' . date('Y-m-d h:i:s'),          // extend PHP code into generated render
+        'runtime' => 'MyNameSpace\\MyCustomRuntime',                    // customized Runtime class
     ));
 lccompile: true
 ref:
