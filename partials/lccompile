@@ -1,4 +1,4 @@
-<h2>Compile Options:</h2>
+<h2>Compile Flags:</h2>
 <dl>
 {{#each @root}}
  {{#if opt_name}}

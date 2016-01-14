@@ -1,2 +1,23 @@
 title: LightnCandy options
+description: >
+  You can apply more options by running <code>LightnCandy::compile($template, $options)</code>.
+Example:
+  phpcode: >
+    $phpStr = LightnCandy::compile($template, Array(
+        'flags' => LightnCandy::FLAG_ERROR_LOG | LightnCandy::FLAG_STANDALONEPHP, // Compile Flags
+        'helpers' => array(                                                       // List of custom helpers
+            'custom_helper_name' => function () { .... }
+        ),
+        'partials' => array(                                                      // List of partials
+            'partial_name' => 'partial {{foo}} template',
+        )
+        'delimiters' => array('<%', '%>')                                         // change default delimiters
+        'prepartial' => function ($context, $template, $name) { .... }            // callback to preprocess partials
+        'renderex' => '// Compiled at ' . date('Y-m-d h:i:s')                     // extend PHP code into generated render
+        'runtime' => 'MyNameSpace\\MyCustomRuntime'                               // Customized Runtime class
+    ));
 lccompile: true
+ref:
+  - 0011-partial
+  - 0012-delimiter
+  - 0021-customhelper

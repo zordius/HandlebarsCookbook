@@ -13,6 +13,8 @@
    {{> toc}}
   {{else if (lookup (lookup . @section) "version")}}
    {{> versions}}
+  {{else if (lookup (lookup . @section) "phpcode")}}
+   {{> phpcode (lookup (lookup . @section) "phpcode")}}
   {{else}}
    {{isStringThenOutput . tag='p'}}
    {{>section_columns}}
