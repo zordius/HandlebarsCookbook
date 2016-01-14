@@ -24,8 +24,8 @@ lcresult:
 
       // Render by different data
       echo "Template is:\n$template\n";
-      echo $renderer(Array('name' => 'John', 'value' => 10000));
-      echo $renderer(Array('name' => 'Peter', 'value' => 1000));
+      echo $renderer(array('name' => 'John', 'value' => 10000));
+      echo $renderer(array('name' => 'Peter', 'value' => 1000));
   Deprecated way:
     note: You can use <code>LightnCandy::prepare($phpStr)</code> to get the render function. This is a deprecated way and should only be use for developing or testing.
     code: |
@@ -42,7 +42,7 @@ lcresult:
 
       // Render by different data
       echo "Template is:\n$template\n";
-      echo $renderer(Array('name' => 'John', 'value' => 10000));
+      echo $renderer(array('name' => 'John', 'value' => 10000));
 ref:
   - 0002-install
   - 0003-hello

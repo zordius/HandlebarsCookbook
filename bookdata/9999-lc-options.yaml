@@ -3,7 +3,7 @@ description: >
   You can apply more options by running <code>LightnCandy::compile($template, $options)</code>.
 Example:
   phpcode: >
-    $phpStr = LightnCandy::compile($template, Array(
+    $phpStr = LightnCandy::compile($template, array(
         'flags' => LightnCandy::FLAG_ERROR_LOG | LightnCandy::FLAG_STANDALONEPHP, // Compile Flags
         'helpers' => array(                                                       // List of custom helpers
             'custom_helper_name' => function () { .... }
