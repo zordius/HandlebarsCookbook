@@ -25,10 +25,6 @@ Samples:
               0: ABC
               1: DEF
               qoo: GHI
-            bar:
-              0: JKL
-              1: MNO
-              qoo: PQR
             qoo: STU
           1:
             bar:
