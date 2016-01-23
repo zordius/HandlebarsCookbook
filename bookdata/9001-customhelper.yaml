@@ -1,7 +1,7 @@
 title: "LightnCandy: Custom Helper"
 lcresult:
   Compile option 'helpers':
-    note: When <code>compile()</code>, you can use the compile option <code>helpers</code> to provide helpers.
+    note: "When <code>compile()</code>, you can use the compile option <code>helpers</code> to provide helpers. <b>NOTICE</b>: <code>FLAG_NAMEDARG</code> is required for named arguments, <code>FLAG_ADVARNAME</code> is required for string or subexpression arguments"
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -60,3 +60,4 @@ ref:
   - 0021-customhelper
   - 0023-namedarguments
   - LC-FLAG_NAMEDARG
+  - LC-FLAG_ADVARNAME
