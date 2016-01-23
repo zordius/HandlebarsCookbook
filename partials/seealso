@@ -6,7 +6,7 @@
  <li><a href="{{pagename}}.html">{{title}}</a></li>
  {{else}}
   {{#if (match "^http" .)}}
- <li><a href="{{.}}">{{.}}</a></li>
+ <li><a href="{{.}}"><span class="glyphicon glyphicon-new-window"></span> {{.}}</a></li>
   {{else}}
    {{log "Warning! Can not reference page name:" .}}
   {{/if}}
