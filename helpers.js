@@ -497,6 +497,10 @@ var helpers = {
         }
     },
 
+    match: function (regexp, string) {
+        return (new RegExp(regexp)).test(string);
+    },
+
     set: function (name, value, options) {
         var data = handlebars.createFrame(options.data);
 

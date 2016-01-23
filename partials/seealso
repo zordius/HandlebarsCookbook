@@ -5,7 +5,11 @@
  {{#with (lookup @refs .)}}
  <li><a href="{{pagename}}.html">{{title}}</a></li>
  {{else}}
- {{log "Warning! Can not reference page name:" .}}
+  {{#if (match "^http" .)}}
+ <li><a href="{{.}}">{{.}}</a></li>
+  {{else}}
+   {{log "Warning! Can not reference page name:" .}}
+  {{/if}}
  {{/with}}
 {{/each}}
 </ul>

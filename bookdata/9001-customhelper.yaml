@@ -55,6 +55,8 @@ lcresult:
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer(null);
 ref:
+  - http://handlebarsjs.com/expressions.html
+  - http://handlebarsjs.com/block_helpers.html
   - 0021-customhelper
   - 0023-namedarguments
   - LC-FLAG_NAMEDARG
