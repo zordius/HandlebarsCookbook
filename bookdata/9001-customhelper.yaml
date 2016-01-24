@@ -1,7 +1,7 @@
 title: "LightnCandy: Custom Helper"
 lcresult:
   Compile option 'helpers':
-    note: "When <code>compile()</code>, you can use the compile option <code>helpers</code> to provide helpers. <b>NOTICE</b>: <code>FLAG_NAMEDARG</code> is required for named arguments, <code>FLAG_ADVARNAME</code> is required for string or subexpression arguments"
+    note: "When <code>compile()</code>, you can use the compile option <code>helpers</code> to provide custom helpers. <b>NOTICE</b>: <code>FLAG_NAMEDARG</code> is required for named arguments, <code>FLAG_ADVARNAME</code> is required for string or subexpression arguments"
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -54,6 +54,32 @@ lcresult:
       ));
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer(null);
+  Custom Helper Interface:
+    note: The input arguments are processed by LightnCandy automatically, you do not need to worry about variable name processing or current context. You can also use double quoted string as input.
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = <<<VAREND
+      {{helper name}}              // This send the value of 'name' into the helper
+      {{helper "Test"}}            // This send the string "Test" into the helper (FLAG_ADVARNAME is required)
+      {{helper2 "Test" name}}      // This send string "Test" as first parameter,
+                                   // and the value of 'name' as second parameter into the helper
+      VAREND;
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS,
+          'helpers' => array(
+            'helper' => function ($arg1) {
+                return "ARG 1: $arg1";
+            },
+            'helper2' => function ($arg1, $arg2) {
+                return "ARG 1: $arg1, ARG2: $arg2";
+            }
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer(array('name' => 'John'));
 ref:
   - http://handlebarsjs.com/expressions.html
   - http://handlebarsjs.com/block_helpers.html
