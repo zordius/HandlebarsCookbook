@@ -1,0 +1,32 @@
+title: "LightnCandy: The $options Object"
+description: "The <code>$options</code> object will be appended into custom helper arguments, you can receive many usefull infomation from this object."
+lcresult:
+  Named Arguments:
+    note: "You can pass arguments to your custom helpers as key=value pairs, these named arguments can be received by the <code>$options</code> object."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      function my_helper ($arg1, $options) {
+          return "ARG1: $arg1\nNamed arguments: " . print_r($options['hash'], true);
+      }
+
+      $template = "{{{my_helper foo bar=\"abc\"}}}";
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS,
+          'helpers' => array(
+              'my_helper',
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer(array(
+          'foo' => 'Hello!'
+      ));
+ref:
+  - http://handlebarsjs.com/expressions.html
+  - http://handlebarsjs.com/block_helpers.html
+  - 0021-customhelper
+  - 0023-namedarguments
+  - 9001-customhelper
+  - LC-FLAG_NAMEDARG
+  - LC-FLAG_ADVARNAME

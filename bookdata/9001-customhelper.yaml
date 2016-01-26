@@ -85,5 +85,6 @@ ref:
   - http://handlebarsjs.com/block_helpers.html
   - 0021-customhelper
   - 0023-namedarguments
+  - 9002-helperoptions
   - LC-FLAG_NAMEDARG
   - LC-FLAG_ADVARNAME
