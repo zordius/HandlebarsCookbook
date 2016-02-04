@@ -15,3 +15,5 @@ Samples:
 ref:
   - http://handlebarsjs.com/expressions.html
   - http://handlebarsjs.com/block_helpers.html
+  - 0023-namedarguments
+  - 9002-helperoptions
