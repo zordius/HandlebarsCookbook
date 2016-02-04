@@ -2,7 +2,7 @@ title: "LightnCandy: The $options Object"
 description: "The <code>$options</code> object will be appended into custom helper arguments, you can receive many usefull infomation from this object."
 lcresult:
   Named Arguments:
-    note: "You can pass arguments to your custom helpers as key=value pairs, these named arguments can be received by the <code>$options</code> object."
+    note: "You can pass arguments to your custom helpers as key=value pairs, these named arguments can be received by the <code>$options</code> object as key value pairs in <code>$options['hash']</code>."
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -11,6 +11,8 @@ lcresult:
           return "ARG1: $arg1\nNamed arguments: " . print_r($options['hash'], true);
       }
 
+      // foo will be $arg1
+      // named arguments will be in $options['hash'] as key => value pairs
       $template = '{{{my_helper foo bar="abc" [na me]="string!" test=foo}}}';
       $phpStr = LightnCandy::compile($template, array(
           'flags' => LightnCandy::FLAG_HANDLEBARS,
