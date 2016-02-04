@@ -11,7 +11,7 @@ lcresult:
           return "ARG1: $arg1\nNamed arguments: " . print_r($options['hash'], true);
       }
 
-      $template = "{{{my_helper foo bar=\"abc\"}}}";
+      $template = '{{{my_helper foo bar="abc" [na me]="string!" test=foo}}}';
       $phpStr = LightnCandy::compile($template, array(
           'flags' => LightnCandy::FLAG_HANDLEBARS,
           'helpers' => array(
