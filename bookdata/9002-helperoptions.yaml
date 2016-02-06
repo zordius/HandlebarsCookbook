@@ -43,11 +43,31 @@ lcresult:
       ));
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
+  Change Context:
+    note: "If you pass parameter into the function <code>$options['fn']</code>, it will become new context of the inner block."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      function my_helper ($options) {
+          return "#Inner Content: '" . $options['fn']("This is new context") . "'";
+      }
+
+      $template = '{{#my_helper}}Hello, {{.}}!{{/my_helper}}';
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS,
+          'helpers' => array(
+              'my_helper',
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
 ref:
   - http://handlebarsjs.com/expressions.html
   - http://handlebarsjs.com/block_helpers.html
   - 0021-customhelper
   - 0023-namedarguments
+  - 0025-parentcontext
   - 9001-customhelper
   - LC-FLAG_NAMEDARG
   - LC-FLAG_ADVARNAME
