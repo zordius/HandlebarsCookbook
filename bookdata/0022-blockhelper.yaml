@@ -11,3 +11,5 @@ Samples:
             }
       data:
         foo: World
+ref:
+  - 9002-helperoptions

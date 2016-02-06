@@ -24,6 +24,25 @@ lcresult:
       echo $renderer(array(
           'foo' => 'Hello!'
       ));
+  Inner Block:
+    note: "You can render the content of inner block in your block custom helper, it can be done by running <code>$options['fn']()</code>."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      function my_helper ($options) {
+          return "#Inner Content: '" . $options['fn']() . "'";
+      }
+
+      $template = '{{#my_helper}}Hello World!{{/my_helper}}';
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS,
+          'helpers' => array(
+              'my_helper',
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
 ref:
   - http://handlebarsjs.com/expressions.html
   - http://handlebarsjs.com/block_helpers.html
