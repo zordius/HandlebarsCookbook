@@ -4,6 +4,7 @@ description: "You can use a subexpression as partial name. The partial name will
 Samples:
   quicksample:
     - template: "{{>(foo 1)}}, {{>(foo 2)}}"
+      note: "The return value of helper <code>foo</code> will be partial name"
       partial:
         bar1: "Hello"
         bar2: "World"
