@@ -1,0 +1,23 @@
+title: Dynamic Partial
+hbonly: true
+description: "You can use a subexpression as partial name. The partial name will be decided by the result of custom helper at run time."
+Samples:
+  quicksample:
+    - template: "{{>(foo 1)}}, {{>(foo 2)}}"
+      partial:
+        bar1: "Hello"
+        bar2: "World"
+      helper:
+        foo: >
+          function ($arg1) {
+              return 'bar' . $arg1;
+            }
+      option:
+        lightncandy:
+          - FLAG_ADVARNAME
+          - FLAG_RUNTIMEPARTIAL
+      data:
+        null
+ref:
+  - LC-FLAG_ADVARNAME
+  - LC-FLAG_RUNTIMEPARTIAL
