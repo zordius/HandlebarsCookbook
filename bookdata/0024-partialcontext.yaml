@@ -4,6 +4,7 @@ description: "You can change partial context by providing more arguments in <cod
 Samples:
   quicksample:
     - template: "{{>foo bar}}"
+      note: The first argument will be new context for the partial
       partial:
         foo: "{{moo}}"
       option:
