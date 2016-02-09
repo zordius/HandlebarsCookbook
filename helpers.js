@@ -221,7 +221,7 @@ var helpers = {
             try {
                 result = {
                     code: 0,
-                    output: eval(code.replace(/console\.log/g, 'console_log'))
+                    output: eval(code.replace(/console\.log/g, 'console_log').replace(/require\('handlebars'\);/, 'require(\'handlebars\').create();'))
                 };
             } catch (E) {
                 result = {
