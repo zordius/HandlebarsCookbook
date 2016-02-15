@@ -9,13 +9,14 @@ lcsample:
     partial:
       foo: "{{hello}}"
   - template: "OK{{> foo}}!"
-    note: Compile the partial as embed callable code
+    note: Compile used partial as embed callable code
     showcode: true
     option:
       - FLAG_JSOBJECT
       - FLAG_RUNTIMEPARTIAL
     partial:
       foo: "{{hello}}"
+      moo: "{{not used}}"
   - template: "OK{{> foo bar}}!"
     note: Default to not support context change on partial
     compileerror: true
@@ -33,5 +34,19 @@ lcsample:
       - FLAG_RUNTIMEPARTIAL
     partial:
       foo: "{{hello}}"
+  - template: "{{> (foo)}}"
+    note: When using dynamic partial, all partials will be compiled into your render function.
+    data: null
+    partial:
+      foo1: Partial foo one
+      foo2: Partial foo two
+      foo3: Partial foo three
+    option:
+      - FLAG_RUNTIMEPARTIAL
+    helper:
+      foo: >
+        function () {
+            return 'foo2';
+          }
 ref:
   - 0024-partialcontext
