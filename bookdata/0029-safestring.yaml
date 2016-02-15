@@ -1,0 +1,20 @@
+title: Use SafeString to prevent escaping
+hbonly: true
+description: "You can use <code>SafeString</code> class to wrap your custom helper result, then it will not be escaped by handlebars.js/LightnCandy."
+Samples:
+  quicksample:
+    - template: "{{foo}}, {{bar}}"
+      option:
+        lightncandy:
+          - FLAG_JSTRUE
+      helper:
+        foo: >
+          function () {
+              return 'You&Me';
+            }
+        bar: >
+          function () {
+              return new LightnCandy\SafeString('Now&Then');
+            }
+      data:
+        null

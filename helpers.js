@@ -41,7 +41,7 @@ var helpers = {
     },
 
     phptojs: function (code) {
-        return code.replace(/\$/g, '').replace(/ \. /g, ' + ');
+        return code.replace(/\$/g, '').replace(/ \. /g, ' + ').replace(/LightnCandy\\SafeString/, 'Handlebars.SafeString');
     },
 
     code_for_helper: function (helper, type) {
