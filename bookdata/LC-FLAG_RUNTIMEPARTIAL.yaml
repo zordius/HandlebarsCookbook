@@ -37,10 +37,11 @@ lcsample:
   - template: "{{> (foo)}}"
     note: When using dynamic partial, all partials will be compiled into your render function.
     data: null
+    showcode: true
     partial:
       foo1: Partial foo one
       foo2: Partial foo two
-      foo3: Partial foo three
+      foo3: Partial foo {{moo}}
     option:
       - FLAG_RUNTIMEPARTIAL
     helper:
@@ -50,3 +51,4 @@ lcsample:
           }
 ref:
   - 0024-partialcontext
+  - 0028-dynamicpartial
