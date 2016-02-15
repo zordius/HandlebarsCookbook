@@ -1,0 +1,81 @@
+title: "LightnCandy: use SafeString"
+description: "When your custom helper be executed from {{ }} , the return value will be HTML escaped. You may execute your helper by {{{ }}} , then the original helper return value will be outputted directly. You can also return a LightnCandy\\SafeString object, it will not be HTML escaped."
+lcresult:
+  Prevent HTML Escape:
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      function my_helper1 () {
+          return new SafeString('You&Me!');
+      }
+
+      function my_helper2 () {
+          return 'Now&Then!';
+      }
+
+      $template = '{{my_helper1}} , {{my_helper2}}';
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS,
+          'helpers' => array(
+              'my_helper1',
+              'my_helper2',
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
+  Force HTML Escape:
+    note: "You can force HTML escaping the input string by adding second parameter as <code>true</code> when construct the SafeString object."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      function my_helper1 () {
+          return new SafeString('You&Me, it\'s good!', true);
+      }
+
+      function my_helper2 () {
+          return 'Now&Then!';
+      }
+
+      $template = '{{{my_helper1}}} , {{{my_helper2}}}, {{my_helper2}}';
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS,
+          'helpers' => array(
+              'my_helper1',
+              'my_helper2',
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
+  HTML Escape as handlebars.js:
+    note: "Use <code>'encq'</code> as second parameter when construct the SafeString object to HTML escapeing the input string same with handlebars.js."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      function my_helper1 () {
+          return new SafeString('You&Me, it\'s good!', 'encq');
+      }
+
+      function my_helper2 () {
+          return 'Now&Then, it\'s time!';
+      }
+
+      $template = '{{{my_helper1}}} , {{{my_helper2}}}, {{my_helper2}}';
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_JS,
+          'helpers' => array(
+              'my_helper1',
+              'my_helper2',
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
+ref:
+  - 0021-customhelper
+  - 0029-safestring
+  - LC-FLAG_HBESCAPE

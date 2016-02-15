@@ -25,11 +25,11 @@ lcsample:
       - FLAG_HBESCAPE
     data:
       foo: "Backtick is `"
-  - note: "Escaping <code>`</code>:"
+  - note: "Escaping <code>=</code>:"
     template: "{{foo}}"
     data:
       foo: "Equal is ="
-  - note: "Escaping <code>`</code>:"
+  - note: "Escaping <code>=</code>:"
     template: "{{foo}}"
     option:
       - FLAG_HBESCAPE

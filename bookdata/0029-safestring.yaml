@@ -18,3 +18,7 @@ Samples:
             }
       data:
         null
+ref:
+  - 0021-customhelper
+  - 9001-customhelper
+  - 9003-helperescaping
