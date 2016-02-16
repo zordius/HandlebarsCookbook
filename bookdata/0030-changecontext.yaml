@@ -1,0 +1,20 @@
+title: Change Context
+hbonly: true
+description: "Custom helpers can render the inner block with new context"
+Samples:
+  quicksample:
+    - template: "{{#foo}}Hello, {{this}}{{/foo}}"
+      option:
+        lightncandy:
+          - FLAG_THIS
+      helper:
+        foo: >
+          function ($options) {
+                // Apply child 'bar' of current context into inner block
+                return $options['fn']($options['_this']['bar']);
+            }
+      data:
+        bar: World
+ref:
+  - 0021-customhelper
+  - 9001-customhelper
