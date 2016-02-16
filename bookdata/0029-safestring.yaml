@@ -1,4 +1,4 @@
-title: Use SafeString to prevent escaping
+title: Use SafeString
 hbonly: true
 description: "You can use <code>SafeString</code> class to wrap your custom helper result, then it will not be escaped by handlebars.js/LightnCandy."
 Samples:
