@@ -52,7 +52,7 @@ var helpers = {
         switch (type) {
         case 'lightncandy':
             return 'array(\n' + Object.keys(helper).map(function (K) {
-                return Number.isInteger(parseInt(K)) ? ("'" + helper[K] + "'") : ('  ' + helpers.escapeString(K, type) + ' => ' + helper[K]);
+                return (Math.floor(parseInt(K)) == K) ? ("'" + helper[K] + "'") : ('  ' + helpers.escapeString(K, type) + ' => ' + helper[K]);
             }).join(',') + ')';
         default:
             return '{\n' + Object.keys(helper).map(function (K) {
