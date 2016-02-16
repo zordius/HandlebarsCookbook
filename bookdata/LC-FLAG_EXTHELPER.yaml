@@ -1,0 +1,52 @@
+description: |
+  Do not including custom helper codes into compiled PHP codes. This reduces the code size, but you need to take care of your helper functions when rendering. If you forget to include required functions when execute rendering function, <code>undefined function</code> runtime error will be triggered.
+lcsample:
+  - template: "{{foo}}"
+    note: Default is to include used custom helpers into compiled PHP
+    option:
+      - FLAG_HANDLEBARS
+    showcode: true
+    helper:
+      foo: >
+        function () {
+            return 'Hello!';
+          }
+      bar: >
+        function () {
+            return 'World!';
+          }
+  - template: "{{foo}}, {{bar}}"
+    note: The generated code will not include custom helper
+    option:
+      - FLAG_HANDLEBARS
+      - FLAG_EXTHELPER
+    showcode: true
+    helper:
+      - foo
+      - bar
+    excode: |
+      function foo () {
+          return 'Hello!';
+      }
+      function bar () {
+          return 'World!';
+      }
+  - template: "{{foo}}, {{bar}}"
+    note: Anonymous function will still be included in generated code
+    option:
+      - FLAG_HANDLEBARS
+      - FLAG_EXTHELPER
+    showcode: true
+    helper:
+      foo: >
+        function () {
+            return 'Hello!';
+          }
+      1: bar
+    excode: |
+      function bar () {
+          return 'World!';
+      }
+ref:
+  - 0021-customhelper
+  - LC-FLAG_STANDALONEPHP

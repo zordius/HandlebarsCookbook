@@ -52,13 +52,17 @@ var helpers = {
         switch (type) {
         case 'lightncandy':
             return 'array(\n' + Object.keys(helper).map(function (K) {
-                return '  ' + helpers.escapeString(K, type) + ' => ' + helper[K];
+                return Number.isInteger(parseInt(K)) ? ("'" + helper[K] + "'") : ('  ' + helpers.escapeString(K, type) + ' => ' + helper[K]);
             }).join(',') + ')';
         default:
             return '{\n' + Object.keys(helper).map(function (K) {
                 return '  ' + helpers.escapeString(K, type) + ': ' + helpers.phptojs(helper[K]);
             }).join(',') + '}';
         }
+    },
+
+    code_for_excode: function (excode, type) {
+        return excode || '';
     },
 
     code_for_option: function (option, type) {
@@ -285,6 +289,7 @@ var helpers = {
             codeType: data[0],
             codeRequire: helpers.code_for_require(type),
             codeSetData: helpers.code_for_set('data', type) + data[1] + ';',
+            codeExtra: helpers.code_for_excode(options.hash.excode || cx.excode, type),
             codeCompile: helpers.code_for_compile(type, Option, Partial, Helper, norender),
             codeRender: helpers.code_for_render(type, Option, Partial),
             codePartial: Partial
@@ -295,6 +300,7 @@ var helpers = {
         ret.code = [
             ret.codeRequire,
             ret.codeSetTemplate,
+            ret.codeExtra,
             ret.codeCompile,
             norender ? '' : ret.codeSetData,
             norender ? '' : ret.codeRender,
