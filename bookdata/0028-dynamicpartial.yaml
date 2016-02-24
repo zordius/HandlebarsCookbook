@@ -21,6 +21,7 @@ Samples:
         null
     - template: "{{>(foo)}}"
       note: "When partial name is not exist it will cause runtime error"
+      fail: true
       errorlog: true
       partial:
         bar1: "Hello"
