@@ -370,8 +370,8 @@ var helpers = {
             btn.push('<textarea class="copy" id="' + id + '">' + code + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + id + '">Copy to clipboard</button>');
         }
 
-        return '<pre id="pre' + id + '"' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>'
-               + (btn.length ? ('<div class="text-center">' + btn.join(' ') + '</div>') : '')
+        return (btn.length ? ('<div class="text-center">Source Code ' + btn.join(' ') + '</div>') : '')
+               + '<pre id="pre' + id + '"' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>'
                + result;
     },
 
