@@ -19,6 +19,23 @@ Samples:
           - FLAG_RUNTIMEPARTIAL
       data:
         null
+    - template: "{{>(foo)}}"
+      note: "When partial name is not exist it will cause runtime error"
+      errorlog: true
+      partial:
+        bar1: "Hello"
+        bar2: "World"
+      helper:
+        foo: >
+          function () {
+              return 'bar_not_found';
+            }
+      option:
+        lightncandy:
+          - FLAG_ADVARNAME
+          - FLAG_RUNTIMEPARTIAL
+      data:
+        null
 ref:
   - LC-FLAG_ADVARNAME
   - LC-FLAG_RUNTIMEPARTIAL
