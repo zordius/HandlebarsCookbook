@@ -21,7 +21,7 @@ lcresult:
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
 
-      $template = "\ncode for {{>foo}} just like\ncode for {{{bar}}}";
+      $template = "\ncode for {{>foo}} is different to\ncode for {{{bar}}}";
 
       $phpStr = LightnCandy::compile($template, array(
           'flags' => LightnCandy::FLAG_RUNTIMEPARTIAL,
@@ -44,11 +44,56 @@ lcresult:
           'partials' => array(
               'foo' => '{{{foo}}}',
               'bar' => '{{{bar}}}',
-              'moo' => '{{{moo}}}',
-              'qoo' => '{{{qoo}}}',
+              'moo' => '{{{moo}}} not used',
+              'qoo' => '{{{qoo}}} not in render function',
+          )
+      ));
+
+      echo $phpStr;
+  Dynamic Partial:
+    note: "When you using dynamic partial in template, all provided partials will be compiled into render function."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{>foo}}, {{>(bar)}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_ADVARNAME | LightnCandy::FLAG_RUNTIMEPARTIAL,
+          'helpers' => array(
+              'bar' => function () {
+                  return 'bar';
+              }
+          ),
+          'partials' => array(
+              'foo' => '{{{foo}}}',
+              'bar' => '{{{bar}}}',
+              'moo' => '{{{moo}}} not used',
+              'qoo' => '{{{qoo}}} in render function',
+          )
+      ));
+
+      echo $phpStr;
+  Compile Without Partials:
+    note: "With <code>FLAG_ERROR_SKIPPARTIAL</code> option it will not error when you compile without partials. This can reduce the size of render function."
+
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{>foo}}, {{>(bar)}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_ADVARNAME | LightnCandy::FLAG_RUNTIMEPARTIAL | LightnCandy::FLAG_ERROR_SKIPPARTIAL,
+          'helpers' => array(
+              'bar' => function () {
+                  return 'bar';
+              }
           )
       ));
 
       echo $phpStr;
 ref:
-  - http://handlebarsjs.com/expressions.html
+  - 0028-dynamicpartial
+  - LC-FLAG_ADVARNAME
+  - LC-FLAG_RUNTIMEPARTIAL
