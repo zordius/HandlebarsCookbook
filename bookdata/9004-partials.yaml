@@ -1,0 +1,54 @@
+title: "LightnCandy: Deep Dive Partials"
+lcresult:
+  Static Partial:
+    note: "LightnCandy will compile partials as included content by default for better performance."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "\ncode for {{>foo}} just like\ncode for {{{bar}}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'partials' => array(
+              'foo' => '{{{bar}}}'
+          )
+      ));
+
+      echo $phpStr;
+  Runtime Partial:
+    note: "With <code>FLAG_RUNTIMEPARTIAL</code> option, partials will be compiled as functions which can handle context change."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "\ncode for {{>foo}} just like\ncode for {{{bar}}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_RUNTIMEPARTIAL,
+          'partials' => array(
+              'foo' => '{{{bar}}}'
+          )
+      ));
+
+      echo $phpStr;
+  Partial Usage:
+    note: "Only used partials will be compiled into render function by default."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{>foo}}, {{>bar}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_RUNTIMEPARTIAL,
+          'partials' => array(
+              'foo' => '{{{foo}}}',
+              'bar' => '{{{bar}}}',
+              'moo' => '{{{moo}}}',
+              'qoo' => '{{{qoo}}}',
+          )
+      ));
+
+      echo $phpStr;
+ref:
+  - http://handlebarsjs.com/expressions.html
