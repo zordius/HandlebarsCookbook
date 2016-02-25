@@ -124,4 +124,5 @@ lcresult:
 ref:
   - 0028-dynamicpartial
   - LC-FLAG_ADVARNAME
+  - LC-FLAG_ERROR_SKIPPARTIAL
   - LC-FLAG_RUNTIMEPARTIAL
