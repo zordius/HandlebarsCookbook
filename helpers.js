@@ -548,6 +548,15 @@ var helpers = {
 
     remove_dupe_cr: function (txt) {
         return (txt && txt.replace) ? txt.replace(/\n+$/, '').replace(/\n{3,10}/g, '\n\n') : '';
+    },
+
+    anchor: function (name) {
+        return encodeURIComponent(name.replace(/ /g, ''));
+    },
+
+    anchorHTML: function (name) {
+        var N = helpers.anchor(name);
+        return '<a name="' + N + '"></a><a class="glyphicon glyphicon-pushpin" href="#' + N + '"></a>';
     }
 };
 

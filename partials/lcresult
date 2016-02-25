@@ -1,4 +1,5 @@
 {{#each lcresult}}
+{{{anchorHTML @key}}}
 <h2>{{@key}}</h2>
 {{#if note}}
 <p>{{{note}}}</p>
