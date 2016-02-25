@@ -1,3 +1,4 @@
+{{{anchorHTML "Compile Flags"}}}
 <h2>Compile Flags:</h2>
 <dl>
 {{#each @root}}

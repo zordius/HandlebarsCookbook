@@ -1,3 +1,4 @@
+{{{anchorHTML "Sample Codes"}}}
 <h2>Sample Codes</h2>
 {{#each lcsample}}
  {{> sample type="lightncandy"}}
