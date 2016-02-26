@@ -11,6 +11,7 @@ Example:
         'partials' => array(                                            // list of partials
             'partial_name' => 'partial {{foo}} template',
         ),
+        'helperresolver' => function ($context, $name) { .... },        // callback to load missing helper with name
         'partialresolver' => function ($context, $name) { .... },       // callback to load missing partial with name
         'prepartial' => function ($context, $template, $name) { .... }, // callback to preprocess partials
 
