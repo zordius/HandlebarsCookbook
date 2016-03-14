@@ -1,7 +1,8 @@
 title: "LightnCandy option: partialresolver"
-description: "Use <code>partialresolver</code> option to provide partial on demand when compile the template."
+description: "Use <code>partialresolver</code> option to provide partial content on demand when compile the template."
 lcresult:
   Partial Resolver:
+    note: "The return value of partialresolver will be the content of the partial"
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -24,6 +25,7 @@ lcresult:
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
   File Resolver:
+    note: "You can implement any logic to load partial content from any storage"
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -41,5 +43,22 @@ lcresult:
 
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
+  Partial Not Found:
+    note: "When partialresolver return <code>null</code> it means `partial not found` and cause compile time error"
+    errorlog: true
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{> foo}}, {{> bar}}! {{> moo}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_ERROR_LOG,
+          'partialresolver' => function ($cx, $name) {
+              return;
+          }
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
 ref:
   - 9900-lc-options

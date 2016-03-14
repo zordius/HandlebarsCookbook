@@ -353,9 +353,9 @@ var helpers = {
         className = classes.length ? (' class="' + classes.join(' ') + '"') : '';
 
         if (options.hash.result !== undefined) {
-            result = helpers.result_for_code(code, options.hash.type);
+            result = helpers.result_for_code(code, options.hash.type, options.hash.errorlog, options.hash.errorlog);
 
-            if ((result.code === 0) && (result.output !== '')) {
+            if (((result.code === 0) || options.hash.errorlog) && (result.output !== '')) {
                 result = options.fn(result.output);
             } else {
                 result = '';

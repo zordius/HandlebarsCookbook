@@ -4,8 +4,8 @@
 {{#if note}}
 <p>{{{note}}}</p>
 {{/if}}
- {{#code code type="php" copy=true result=true}}
+ {{#code code type="php" copy=true result=true errorlog=errorlog}}
 <h3>Output</h3>
-<pre><code>{{.}}</code></pre>
+<pre{{#if ../errorlog}} class="error"{{/if}}><code>{{.}}</code></pre>
  {{/code}}
 {{/each}}
