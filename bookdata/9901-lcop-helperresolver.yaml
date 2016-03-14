@@ -1,0 +1,86 @@
+title: "LightnCandy option: helperresolver"
+description: "Use <code>helperresolver</code> option to provide helper on demand when compile the template."
+lcresult:
+  Name Resolver:
+    note: "helperresolver can return a function name for a helper."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{foo}}, {{bar}}! {{moo}}";
+
+      function helper1 () {
+          return 'Hello';
+      }
+
+      function helper2 () {
+          return 'World';
+      }
+
+      $phpStr = LightnCandy::compile($template, array(
+          'helperresolver' => function ($cx, $name) {
+              switch ($name) {
+              case 'foo':
+                  return 'helper1';
+              case 'bar':
+                  return 'helper2';
+              default:
+                  return;
+              }
+          }
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
+  Runnable Resolver:
+    note: "helperresolver can return a Runnable function for a helper."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{foo}}, {{bar}}! {{moo}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'helperresolver' => function ($cx, $name) {
+              switch ($name) {
+              case 'foo':
+                  return function () {
+                      return 'FOO';
+                  };
+              case 'bar':
+                  return function () {
+                      return 'MOO';
+                  };
+              default:
+                  return;
+              }
+          }
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
+  None Helper:
+    note: "When the helperresolver return null, the <code>$name</code> will not be resolved as a helper."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{foo}}, {{bar}}! {{moo}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'helperresolver' => function ($cx, $name) {
+              return;
+          }
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+
+      $data = array(
+          'foo' => 'Hello',
+          'bar' => 'World',
+          'moo' => 'GOOD',
+      );
+
+      echo $renderer($data);
+ref:
+  - 9900-lc-options
