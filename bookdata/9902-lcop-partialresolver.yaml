@@ -23,5 +23,23 @@ lcresult:
 
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
+  File Resolver:
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{> foo}}, {{> bar}}! {{> moo}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'partialresolver' => function ($cx, $name) {
+              if (file_exists("$name.tmpl")) {
+                  return file_get_contents("$name.tmpl");
+              }
+              return "[partial (file:$name.tmpl) not found]";
+          }
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
 ref:
   - 9900-lc-options

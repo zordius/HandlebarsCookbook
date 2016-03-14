@@ -25,3 +25,4 @@ ref:
   - 0012-delimiter
   - 0021-customhelper
   - 9901-lcop-helperresolver
+  - 9902-lcop-partialresolver
