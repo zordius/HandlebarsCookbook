@@ -23,6 +23,29 @@ Samples:
           bar:
             moo: Hello
         bar: world
+    - template: "{{#with 0}}Current context:{{.}}{{/with}}"
+      note: With 0 you get 0
+      option:
+        lightncandy:
+        - FLAG_PARENT
+    - template: "{{#with 1}}Current context:{{.}}{{/with}}"
+      note: With 1 you get 1
+      option:
+        lightncandy:
+        - FLAG_PARENT
+        - FLAG_JSOBJECT
+    - template: "{{#with .}}Current context:{{.}}{{/with}}"
+      note: With empty array you will skip the included section
+      option:
+        lightncandy:
+        - FLAG_PARENT
+      data: []
+    - template: "{{#with .}}Current context:{{.}}{{/with}}"
+      note: "With <code>false</code> you will skip the included section"
+      option:
+        lightncandy:
+        - FLAG_PARENT
+      data: []
 ref:
   - 0008-block
   - 0025-parentcontext
