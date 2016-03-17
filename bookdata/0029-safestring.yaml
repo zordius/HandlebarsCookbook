@@ -14,7 +14,7 @@ Samples:
             }
         bar: >
           function () {
-              return new LightnCandy\SafeString('Now&Then');
+              return new \LightnCandy\SafeString('Now&Then');
             }
       data:
         null

@@ -18,7 +18,7 @@ var helpers = {
     code_for_require: function (type) {
         switch (type) {
         case 'lightncandy':
-            return 'require(\'./vendor/autoload.php\');\nuse LightnCandy\\LightnCandy;';
+            return 'require(\'./vendor/autoload.php\');\nuse \\LightnCandy\\LightnCandy;';
         case 'handlebars.js':
             return 'var Handlebars = require(\'handlebars\');';
         case 'mustache':
@@ -44,7 +44,7 @@ var helpers = {
         return code
                .replace(/\$options\['_this'\]/, 'this')
                .replace(/\$/g, '').replace(/ \. /g, ' + ')
-               .replace(/LightnCandy\\SafeString/, 'Handlebars.SafeString');
+               .replace(/\\LightnCandy\\SafeString/, 'Handlebars.SafeString');
     },
 
     code_for_helper: function (helper, type) {
