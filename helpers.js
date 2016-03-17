@@ -18,7 +18,7 @@ var helpers = {
     code_for_require: function (type) {
         switch (type) {
         case 'lightncandy':
-            return 'require(\'./vendor/autoload.php\');\nuse \\LightnCandy\\LightnCandy;';
+            return 'require(\'./vendor/autoload.php\');\nuse LightnCandy\\LightnCandy;';
         case 'handlebars.js':
             return 'var Handlebars = require(\'handlebars\');';
         case 'mustache':
