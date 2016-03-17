@@ -6,8 +6,10 @@ lcresult:
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
 
+      // Please use full namespace as \LightnCandy\SafeString()
+      // Do not just use SafeString() , it will cause error when FLAG_STANDALONEPHP enabled
       function my_helper1 () {
-          return new SafeString('You&Me!');
+          return new \LightnCandy\SafeString('You&Me!');
       }
 
       function my_helper2 () {
@@ -31,8 +33,10 @@ lcresult:
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
 
+      // Please use full namespace as \LightnCandy\SafeString()
+      // Do not just use SafeString() , it will cause error when FLAG_STANDALONEPHP enabled
       function my_helper1 () {
-          return new SafeString('You&Me, it\'s good!', true);
+          return new \LightnCandy\SafeString('You&Me, it\'s good!', true);
       }
 
       function my_helper2 () {
@@ -56,8 +60,10 @@ lcresult:
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
 
+      // Please use full namespace as \LightnCandy\SafeString()
+      // Do not just use SafeString() , it will cause error when FLAG_STANDALONEPHP enabled
       function my_helper1 () {
-          return new SafeString('You&Me, it\'s good!', 'encq');
+          return new \LightnCandy\SafeString('You&Me, it\'s good!', 'encq');
       }
 
       function my_helper2 () {
