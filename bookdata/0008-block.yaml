@@ -35,16 +35,16 @@ Block for False:
       data:
         foo:
     - template: "{{#foo}}Ya!{{/foo}}"
-      note: empty array is <code>false</code>.
+      note: empty array means <code>false</code>.
       data:
         foo: []
     - template: "{{#foo}}Ya!{{/foo}}"
-      note: Mustache.js will think <code>0</code> is <code>false</code>.
+      note: Only mustache.js will think <code>0</code> as <code>false</code>.
       different: true
       data:
         foo: 0
     - template: "{{#foo}}Ya!{{/foo}}"
-      note: Mustache.js will think empty string is <code>false</code>.
+      note: Only mustache.js will think empty string as <code>false</code>.
       different: true
       data:
         foo: ""
