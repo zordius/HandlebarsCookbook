@@ -5,7 +5,7 @@ Samples:
   quicksample:
     - template: "Comment example: {{! comment with }} is not ok }}"
       note: <code>}}</code> can not be placed inside a comment.
-    - template: "Comment example: {{!-- comment with }} is not ok --}}"
+    - template: "Comment example: {{!-- comment with }} is ok --}}"
       note: <code>}}</code> can be placed inside an extended comment.
 ref:
   - 0010-comment

@@ -4,21 +4,21 @@ description:
 Inverted Block for True:
   quicksample:
     - template: "{{^foo}}Ya!{{/foo}}"
-      note: A block will not render inner content for an array.
+      note: An inverted block will not render inner content for an array.
       data:
         foo: [1, 3, 5]
     - template: "{{^foo}}Ya!{{/foo}}"
-      note: A block will not render inner content for an object.
+      note: An inverted block will not render inner content for an object.
       data:
         foo:
           bar:
           moo:
     - template: "{{^foo}}Ya!{{/foo}}"
-      note: A block will not render inner content for a string.
+      note: An inverted block will not render inner content for a string.
       data:
         foo: test
     - template: "{{^foo}}Ya!{{/foo}}"
-      note: A block will not render inner content for a number.
+      note: A inverted block will not render inner content for a number.
       different: true
       data:
         foo: 1
