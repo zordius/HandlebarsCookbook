@@ -24,10 +24,6 @@ Block for True:
       different: true
       data:
         foo: 1
-    - template: "{{#foo}}Ya!{{/foo}}"
-      note: empty array is <code>true</code>.
-      data:
-        foo: []
 Block for False:
   quicksample:
     - template: "{{#foo}}Ya!{{/foo}}"
@@ -38,6 +34,10 @@ Block for False:
       note: When the value is <code>null</code> or <code>undefined</code>, the inner content will not be rendered.
       data:
         foo:
+    - template: "{{#foo}}Ya!{{/foo}}"
+      note: empty array is <code>false</code>.
+      data:
+        foo: []
     - template: "{{#foo}}Ya!{{/foo}}"
       note: Mustache.js will think <code>0</code> is <code>false</code>.
       different: true
