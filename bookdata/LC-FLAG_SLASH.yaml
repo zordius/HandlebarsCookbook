@@ -1,0 +1,19 @@
+description:
+  "Skip a delimiter when it behind <code>\\</code> ."
+lcsample:
+  - note: "The default behavior: <code>\\</code> do nothing"
+    template: "Yes, {{foo}} is \\{{foo}}"
+    data:
+      foo: OK
+  - note: "You can use this way to display <code>{{</code> when you do not like to use <code>\\</code>"
+    template: "Show {{#with \"{{\"}}{{.}}{{/with}} in this way"
+    data:
+      foo: OK
+  - note: "Use <code>\\</code> to escape a delimiter"
+    template: "Yes, {{foo}} is \\{{foo}}"
+    option:
+      - FLAG_SLASH
+    data:
+      foo: OK
+ref:
+  - 
