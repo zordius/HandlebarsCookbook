@@ -15,5 +15,3 @@ lcsample:
       - FLAG_SLASH
     data:
       foo: OK
-ref:
-  - 
