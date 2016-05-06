@@ -1,0 +1,16 @@
+description:
+  Resolve <code>{{else}}</code> or <code>{{^}}</code> as handlebars specification. Otherwise, <code>{{else}}</code> will be resolved as normal variable, and {{^}} will cause template error.
+lcsample:
+  - note: "The default behavior: <code>{{else}}</code> will look for the value of 'else' key."
+    template: "{{else}}"
+    data:
+      else: OK
+  - template: "{{#if foo}}FOO{{else}}BAR{{/if}}"
+    data:
+      foo: true
+  - template: "{{#if foo}}FOO{{else}}BAR{{/if}}"
+    note: "<code>{else}}</code>will do the else logic when <code>FLAG_ELSE</code> enabled."
+    option:
+      - FLAG_ELSE
+    data:
+      foo: true
