@@ -5,43 +5,73 @@ Samples:
   quicksample:
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: True!
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: true
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: None empty string means <code>true</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: "String"
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: None empty array means <code>true</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: [1]
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: Numbers other than 0 means <code>true</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: 1
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: Numbers other than 0 means <code>true</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: -1
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: Object or associative array means <code>true</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo:
           bar:
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: False!
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: false
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: Empty string means <code>false</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: ""
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: Empty array means <code>false</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: []
     - template: "{{#unless foo}}YES{{else}}no{{/unless}}"
       note: <code>0</code> means <code>false</code>
+      option:
+        lightncandy:
+        - FLAG_ELSE
       data:
         foo: 0
 ref:
