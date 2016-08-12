@@ -8,5 +8,6 @@
 {{/section_builder}}
 {{>seealso}}
 {{>pager}}
+{{>footer}}
 </div>
 {{> html_end}}

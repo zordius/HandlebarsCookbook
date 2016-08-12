@@ -37,6 +37,7 @@ module.exports = function () {
         preventIndent: true
     })(data, {
         data: {
+            datetime: new Date().toISOString(),
             samples: ['lightncandy', 'handlebars.js', 'mustache'],
             configs: configs,
             package: require('./package.json'),
