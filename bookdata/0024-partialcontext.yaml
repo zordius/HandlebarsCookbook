@@ -1,6 +1,6 @@
 title: Change Partial Context
 hbonly: true
-description: "You can change partial context by providing more arguments in <code>{{>...}}</code>"
+description: "You can change partial context by providing more arguments after the partial name"
 Samples:
   quicksample:
     - template: "{{>foo bar}}"
