@@ -1,0 +1,6 @@
+description:
+  simulate all supported JavaScript behavior, same with <code>FLAG_JSTRUE</code> + <code>FLAG_JSOBJECT</code> + <code>FLAG_JSLENGTH</code>.
+ref:
+  - LC-FLAG_JSTRUE
+  - LC-FLAG_JSOBJECT
+  - LC-FLAG_JSLENGTH
