@@ -5,7 +5,7 @@ lcsample:
     template: "{{foo}}"
     data:
       foo: "Love & <b>Peace</b>"
-  - note: "Do not escaping when <code>FLAG_NOESCAPE</code> is used."
+  - note: Do not escaping values.
     template: "{{foo}}"
     option:
       - FLAG_NOESCAPE

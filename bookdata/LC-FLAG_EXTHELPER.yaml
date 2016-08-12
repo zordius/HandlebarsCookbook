@@ -47,6 +47,15 @@ lcsample:
       function bar () {
           return 'World!';
       }
+  - template: "{{foo}}, {{bar}}"
+    note: Anonymous function will still be included in generated code
+    option:
+      - FLAG_HANDLEBARS
+      - FLAG_EXTHELPER
+    showcode: true
+    helper:
+      foo: 1
+      1: bar
 ref:
   - 0021-customhelper
   - LC-FLAG_STANDALONEPHP
