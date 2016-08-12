@@ -1,6 +1,6 @@
 title: Specific Values
 description:
-  Values other than string will be rendered in specific way.
+  Input values other than string will be rendered in specific way.
 Samples:
   quicksample:
     - template: "{{{foo}}}"
