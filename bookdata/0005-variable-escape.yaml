@@ -1,6 +1,6 @@
 title: Variable Escaping
 description:
-  The output of <code>{{foo}}</code> will escaped by template engine.
+  The output of <code>{{foo}}</code> will be escaped by template engine.
 Samples:
   quicksample:
     - template: "{{foo}}"
