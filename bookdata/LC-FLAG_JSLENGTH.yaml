@@ -1,0 +1,19 @@
+description:
+  "support <code>{{foo.length}}</code> when foo is an array (simulate JavaScript Array.proto.length behavior)"
+lcsample:
+  - note: "The default behavior: <code>foo.length</code> do not look for Array.length."
+    template: "{{foo.length}}, {{bar.length}}"
+    data:
+      foo: [1, 2, 3]
+      bar:
+        length: go
+        width: 400
+  - note: "The default behavior: <code>foo.length</code> do not look for Array.length."
+    template: "{{foo.length}}, {{bar.length}}"
+    option:
+      - FLAG_JSLENGTH
+    data:
+      foo: [1, 2, 3]
+      bar:
+        length: go
+        width: 400
