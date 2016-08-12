@@ -1,0 +1,5 @@
+description:
+  same with <code>FLAG_PROPERTY</code> + <code>FLAG_METHOD</code>
+ref:
+  - LC-FLAG_PROPERT
+  - LC-FLAG_METHOD
