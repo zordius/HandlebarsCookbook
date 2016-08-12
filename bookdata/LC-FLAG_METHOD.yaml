@@ -1,0 +1,18 @@
+description:
+  Support object instance attribute access; you must apply this if your data contains object.
+perfalert: true
+lcsample:
+  - note: "The default behavior: only do associative array lookup"
+    template: "{{foo.key}}, {{date.getTimestamp}}"
+    data:
+      foo:
+        key: OK
+      date: new DateTime()
+  - note: "do instance property lookup"
+    template: "{{foo.key}}, {{date.getTimestamp}}"
+    option:
+      - FLAG_METHOD
+    data:
+      foo:
+        key: OK
+      date: new DateTime()
