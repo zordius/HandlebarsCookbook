@@ -1,4 +1,4 @@
-{{> html_start}}                                                                                        
+{{> html_start}}
 {{> nav}}
 <div class="container-fluid">
  <h1>{{title}}</h1>
