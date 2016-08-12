@@ -7,6 +7,8 @@
   {{>lcresult}}
  {{else if (eq @section "hbonly")}}
 <p class="hbonly"><span class="glyphicon glyphicon-tag"></span> This is a handlebars.js extension, mustache do not support this.</p>
+ {{else if (eq @section "perfalert")}}
+<p class="perfalert"><span class="glyphicon glyphicon-warning-sign"></span> This flag cause bad rendering performance, do not enable it unless you need this feature anyway.</p>
  {{else}}
 {{{anchorHTML @section}}}
 <h2>{{@section}}</h2>
