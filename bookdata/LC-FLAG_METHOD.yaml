@@ -8,7 +8,7 @@ lcsample:
       foo:
         key: OK
       date: new DateTime()
-  - note: "do instance property lookup"
+  - note: "executes method of an instance"
     template: "{{foo.key}}, {{date.getTimestamp}}"
     option:
       - FLAG_METHOD
