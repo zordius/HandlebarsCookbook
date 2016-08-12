@@ -47,6 +47,10 @@ var helpers = {
                .replace(/\\LightnCandy\\SafeString/, 'Handlebars.SafeString');
     },
 
+    reindent: function (code, space) {
+        return code.replace(/\n/g, '\n' + space);
+    },
+
     code_for_helper: function (helper, type) {
         if (!helper) {
             return '';
@@ -54,9 +58,9 @@ var helpers = {
 
         switch (type) {
         case 'lightncandy':
-            return 'array(\n' + Object.keys(helper).map(function (K) {
+            return helpers.reindent('array(\n' + Object.keys(helper).map(function (K) {
                 return (Math.floor(parseInt(K)) == K) ? ("'" + helper[K] + "'") : ('  ' + helpers.escapeString(K, type) + ' => ' + helper[K]);
-            }).join(',') + ')';
+            }).join(',') + ')', '  ');
         default:
             return '{\n' + Object.keys(helper).map(function (K) {
                 return '  ' + helpers.escapeString(K, type) + ': ' + helpers.phptojs(helper[K]);
@@ -100,7 +104,7 @@ var helpers = {
             par = Object.keys(par).map(function (K) {
                 return helpers.escapeString(K, type) + ' => ' + helpers.escapeString(par[K], type);
             });
-            return par.length ? 'array(\n    ' + par.join(',\n') + '\n  )' : '';
+            return par.length ? helpers.reindent('array(\n  ' + par.join(',\n  ') + '\n)', '  ') : '';
         case 'handlebars.js':
         case 'mustache':
             return JSON.stringify(par, undefined, defaultSP);
@@ -135,7 +139,7 @@ var helpers = {
             if (hlp) {
                 EX.push('"helpers" => ' + hlp);
             }
-            EX = EX.length ? (', array(\n  ' + EX.join(',\n') + '\n)') : '';
+            EX = EX.length ? (', array(\n  ' + EX.join(',\n  ') + '\n)') : '';
             return '$php = LightnCandy::compile($template' + EX + ');' + (norender ? '': '\n$render = LightnCandy::prepare($php);');
         case 'handlebars.js':
             if (hlp) {

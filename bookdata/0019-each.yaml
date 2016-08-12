@@ -38,6 +38,14 @@ Samples:
           first: Hello
           second: World
         title: Values
+    - template: "{{#each foo}}\n{{.}}!\n{{/each}}"
+      note: "<code>#each</code> do not work on string"
+      option:
+        lightncandy:
+          - FLAG_SPVARS
+          - FLAG_PARENT
+      data:
+        foo: Good
 ref:
   - 0008-block
   - 0025-parentcontext
