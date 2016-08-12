@@ -196,7 +196,7 @@ var helpers = {
         }
 
         if (typeof D === 'string') {
-            return helpers.escapeString(D, 'lightncandy');
+            return D.match(/^\(object\)/) ? D : helpers.escapeString(D, 'lightncandy');
         }
 
         if (D === true) {

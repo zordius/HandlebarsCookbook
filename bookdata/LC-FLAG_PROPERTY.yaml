@@ -1,0 +1,18 @@
+description:
+  Support object instance attribute access; you must apply this if your data contains object.
+perfalert: true
+lcsample:
+  - note: "The default behavior: only do associative array lookup"
+    template: "{{foo.key}}, {{bar.key}}"
+    data:
+      foo:
+        key: OK
+      bar: (object)Array('key' => 'Good')
+  - note: "do instance property lookup"
+    template: "{{foo.key}}, {{bar.key}}"
+    option:
+      - FLAG_PROPERTY
+    data:
+      foo:
+        key: OK
+      bar: (object)Array('key' => 'Good')
