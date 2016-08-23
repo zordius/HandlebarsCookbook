@@ -1,0 +1,15 @@
+description: |
+  compile to <code>echo 'a', $b, 'c';</code> to improve performance. This will slow down rendering when the template and data are simple, but will improve 5% ~ 10% when the data is big and looping in the template.
+lcsample:
+  - template: "A{{{foo}}}C"
+    note: compile to <code>'a' . $b . 'c'</code> when do not use FLAG_ECHO
+    showcode: true
+    option:
+      - FLAG_JSTRUE
+  - template: "A{{{foo}}}C"
+    note: compile to <code>echo 'a', $b, 'c'</code> by default
+    showcode: true
+    option:
+      - FLAG_ECHO
+ref:
+  - LC-FLAG_BESTPERFORMANCE

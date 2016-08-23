@@ -1,0 +1,5 @@
+description:
+  same with <code>FLAG_ECHO</code> + <code>FLAG_STANDALONEPHP</code> now. This flag may be changed base on performance testing result in the future.
+ref:
+  - LC-FLAG_ECHO
+  - LC-FLAG_STANDALONEPHP
