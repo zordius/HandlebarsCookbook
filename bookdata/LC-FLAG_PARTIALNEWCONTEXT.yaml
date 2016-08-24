@@ -7,7 +7,7 @@ lcsample:
       foo: "BAR:{{bar}}"
     data:
       bar: "Good!"
-  - note: Create an empty object as new context for the partial without argument.
+  - note: Create an empty object as new context for the partial without argument. <code>FLAG_RUNTIMEPARTIAL</code> is required.
     template: "{{> foo}}"
     partial:
       foo: "BAR:{{bar}}"
@@ -16,3 +16,5 @@ lcsample:
     option:
       - FLAG_PARTIALNEWCONTEXT
       - FLAG_RUNTIMEPARTIAL
+ref:
+  - LC-FLAG_RUNTIMEPARTIAL
