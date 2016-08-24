@@ -59,6 +59,53 @@ lcresult:
 
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
+  Helper Lookup:
+    note: "helperresolver can return 1 or true when the <code>$name</code> is a helper. The compiled render function will not include the actural helper code, which can be provided at runtime."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{foo}}, {{bar}}! {{moo}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_EXTHELPER,
+          'helperresolver' => function ($cx, $name) {
+              return true;
+          }
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+
+      // Classes and instance for rendering
+      class BAR {
+          private $secret = '';
+          function __construct($start) {
+              $this->secret = $start;
+          }
+          function getSecret() {
+              return $this->secret;
+          }
+      }
+
+      $bar = new BAR('haha');
+
+      class MOO {
+          public static function test() {
+              return 'MOO~';
+          }
+      }
+
+      // You should provide helper functions when rendering
+      // because they are not in the $renderer
+      echo $renderer(0, array(
+          'helpers' => array(
+              'foo' => function () {        // The helper can be a callable
+                  return 'FOO!';
+              },
+              'bar' => [$bar, 'getSecret'], // The helper can be a method of an instance
+              'moo' => 'MOO::test'          // The helper can be a static function of a class
+          )
+      ));
   None Helper:
     note: "When the helperresolver return null, the <code>$name</code> will not be resolved as a helper."
     code: |
