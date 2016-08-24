@@ -68,9 +68,9 @@ lcresult:
       $template = "{{foo}}, {{bar}}! {{moo}}";
 
       $phpStr = LightnCandy::compile($template, array(
-          'flags' => LightnCandy::FLAG_EXTHELPER,
+          'flags' => LightnCandy::FLAG_EXTHELPER, // Do not provide helpers when compile
           'helperresolver' => function ($cx, $name) {
-              return true;
+              return true;         // Every $name is helper
           }
       ));
 
@@ -131,3 +131,4 @@ lcresult:
       echo $renderer($data);
 ref:
   - 9900-lc-options
+  - LC-FLAG_EXTHELPER

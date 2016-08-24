@@ -1,6 +1,6 @@
 {{#render}}
 {{#if note}}
-<p>{{{note}}}</p>
+<p class="note">{{{note}}}</p>
 {{/if}}
 {{> (str_join "option" type sep="_")}}
 {{#if partial}}

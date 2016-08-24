@@ -2,7 +2,7 @@
 {{{anchorHTML @key}}}
 <h2>{{@key}}</h2>
 {{#if note}}
-<p>{{{note}}}</p>
+<p class="note">{{{note}}}</p>
 {{/if}}
  {{#code code type="php" copy=true result=true errorlog=errorlog}}
 <h3>Output</h3>

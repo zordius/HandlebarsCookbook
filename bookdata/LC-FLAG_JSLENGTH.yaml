@@ -8,7 +8,7 @@ lcsample:
       bar:
         length: go
         width: 400
-  - note: "The default behavior: <code>foo.length</code> do not look for Array.length."
+  - note: "<code>foo.length</code> will be Array.length."
     template: "{{foo.length}}, {{bar.length}}"
     option:
       - FLAG_JSLENGTH

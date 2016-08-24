@@ -1,5 +1,7 @@
 {{{anchorHTML "Sample Codes"}}}
 <h2>Sample Codes</h2>
+<div class="lcsample">
 {{#each lcsample}}
  {{> sample type="lightncandy"}}
 {{/each}}
+</div>
