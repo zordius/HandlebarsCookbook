@@ -1,0 +1,18 @@
+description:
+  Create a new context for the partial. This option is same with handlbars.js <a href="http://handlebarsjs.com/reference.html">explicitPartialContext</a> option.
+lcsample:
+  - note: The default behavior is reusing current context when there is no argument for the partial.
+    template: "{{> foo}}"
+    partial:
+      foo: "BAR:{{bar}}"
+    data:
+      bar: "Good!"
+  - note: Create an empty object as new context for the partial without argument.
+    template: "{{> foo}}"
+    partial:
+      foo: "BAR:{{bar}}"
+    data:
+      bar: "Good!"
+    option:
+      - FLAG_PARTIALNEWCONTEXT
+      - FLAG_RUNTIMEPARTIAL

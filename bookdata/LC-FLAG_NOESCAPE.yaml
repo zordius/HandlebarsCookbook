@@ -1,5 +1,5 @@
 description:
-  Do not do any HTML escape on <code>{{var}}</code>. This option is similar with handlbars.js <a href="http://handlebarsjs.com/reference.html">noEscape</a> option.
+  Do not do any HTML escape on <code>{{var}}</code>. This option is same with handlbars.js <a href="http://handlebarsjs.com/reference.html">noEscape</a> option.
 lcsample:
   - note: The default behavior is escaping values.
     template: "{{foo}}"
