@@ -1,4 +1,4 @@
-title: "Built-in block helper - lookup"
+title: "Built-in helper - lookup"
 hbonly: true
 description: "Lookup value by provided base and key"
 Samples:
