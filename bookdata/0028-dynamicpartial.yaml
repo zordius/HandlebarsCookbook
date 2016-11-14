@@ -37,6 +37,35 @@ Samples:
           - FLAG_RUNTIMEPARTIAL
       data:
         null
+    - template: "{{#each foo}}{{> (lookup . 'template')}}{{/each}}"
+      note: "You can use the lookup helper to return the template's name from an object"
+      partial:
+        en: "Hello {{name}}. "
+        es: "Hola {{name}}. "
+        fr: "Bonjour {{name}}."
+      data:
+        foo: [{template: "en", name: "alice"},{template: "es", name: "bob"},{template: "fr", name: "casey"}]
+      option:
+        lightncandy:
+          - FLAG_ADVARNAME
+          - FLAG_RUNTIMEPARTIAL
+    - template: "{{#each foo}}{{> (bar this)}}{{/each}}"
+      note: "You can use dynamic partials to load templates from within a list of their names"
+      partial:
+        a: "Hello"
+        b: "World"
+        c: "!"
+      helper:
+        bar: >
+          function ($arg) {
+            return $arg;
+          }
+      data:
+        foo: ["a","b","c"]
+      option:
+        lightncandy:
+          - FLAG_ADVARNAME
+          - FLAG_RUNTIMEPARTIAL
 ref:
   - 0021-customhelper
   - LC-FLAG_ADVARNAME
