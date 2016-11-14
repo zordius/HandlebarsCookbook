@@ -49,7 +49,7 @@ Samples:
         lightncandy:
           - FLAG_ADVARNAME
           - FLAG_RUNTIMEPARTIAL
-    - template: "{{#each foo}}{{> (bar this)}}{{/each}}"
+    - template: "{{#each foo}}{{> (bar .)}}{{/each}}"
       note: "You can use dynamic partials to load templates from within a list of their names"
       partial:
         a: "Hello"
