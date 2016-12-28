@@ -55,7 +55,7 @@ lcresult:
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
   HTML Escape as handlebars.js:
-    note: "Use <code>'encq'</code> as second parameter when construct the SafeString object to HTML escapeing the input string same with handlebars.js."
+    note: "Use <code>'encq'</code> as second parameter when construct the SafeString object to HTML escaping the input string same with handlebars.js."
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -81,6 +81,41 @@ lcresult:
       ));
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
+  Use SafeString inside your input data:
+    note: "You can use <code>\\LightnCandy\\SafeString</code> inside your input data to specify different escaping hehavior."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = '{{foo}} , {{bar}}, {{moo}}';
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_JS
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer(array(
+          'foo' => "'A&B'",
+          'bar' => new \LightnCandy\SafeString("'C&D'"),
+          'moo' => new \LightnCandy\SafeString("'E&F'", 'encq')
+      ));
+  SafeString and FLAG_STANDALONEPHP:
+    note: "When the <code>FLAG_STANDALONEPHP</code> flag enabled, LightnCandy will embed the <code>\\LightnCandy\\SafeString</code> class into generated code and rename it into shorter version: <code>LS</code>. If you like to use <code>\\LightnCandy\\SafeString</code> instance in your input data with the standalone PHP, you should reuse the <code>LS</code> class inside the compiled templates."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = '{{foo}} , {{bar}}, {{moo}}';
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_JS | LightnCandy::FLAG_STANDALONEPHP
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer(array(
+          'foo' => "'A&B'",
+          // LS only exists after any standalone template included
+          'bar' => new LS("'C&D'"),
+          'moo' => new LS("'E&F'", 'encq')
+      ));
 ref:
   - 0021-customhelper
   - 0029-safestring
