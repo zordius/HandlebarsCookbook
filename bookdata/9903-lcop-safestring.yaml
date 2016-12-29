@@ -1,5 +1,5 @@
 title: "LightnCandy option: safestring"
-description: "Use <code>safestring</code> option to provide your own SafeString implementation when <code>FLAG_STANDALONEPHP</code> is enabled."
+description: "Use <code>safestring</code> option to provide your own SafeString implementation or change the default <code>LS</code> classname when <code>FLAG_STANDALONEPHP</code> is enabled."
 lcresult:
   MySafeString:
     note: "You should provide <code>__toString()</code>. If you use <code>\\LightnCandy\\SafeString</code> in your custom helper, it will be replaced by your safestring automatically."
@@ -30,6 +30,30 @@ lcresult:
 
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
+  Rename LS class:
+    note: "If the class is not implemeted, then the <code>\\LightnCandy\\SafeString</code> class will be used."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      $template = "{{foo}}, {{bar}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS | LightnCandy::FLAG_STANDALONEPHP,
+          'helpers' => array(
+              'foo' => function () {
+                  return new MySafeString('You&Me!');
+              },
+              'bar' => function () {
+                  return new \LightnCandy\SafeString('He&She!');
+              }
+          ),
+          'safestring' => 'MySafeString'
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+      echo "The Code:\n$phpStr\n\n";
+      echo "===========================\nThe Output:\n" . $renderer();
 ref:
   - 9003-helperescaping
   - 9900-lc-options
