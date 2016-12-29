@@ -1,6 +1,27 @@
 title: "LightnCandy: Use SafeString"
 description: "When your custom helper be executed from {{ }} , the return value will be HTML escaped. You may execute your helper by {{{ }}} , then the original helper return value will be outputted directly. You can also return a LightnCandy\\SafeString object, it will not be HTML escaped."
 lcresult:
+  SafeString will not work without proper compile flag:
+    note: "SafeString will not work when none of <code>FLAG_THIS</code>, <code>FLAG_HBESCAPE</code>, <code>FLAG_JSOBJECT</code>, <code>FLAG_JSTRUE</code>, <code>FLAG_RENDER_DEBUG</code> is enabled!"
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      // Please use full namespace as \LightnCandy\SafeString()
+      // Do not just use SafeString() , it will cause error when FLAG_STANDALONEPHP enabled
+      function my_helper1 () {
+          return new \LightnCandy\SafeString('You&Me!');
+      }
+
+      $template = '{{my_helper1}}';
+
+      $phpStr = LightnCandy::compile($template, array(
+          'helpers' => array(
+              'my_helper1'
+          )
+      ));
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
   Prevent HTML Escape in your custom helper:
     code: |
       require_once('./vendor/autoload.php');
@@ -120,3 +141,7 @@ ref:
   - 0021-customhelper
   - 0029-safestring
   - LC-FLAG_HBESCAPE
+  - LC-FLAG_JSOBJECT
+  - LC-FLAG_JSTRUE
+  - LC-FLAG_RENDER_DEBUG
+  - LC-FLAG_THIS
