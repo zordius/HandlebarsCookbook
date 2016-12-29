@@ -1,7 +1,7 @@
 title: "LightnCandy: Use SafeString"
 description: "When your custom helper be executed from {{ }} , the return value will be HTML escaped. You may execute your helper by {{{ }}} , then the original helper return value will be outputted directly. You can also return a LightnCandy\\SafeString object, it will not be HTML escaped."
 lcresult:
-  Prevent HTML Escape:
+  Prevent HTML Escape in your custom helper:
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
@@ -27,7 +27,7 @@ lcresult:
       ));
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
-  Force HTML Escape:
+  Force HTML Escape in your custom helper:
     note: "You can force HTML escaping the input string by adding second parameter as <code>true</code> when construct the SafeString object."
     code: |
       require_once('./vendor/autoload.php');
@@ -54,8 +54,8 @@ lcresult:
       ));
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
-  HTML Escape as handlebars.js:
-    note: "Use <code>'encq'</code> as second parameter when construct the SafeString object to HTML escaping the input string same with handlebars.js."
+  HTML Escape just like handlebars.js:
+    note: "Use <code>'encq'</code> as second parameter when construct the SafeString object, then the HTML escape behavior will 100% align with handlebars.js. (EX: <code>'</code> -> <code>&amp;#039;</code>)"
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;
