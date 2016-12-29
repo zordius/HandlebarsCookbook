@@ -27,7 +27,7 @@ $(document).keydown(function (e) {
         $('#gsc-i-id1').focus();
     }, 1);
   case 190:
-    return $('ul.ref li a').focus();
+    return $('ul.ref li:first-child a').focus();
   case 188:
     return $('.navbar .nav .dropdown .dropdown-toggle').trigger('click');
   }
