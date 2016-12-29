@@ -140,6 +140,7 @@ lcresult:
 ref:
   - 0021-customhelper
   - 0029-safestring
+  - 9903-lcop-safestring
   - LC-FLAG_HBESCAPE
   - LC-FLAG_JSOBJECT
   - LC-FLAG_JSTRUE

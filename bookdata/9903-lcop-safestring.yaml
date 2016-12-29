@@ -1,0 +1,36 @@
+title: "LightnCandy option: safestring"
+description: "Use <code>safestring</code> option to provide your own SafeString implementation when <code>FLAG_STANDALONEPHP</code> is enabled."
+lcresult:
+  MySafeString:
+    note: "You should provide <code>__toString()</code>. If you use <code>\\LightnCandy\\SafeString</code> in your custom helper, it will be replaced by your safestring automatically."
+    code: |
+      require_once('./vendor/autoload.php');
+      use LightnCandy\LightnCandy;
+
+      class MySafeString {
+          public function __toString() {
+              return 'Yes! You&me!';
+          }
+      }
+
+      $template = "{{foo}}, {{bar}}";
+
+      $phpStr = LightnCandy::compile($template, array(
+          'flags' => LightnCandy::FLAG_HANDLEBARS | LightnCandy::FLAG_STANDALONEPHP,
+          'helpers' => array(
+              'foo' => function () {
+                  return new MySafeString();
+              },
+              'bar' => function () {
+                  return new \LightnCandy\SafeString('He&She!');
+              }
+          ),
+          'safestring' => 'MySafeString'
+      ));
+
+      $renderer = LightnCandy::prepare($phpStr);
+      echo $renderer();
+ref:
+  - 9003-helperescaping
+  - 9900-lc-options
+  - LC-FLAG_STANDALONEPHP
