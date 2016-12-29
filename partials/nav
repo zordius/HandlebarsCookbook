@@ -9,6 +9,7 @@
     </a>
     {{> toc class="dropdown-menu" number=true}}
    </li>
+   <li><a href="#search"><span class="glyphicon glyphicon-search"></span>Search</a></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
    <li><a href="https://github.com/zordius/HandlebarsCookbook"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Go to Github</a></li>
