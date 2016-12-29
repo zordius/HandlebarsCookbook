@@ -106,14 +106,27 @@ p.note {
   }
 }
 
-.gsc-search-box * {
-  box-sizing: content-box;
+.search {
+  min-height: 200px;
+  * {
+    box-sizing: content-box;
+  }
+  .gsc-input-box-focus {
+    box-shadow: 0 0 3px #00f;
+  }
 }
 
 .footer {
   text-align: center;
   font-size: 11px;
   color: #444;
+}
+
+.navbar label {
+  font-weight: normal;
+  margin: 0;
+  cursor: pointer;
+  display: block;
 }
 
 @media (max-width: 768px) {
