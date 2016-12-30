@@ -8,7 +8,7 @@ What is...:
   lightncandy: <a href="https://github.com/zordius/lightncandy">LightnCandy</a> is an extremely fast PHP implementation of handlebars and mustache.
 How mustache/handlebars works...:
   template:
-    code: Hello! My name is {{name}} and I am {{age}} years old.
+    code: My name is {{name}} and I am {{age}} years old.
   + data:
     code: |
       {
