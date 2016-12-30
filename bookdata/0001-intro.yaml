@@ -16,7 +16,7 @@ How mustache/handlebars works...:
         "age": 18
       }
   = result:
-    code: Hello! My name is John and I am 18 years old.
+    code: My name is John and I am 18 years old.
 Keyboard Shortcuts: |
   You may use keyboard to navigate this book fast:
   <ul>
