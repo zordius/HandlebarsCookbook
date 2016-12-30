@@ -26,3 +26,5 @@ ref:
   - 0021-customhelper
   - 9901-lcop-helperresolver
   - 9902-lcop-partialresolver
+  - 9003-helperescaping
+  - 9004-partials
