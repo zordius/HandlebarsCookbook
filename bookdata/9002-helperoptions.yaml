@@ -54,6 +54,7 @@ lcresult:
       }
 
       $template = '{{#my_helper}}Hello, {{.}}!{{/my_helper}}';
+
       $phpStr = LightnCandy::compile($template, array(
           'flags' => LightnCandy::FLAG_HANDLEBARS,
           'helpers' => array(
