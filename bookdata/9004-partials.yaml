@@ -111,7 +111,7 @@ lcresult:
       ));
       $renderer = LightnCandy::prepare($phpStr);
 
-      // It will be better if you precompile partials and store them into files,
+      // It will be better to precompile partials and store them into files,
       // prevent to use LightnCandy::prepare() in production environment.
       $partials = array(
           'foo' => LightnCandy::prepare('return ' . LightnCandy::compilePartial('Hello')),
