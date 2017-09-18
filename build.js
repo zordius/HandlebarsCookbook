@@ -1,5 +1,3 @@
-require('object.assign').shim();
-
 // configs
 var configs = {
     project_name: 'Handlebars Cookbook',

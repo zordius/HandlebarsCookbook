@@ -1,7 +1,7 @@
 var fs = require('fs');
 var handlebars = require('handlebars');
 var Prism = require('prismjs');
-var exec = require('shelljs').exec;
+var child = require('child_process');
 var shortid = require('shortid').generate;
 var defaultSP = '  ';
 var tmp_file = '.exec_tmp_file';
@@ -223,7 +223,17 @@ var helpers = {
                 code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code;
             }
             fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
-            result = exec('php ' + tmp_file + (log ? '' : ' 2>/dev/null'), {silent: true});
+            try {
+              result = {
+                output: child.execSync('php ' + tmp_file + (log ? '2>&1' : ' 2>/dev/null')).toString(),
+                code: 0
+              }
+            } catch (E) {
+              result = {
+                output: E.message,
+                code: 98765
+              }
+            }
             if (log) {
                 result.code = 99999;
             }

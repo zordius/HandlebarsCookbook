@@ -14,6 +14,6 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "zordius/lightncandy": "1.0.0"
+        "zordius/lightncandy": "1.2.0"
     }
 }
