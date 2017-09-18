@@ -7,7 +7,7 @@ fi
 
 # Set for all push in this script.
 git config --global user.name "Travis-CI"
-git config --global user.email "zordius@yahoo-inc.com"
+git config --global user.email "zordius@users.noreply.gihub.com"
 
 cd generated
 git init
