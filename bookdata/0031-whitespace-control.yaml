@@ -1,0 +1,49 @@
+title: Whitespace Control
+hbonly: true
+description: "By default the line change for standalone tags will be removed. If you wanna remove more line changes or spaces, you can use <code>~</code> in left or right side of a tag."
+Samples:
+  quicksample:
+    - template: |
+        Line 1
+        {{foo}}
+        Line 3
+          {{foo}}
+        Line 5
+             {{foo}}
+        Line 7
+      note: Line change of standalone tags will not be removed
+      data:
+        foo: 1
+    - template: |
+        Line 1
+        {{#with foo}}
+        Line 3
+        {{else}}
+        Line 5
+        {{/with}}
+        Line 7
+      note: Line change of standalone block tags and <code>{{else}}</code> will be removed
+      data:
+        foo: 1
+      option:
+        lightncandy:
+          - FLAG_THIS
+          - FLAG_ELSE
+    - template: |
+        Line 1
+        {{foo~}}
+        Line 3
+          {{~foo~}}
+        Line 5
+            {{~foo}}
+        Line 7
+      note: Line changes and spaces will be removed when you use whitespace control charactor
+      data:
+        foo: 1
+      option:
+        lightncandy:
+          - FLAG_THIS
+          - FLAG_ELSE
+ref:
+  - 0021-customhelper
+  - 9001-customhelper

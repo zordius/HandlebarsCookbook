@@ -45,7 +45,7 @@ lcsample:
     option:
       - FLAG_RUNTIMEPARTIAL
     helper:
-      foo: >
+      foo: |
         function () {
             return 'foo2';
           }
