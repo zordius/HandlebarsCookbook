@@ -18,15 +18,15 @@ gulp.task('watchless', ['less'], function () {
 
 gulp.task('lint', function () {
     return gulp.src(lint_files)
-    .pipe(eslint())
-    .pipe(eslint.format());
+        .pipe(eslint())
+        .pipe(eslint.format());
 });
 
 gulp.task('less', function () {
     return gulp.src(less_files)
-    .pipe(less())
-    .pipe(gulp.dest('generated'))
-    .pipe(browserSync.stream());
+        .pipe(less())
+        .pipe(gulp.dest('generated'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('clean', function () {

@@ -42,9 +42,9 @@ var helpers = {
 
     phptojs: function (code) {
         return code
-               .replace(/\$options\['_this'\]/, 'this')
-               .replace(/\$/g, '').replace(/ \. /g, ' + ')
-               .replace(/\\LightnCandy\\SafeString/, 'Handlebars.SafeString');
+            .replace(/\$options\['_this'\]/, 'this')
+            .replace(/\$/g, '').replace(/ \. /g, ' + ')
+            .replace(/\\LightnCandy\\SafeString/, 'Handlebars.SafeString');
     },
 
     reindent: function (code, space) {
@@ -157,10 +157,19 @@ var helpers = {
         return this.hbonly ? ['lightncandy', 'handlebars.js'] : options.data.samples;
     },
 
+    code_for_renderdebug: function (opt) {
+        return 'array(\n  "debug" => ' + opt.debug.map(function (V) {
+            return '\\LightnCandy\\Runtime::' + V;
+        }).join(' | ') + '\n)';
+    },
+
     code_for_render: function (type, opt, par) {
         var EX = [];
         switch (type) {
         case 'lightncandy':
+            if (opt) {
+                return 'echo $render($data, ' + helpers.code_for_renderdebug(opt) + ');';
+            }
             return 'echo $render($data);';
         case 'handlebars.js':
             if (par) {
@@ -224,15 +233,15 @@ var helpers = {
             }
             fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
             try {
-              result = {
-                output: child.execSync('php ' + tmp_file + (log ? '2>&1' : ' 2>/dev/null')).toString(),
-                code: 0
-              }
+                result = {
+                    output: child.execSync('php ' + tmp_file + (log ? '2>&1' : ' 2>/dev/null')).toString(),
+                    code: 0
+                };
             } catch (E) {
-              result = {
-                output: E.message,
-                code: 98765
-              }
+                result = {
+                    output: E.message,
+                    code: 98765
+                };
             }
             if (log) {
                 result.code = 99999;
@@ -289,6 +298,7 @@ var helpers = {
         var type = options.hash.type || cx.type || 'handlebars.js';
         var input = options.hash.data || cx.data;
         var opt = options.hash.option || cx.option;
+        var renderopt = options.hash.renderoption || cx.renderoption;
         var par = options.hash.partial || cx.partial;
         var showcode = options.hash.showcode || cx.showcode;
         var norender = options.hash.compileerror || cx.compileerror || showcode;
@@ -308,7 +318,7 @@ var helpers = {
             codeSetData: helpers.code_for_set('data', type) + data[1] + ';',
             codeExtra: helpers.code_for_excode(options.hash.excode || cx.excode, type),
             codeCompile: helpers.code_for_compile(type, Option, Partial, Helper, norender),
-            codeRender: helpers.code_for_render(type, Option, Partial),
+            codeRender: helpers.code_for_render(type, renderopt, Partial),
             codePartial: Partial
         };
 
