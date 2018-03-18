@@ -30,7 +30,7 @@
     "gulp": "^3.9.1",
     "gulp-eslint": "4.0.0",
     "gulp-less": "^3.3.2",
-    "handlebars": "4.0.10",
+    "handlebars": "4.0.11",
     "js-yaml": "^3.10.0",
     "mustache": "2.3.0",
     "prismjs": "^1.8.1",
