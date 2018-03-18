@@ -1,0 +1,27 @@
+description: 
+  Generate debug template to show error when rendering. With this flag, the performance of rendering may be slowed.
+lcsample:
+  - template: "OK!{{foo}}"
+    note: Compile template to debug version, output HTML error hint for browser when variable not found.
+    option:
+      - FLAG_RENDER_DEBUG
+    renderoption:
+      debug:
+        - DEBUG_TAGS_HTML
+  - template: "OK!{{foo}}"
+    note: Compile template to debug version, output ANSI error hint for terminal when variable not found.
+    option:
+      - FLAG_RENDER_DEBUG
+    renderoption:
+      debug:
+        - DEBUG_TAGS_ANSI
+  - template: "OK!{{foo}}"
+    note: Compile template to debug version, output to PHP error log when variable not found.
+    option:
+      - FLAG_RENDER_DEBUG
+    renderoption:
+      debug:
+        - DEBUG_ERROR_LOG
+
+ref:
+  - 9003-helperescaping
