@@ -1,0 +1,36 @@
+title: Partial Block
+hbonly: true
+description: "By default it will cause error when a template try to render a missing partial. You can provide failover partial by partial block, it will only rendered when the partial is not provided"
+Samples:
+  quicksample:
+    - template: |
+        {{#> testPartial}}
+          ERROR: testPartial is not found!
+        {{/testPartial}}
+      note: Provide failover partial
+      option:
+        lightncandy:
+          - FLAG_RUNTIMEPARTIAL
+    - template: |
+        {{#> testPartial}}
+          ERROR: testPartial is not found!
+        {{/testPartial}}
+      note: When partial provided, partial block will be ignored
+      partial:
+        testPartial: "Yes I am partial."
+      option:
+        lightncandy:
+          - FLAG_RUNTIMEPARTIAL
+    - template: |
+        {{#> testPartial}}
+          ERROR: testPartial is not found!
+        {{/testPartial}}
+      note: use <code>{{> @partial-block}}</code> to render partial block
+      partial:
+        testPartial: "Yes I am partial. If I am not here, '{{> @partial-block}}' will replace me."
+      option:
+        lightncandy:
+          - FLAG_RUNTIMEPARTIAL
+          - FLAG_SPVARS
+ref:
+  - http://handlebarsjs.com/partials.html
