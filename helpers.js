@@ -9,6 +9,7 @@ var tmp_file = '.exec_tmp_file';
 require('prismjs/components/prism-javascript');
 require('prismjs/components/prism-php');
 require('prismjs/components/prism-handlebars');
+require('prismjs/components/prism-markup-templating');
 
 var console_log = function (O) {
     return O;
