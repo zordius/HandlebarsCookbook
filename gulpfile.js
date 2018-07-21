@@ -1,51 +1,53 @@
-var gulp = require('gulp');
-var del = require('del');
-var eslint = require('gulp-eslint');
-var less = require('gulp-less');
-var browserSync = require('browser-sync').create();
-var lint_files = ['*.js'];
-var less_files = ['*.less'];
+const gulp = require('gulp')
+const del = require('del')
+const eslint = require('gulp-eslint')
+const gulpless = require('gulp-less')
 
-gulp.task('watch', ['build'], function () {
-    process.env.NODE_DEV = 'development';
-    gulp.watch(lint_files, ['lint', 'build']);
-    gulp.watch(['partials/*', 'bookdata/*'], ['build']);
-});
+const browserSync = require('browser-sync').create()
+const lintFiles = ['*.js']
+const lessFiles = ['*.less']
 
-gulp.task('watchless', ['less'], function () {
-    gulp.watch(less_files, ['less']);
-});
+const clean = () => del('generated/*.html')
 
-gulp.task('lint', function () {
-    return gulp.src(lint_files)
-        .pipe(eslint())
-        .pipe(eslint.format());
-});
+const less = () =>
+  gulp.src(lessFiles)
+    .pipe(gulpless())
+    .pipe(gulp.dest('generated'))
+    .pipe(browserSync.stream())
 
-gulp.task('less', function () {
-    return gulp.src(less_files)
-        .pipe(less())
-        .pipe(gulp.dest('generated'))
-        .pipe(browserSync.stream());
-});
+const build = gulp.series(gulp.parallel(clean, less), () => {
+  delete require.cache[require.resolve('./build')]
+  require('./build')()
+  browserSync.reload()
+	console.log('build ok')
+})
 
-gulp.task('clean', function () {
-    return del('generated/*.html');
-});
+const watchless = gulp.series(less, () => {
+  gulp.watch(lessFiles, less)
+})
 
-gulp.task('build', ['clean', 'less'], function () {
-    delete require.cache[require.resolve('./build')];
-    require('./build')();
-    browserSync.reload();
-});
+const lint = () =>
+  gulp.src(lintFiles)
+    .pipe(eslint())
+    .pipe(eslint.format())
 
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        open: false,
-        server: {
-            baseDir: "./generated/"
-        }
-    });
-});
+const watch = gulp.series(build, () => {
+  process.env.NODE_DEV = 'development'
+  gulp.watch(lintFiles, gulp.series(lint, build))
+  gulp.watch(['partials/*', 'bookdata/*'], build)
+})
 
-gulp.task('default', ['watch', 'watchless', 'browser-sync']);
+const browsersync = () => {
+  browserSync.init({
+    open: false,
+    server: {
+      baseDir: "./generated/"
+    }
+  })
+}
+
+module.exports = {
+  build,
+	lint,
+  default: gulp.parallel(watch, watchless, browsersync)
+}
