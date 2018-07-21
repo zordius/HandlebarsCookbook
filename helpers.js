@@ -1,314 +1,313 @@
-var fs = require('fs');
-var handlebars = require('handlebars');
-var Prism = require('prismjs');
-var child = require('child_process');
-var shortid = require('shortid').generate;
-var defaultSP = '  ';
-var tmp_file = '.exec_tmp_file';
+var fs = require('fs')
+var handlebars = require('handlebars')
+var Prism = require('prismjs')
+var child = require('child_process')
+var shortid = require('shortid').generate
+var defaultSP = '  '
+var tmpFile = '.exec_tmp_file'
 
-require('prismjs/components/prism-javascript');
-require('prismjs/components/prism-php');
-require('prismjs/components/prism-handlebars');
-require('prismjs/components/prism-markup-templating');
+require('prismjs/components/prism-javascript')
+require('prismjs/components/prism-php')
+require('prismjs/components/prism-handlebars')
+require('prismjs/components/prism-markup-templating')
 
-var console_log = function (O) {
-    return O;
-};
+var consoleLog = function (O) {
+    return O
+}
 
 var helpers = {
     code_for_require: function (type) {
         switch (type) {
         case 'lightncandy':
-            return 'require(\'./vendor/autoload.php\');\nuse LightnCandy\\LightnCandy;';
+            return 'require(\'./vendor/autoload.php\');\nuse LightnCandy\\LightnCandy;'
         case 'handlebars.js':
-            return 'var Handlebars = require(\'handlebars\');';
+            return 'var Handlebars = require(\'handlebars\');'
         case 'mustache':
-            return 'var Mustache = require(\'mustache\');';
+            return 'var Mustache = require(\'mustache\');'
         }
-        console.warn('unknown code type in code_for_require():' + type);
-        return '';
+        console.warn('unknown code type in code_for_require():' + type)
+        return ''
     },
 
     code_for_set: function (name, type) {
         switch (type) {
         case 'lightncandy':
-            return '$' + name + ' = ';
+            return '$' + name + ' = '
         case 'handlebars.js':
         case 'mustache':
-            return 'var ' + name + ' = ';
+            return 'var ' + name + ' = '
         }
-        console.warn('unknown code type in code_for_set():' + type);
-        return '';
+        console.warn('unknown code type in code_for_set():' + type)
+        return ''
     },
 
     phptojs: function (code) {
         return code
             .replace(/\$options\['_this'\]/, 'this')
             .replace(/\$/g, '').replace(/ \. /g, ' + ')
-            .replace(/\\LightnCandy\\SafeString/, 'Handlebars.SafeString');
+            .replace(/\\LightnCandy\\SafeString/, 'Handlebars.SafeString')
     },
 
     reindent: function (code, space) {
-        return code.replace(/\n/g, '\n' + space);
+        return code.replace(/\n/g, '\n' + space)
     },
 
     code_for_helper: function (helper, type) {
         if (!helper) {
-            return '';
+            return ''
         }
 
         switch (type) {
         case 'lightncandy':
             return helpers.reindent('array(\n' + Object.keys(helper).map(function (K) {
-                return (Math.floor(parseInt(K)) == K) ? ("'" + helper[K] + "'") : ('  ' + helpers.escapeString(K, type) + ' => ' + helper[K]);
-            }).join(',') + ')', '  ');
+                return (Math.floor(parseInt(K)) === K) ? ("'" + helper[K] + "'") : ('  ' + helpers.escapeString(K, type) + ' => ' + helper[K])
+            }).join(',') + ')', '  ')
         default:
             return '{\n' + Object.keys(helper).map(function (K) {
-                return '  ' + helpers.escapeString(K, type) + ': ' + helpers.phptojs(helper[K]);
-            }).join(',') + '}';
+                return '  ' + helpers.escapeString(K, type) + ': ' + helpers.phptojs(helper[K])
+            }).join(',') + '}'
         }
     },
 
     code_for_excode: function (excode, type) {
-        return excode || '';
+        return excode || ''
     },
 
     code_for_option: function (option, type) {
-        var opt = (option && option[type]) ? option[type] : option;
+        var opt = (option && option[type]) ? option[type] : option
 
         if (! opt) {
-            return '';
+            return ''
         }
 
         switch (type) {
         case 'lightncandy':
             return opt.map(function (V) {
-                return 'LightnCandy::' + V;
-            }).join(' | ');
+                return 'LightnCandy::' + V
+            }).join(' | ')
         case 'handlebars.js':
         case 'mustache':
-            return '';
+            return ''
         }
-        console.warn('unknown code type in code_for_option():' + type);
-        return '';
+        console.warn('unknown code type in code_for_option():' + type)
+        return ''
     },
 
     code_for_partial: function (partial, type) {
-        var par = (partial && partial[type]) ? partial[type] : partial;
+        var par = (partial && partial[type]) ? partial[type] : partial
 
         if (!par) {
-            return '';
+            return ''
         }
 
         switch (type) {
         case 'lightncandy':
             par = Object.keys(par).map(function (K) {
-                return helpers.escapeString(K, type) + ' => ' + helpers.escapeString(par[K], type);
-            });
-            return par.length ? helpers.reindent('array(\n  ' + par.join(',\n  ') + '\n)', '  ') : '';
+                return helpers.escapeString(K, type) + ' => ' + helpers.escapeString(par[K], type)
+            })
+            return par.length ? helpers.reindent('array(\n  ' + par.join(',\n  ') + '\n)', '  ') : ''
         case 'handlebars.js':
         case 'mustache':
-            return JSON.stringify(par, undefined, defaultSP);
+            return JSON.stringify(par, undefined, defaultSP)
         }
 
-        console.warn('unknown code type in code_for_option():' + type);
-        return '';
+        console.warn('unknown code type in code_for_option():' + type)
+        return ''
     },
 
     code_for_data: function (data, type) {
         switch (type) {
         case 'handlebars.js':
         case 'mustache':
-            return ['js', JSON.stringify(data, undefined, defaultSP)];
+            return ['js', JSON.stringify(data, undefined, defaultSP)]
         case 'lightncandy':
-            return ['php', helpers.php_array(data, '')];
+            return ['php', helpers.php_array(data, '')]
         default:
-            console.warn('unknown code type in code_for_data():' + type);
+            console.warn('unknown code type in code_for_data():' + type)
         }
     },
 
     code_for_compile: function (type, opt, par, hlp, norender) {
-        var EX = [];
+        var EX = []
         switch (type) {
         case 'lightncandy':
             if (opt) {
-                EX.push('"flags" => ' + opt);
+                EX.push('"flags" => ' + opt)
             }
             if (par) {
-                EX.push('"partials" => ' + par);
+                EX.push('"partials" => ' + par)
             }
             if (hlp) {
-                EX.push('"helpers" => ' + hlp);
+                EX.push('"helpers" => ' + hlp)
             }
-            EX = EX.length ? (', array(\n  ' + EX.join(',\n  ') + '\n)') : '';
-            return '$php = LightnCandy::compile($template' + EX + ');' + (norender ? '': '\n$render = LightnCandy::prepare($php);');
+            EX = EX.length ? (', array(\n  ' + EX.join(',\n  ') + '\n)') : ''
+            return '$php = LightnCandy::compile($template' + EX + ');' + (norender ? '': '\n$render = LightnCandy::prepare($php);')
         case 'handlebars.js':
             if (hlp) {
-                EX.push('Handlebars.registerHelper(' + hlp + ');\n');
+                EX.push('Handlebars.registerHelper(' + hlp + ');\n')
             }
-            return EX.join('') + (norender ? '' : 'var render = ') + 'Handlebars.compile(template);';
+            return EX.join('') + (norender ? '' : 'var render = ') + 'Handlebars.compile(template);'
         case 'mustache':
-            return '';
+            return ''
         }
-        console.warn('unknown code type in code_for_compile():' + type);
-        return '';
+        console.warn('unknown code type in code_for_compile():' + type)
+        return ''
     },
 
     hbonly: function (options) {
-        return this.hbonly ? ['lightncandy', 'handlebars.js'] : options.data.samples;
+        return this.hbonly ? ['lightncandy', 'handlebars.js'] : options.data.samples
     },
 
     code_for_renderdebug: function (opt) {
         return 'array(\n  "debug" => ' + opt.debug.map(function (V) {
-            return '\\LightnCandy\\Runtime::' + V;
-        }).join(' | ') + '\n)';
+            return '\\LightnCandy\\Runtime::' + V
+        }).join(' | ') + '\n)'
     },
 
     code_for_render: function (type, opt, par) {
-        var EX = [];
+        var EX = []
         switch (type) {
         case 'lightncandy':
             if (opt) {
-                return 'echo $render($data, ' + helpers.code_for_renderdebug(opt) + ');';
+                return 'echo $render($data, ' + helpers.code_for_renderdebug(opt) + ');'
             }
-            return 'echo $render($data);';
+            return 'echo $render($data);'
         case 'handlebars.js':
             if (par) {
-                EX.push(' partials: ' + par);
+                EX.push(' partials: ' + par)
             }
-            EX = EX.length ? (', {\n' + EX.join(',\n') + '}') : '';
-            return 'console.log(render(data' + EX + '));';
+            EX = EX.length ? (', {\n' + EX.join(',\n') + '}') : ''
+            return 'console.log(render(data' + EX + '));'
         case 'mustache':
-            return 'console.log(Mustache.render(template, data' + (par ? (', ' + par) : '') + '));';
+            return 'console.log(Mustache.render(template, data' + (par ? (', ' + par) : '') + '));'
         }
-        console.warn('unknown code type in code_for_render():' + type);
-        return '';
+        console.warn('unknown code type in code_for_render():' + type)
+        return ''
     },
 
     php_array: function (D, sp) {
-        var spp = sp + defaultSP;
+        var spp = sp + defaultSP
 
         if (D === null) {
-            return 'NULL';
+            return 'NULL'
         }
 
         if (Array.isArray(D)) {
             return 'array(\n' + D.map(function (V) {
-                return spp + helpers.php_array(V, spp);
-            }).join(',\n') + '\n' + sp + ')';
+                return spp + helpers.php_array(V, spp)
+            }).join(',\n') + '\n' + sp + ')'
         }
 
         if (typeof D === 'object') {
             return 'array(\n' + Object.keys(D).map(function (K) {
-                var V = D[K];
-                return spp + helpers.escapeString(K, 'lightncandy') + ' => ' + helpers.php_array(V, spp);
-            }).join(',\n') + '\n' + sp + ')';
+                var V = D[K]
+                return spp + helpers.escapeString(K, 'lightncandy') + ' => ' + helpers.php_array(V, spp)
+            }).join(',\n') + '\n' + sp + ')'
         }
 
         if (typeof D === 'string') {
-            return D.match(/^\(object\)|new \w/) ? D : helpers.escapeString(D, 'lightncandy');
+            return D.match(/^\(object\)|new \w/) ? D : helpers.escapeString(D, 'lightncandy')
         }
 
         if (D === true) {
-            return 'true';
+            return 'true'
         }
 
         if (D === false) {
-            return 'false';
+            return 'false'
         }
 
         if (D === undefined) {
-            return 'NULL';
+            return 'NULL'
         }
 
-        return D;
+        return D
     },
 
     result_for_code: function (code, type, fail, log) {
-        var result;
-        var H;
+        var result
         if (type === 'php') {
             if (process.env.NODE_DEV !== 'development') {
-                code = 'error_reporting(E_ERROR | E_PARSE);\n' + code;
-                code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code;
+                code = 'error_reporting(E_ERROR | E_PARSE);\n' + code
+                code = 'if (function_exists("xdebug_disable")) {xdebug_disable();}\n' + code
             }
-            fs.writeFileSync(tmp_file, '<?php ' + code + '\n?>');
+            fs.writeFileSync(tmpFile, '<?php ' + code + '\n?>')
             try {
                 result = {
-                    output: child.execSync('php ' + tmp_file + (log ? '2>&1' : ' 2>/dev/null')).toString(),
+                    output: child.execSync('php ' + tmpFile + (log ? '2>&1' : ' 2>/dev/null')).toString(),
                     code: 0
-                };
+                }
             } catch (E) {
                 result = {
                     output: E.message,
                     code: 98765
-                };
+                }
             }
             if (log) {
-                result.code = 99999;
+                result.code = 99999
             }
-            fs.unlinkSync(tmp_file);
+            fs.unlinkSync(tmpFile)
         } else {
             try {
                 result = {
                     code: 0,
-                    output: eval(code.replace(/console\.log/g, 'console_log').replace(/require\('handlebars'\);/, 'require(\'handlebars\').create();'))
-                };
+                    output: eval(code.replace(/console\.log/g, 'consoleLog').replace(/require\('handlebars'\);/, 'require(\'handlebars\').create();'))
+                }
             } catch (E) {
                 result = {
                     code: 1,
                     output: E.message
-                };
+                }
             }
         }
         if (result.code && (fail === undefined)) {
-            console.warn('## Bad result when execute code:\n' + code + '\n');
-            console.warn(result);
+            console.warn('## Bad result when execute code:\n' + code + '\n')
+            console.warn(result)
         }
-        return result;
+        return result
     },
 
     result_class: function (options) {
         if (options.data.result.code > 0) {
-            return 'error';
+            return 'error'
         }
 
         if (options.data.standard && (options.data.result.output !== options.data.standard.result.output)) {
             if (!options.hash.different) {
-                console.warn('!!Render result is not same with standard.\n!Standard:\n"' + options.data.standard.result.output + '"\n!Result:\n"' + options.data.result.output + '"\n');
+                console.warn('!!Render result is not same with standard.\n!Standard:\n"' + options.data.standard.result.output + '"\n!Result:\n"' + options.data.result.output + '"\n')
             }
-            return 'different';
+            return 'different'
         }
 
-        return 'result';
+        return 'result'
     },
 
     escapeString: function (str, type) {
-        return (type == 'lightncandy') ? ('"' + helpers.doubleQuote(str) + '"') : ("'" + helpers.singleQuote(str) + "'");
+        return (type === 'lightncandy') ? ('"' + helpers.doubleQuote(str) + '"') : ("'" + helpers.singleQuote(str) + "'")
     },
 
     doubleQuote: function (str) {
-        return (str && str.replace) ? str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n') : str;
+        return (str && str.replace) ? str.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n') : str
     },
 
     singleQuote: function (str) {
-        return (str && str.replace) ? str.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') : str;
+        return (str && str.replace) ? str.replace(/\\/g, '\\\\').replace(/'/g, '\\\'').replace(/\n/g, '\\n') : str
     },
 
     data_for_render: function (cx, options) {
-        var type = options.hash.type || cx.type || 'handlebars.js';
-        var input = options.hash.data || cx.data;
-        var opt = options.hash.option || cx.option;
-        var renderopt = options.hash.renderoption || cx.renderoption;
-        var par = options.hash.partial || cx.partial;
-        var showcode = options.hash.showcode || cx.showcode;
-        var norender = options.hash.compileerror || cx.compileerror || showcode;
-        var data = helpers.code_for_data(input, type);
-        var Option = helpers.code_for_option(opt, type);
-        var Helper = helpers.code_for_helper(options.hash.helper || cx.helper, type);
-        var Partial = helpers.code_for_partial(par, type);
-        var fail = options.fail || cx.fail || norender;
-        var errlog = options.errorlog || cx.errorlog;
+        var type = options.hash.type || cx.type || 'handlebars.js'
+        var input = options.hash.data || cx.data
+        var opt = options.hash.option || cx.option
+        var renderopt = options.hash.renderoption || cx.renderoption
+        var par = options.hash.partial || cx.partial
+        var showcode = options.hash.showcode || cx.showcode
+        var norender = options.hash.compileerror || cx.compileerror || showcode
+        var data = helpers.code_for_data(input, type)
+        var Option = helpers.code_for_option(opt, type)
+        var Helper = helpers.code_for_helper(options.hash.helper || cx.helper, type)
+        var Partial = helpers.code_for_partial(par, type)
+        var fail = options.fail || cx.fail || norender
+        var errlog = options.errorlog || cx.errorlog
 
         var ret = {
             type: type,
@@ -321,9 +320,9 @@ var helpers = {
             codeCompile: helpers.code_for_compile(type, Option, Partial, Helper, norender),
             codeRender: helpers.code_for_render(type, renderopt, Partial),
             codePartial: Partial
-        };
+        }
 
-        ret.codeSetTemplate = helpers.code_for_set('template', type) + helpers.escapeString(ret.template, type) + ";",
+        ret.codeSetTemplate = helpers.code_for_set('template', type) + helpers.escapeString(ret.template, type) + ";"
 
         ret.code = [
             ret.codeRequire,
@@ -333,175 +332,175 @@ var helpers = {
             norender ? '' : ret.codeSetData,
             norender ? '' : ret.codeRender,
             showcode ? 'echo $php' : ''
-        ].join('\n');
+        ].join('\n')
 
         if (typeof fail === 'object') {
-            fail = fail[type];
+            fail = fail[type]
         }
 
-        ret.result = helpers.result_for_code(ret.code, ret.codeType, fail, errlog);
+        ret.result = helpers.result_for_code(ret.code, ret.codeType, fail, errlog)
 
-        return ret;
+        return ret
     },
 
     render: function (options) {
-        var data = handlebars.createFrame(options.data);
+        var data = handlebars.createFrame(options.data)
 
         if (data.standard && data.standard.type === (this.type || options.hash.type)) {
-            Object.assign(data, data.standard);
+            Object.assign(data, data.standard)
         } else {
-            Object.assign(data, helpers.data_for_render(this, options));
+            Object.assign(data, helpers.data_for_render(this, options))
         }
 
-        return options.fn(this, {data: data});
+        return options.fn(this, {data: data})
     },
 
     code: function (cx, options) {
-        var btn = [];
-        var id = 'code_' + shortid();
-        var code = '';
-        var result = '';
-        var type = options.hash.type;
-        var classes = options.hash.class ? [options.hash.class] : [];
-        var className;
+        var btn = []
+        var id = 'code_' + shortid()
+        var code = ''
+        var result = ''
+        var type = options.hash.type
+        var classes = options.hash.class ? [options.hash.class] : []
+        var className
 
         if (typeof cx === 'function') {
-            cx = cx.apply(this, [options]);
+            cx = cx.apply(this, [options])
         }
 
-        code = code + helpers.remove_dupe_cr(cx);
+        code = code + helpers.remove_dupe_cr(cx)
 
         if (options.hash.collapse) {
-            classes.push('collapse');
+            classes.push('collapse')
         }
 
-        className = classes.length ? (' class="' + classes.join(' ') + '"') : '';
+        className = classes.length ? (' class="' + classes.join(' ') + '"') : ''
 
         if (options.hash.result !== undefined) {
-            result = helpers.result_for_code(code, options.hash.type, options.hash.errorlog, options.hash.errorlog);
+            result = helpers.result_for_code(code, options.hash.type, options.hash.errorlog, options.hash.errorlog)
 
             if (((result.code === 0) || options.hash.errorlog) && (result.output !== '')) {
-                result = options.fn(result.output);
+                result = options.fn(result.output)
             } else {
-                result = '';
+                result = ''
             }
         }
 
         if (options.hash.collapse) {
-            btn.push('<button class="btn" data-toggle="collapse" data-target="#pre' + id + '">Show / Hide</button>');
+            btn.push('<button class="btn" data-toggle="collapse" data-target="#pre' + id + '">Show / Hide</button>')
         }
 
         if (options.hash.copy) {
-            btn.push('<textarea class="copy" id="' + id + '">' + code + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + id + '">Copy to clipboard</button>');
+            btn.push('<textarea class="copy" id="' + id + '">' + code + '</textarea><button class="btn btn-primary" data-clipboard-target="#' + id + '">Copy to clipboard</button>')
         }
 
         return (btn.length ? ('<div class="text-center">Source Code ' + btn.join(' ') + '</div>') : '')
                + '<pre id="pre' + id + '"' + className + '><code class="language-' + type + '">' + Prism.highlight(code, Prism.languages[type], type) + '</code></pre>'
-               + result;
+               + result
     },
 
     isStringThenOutput: function (cx, options) {
         if (typeof cx !== 'string') {
-            return;
+            return
         }
         if (options.hash.tag) {
-            return '<' + options.hash.tag + '>' + cx + '</' + options.hash.tag + '>';
+            return '<' + options.hash.tag + '>' + cx + '</' + options.hash.tag + '>'
         }
-        return cx;
+        return cx
     },
 
     addOne: function (I) {
-        return I + 1;
+        return I + 1
     },
 
     collect: function (cx, key, options) {
-        if (typeof cx != 'object') {
-            return;
+        if (typeof cx !== 'object') {
+            return
         }
         return Object.keys(cx).reduce(function (O, K, I) {
-            var V = cx[K];
+            var V = cx[K]
             if (V && V[key]) {
                 if (!options.hash.ignore || (options.hash.ignore[I] === undefined)) {
                     if (options.hash.key) {
-                        V[key][options.hash.key] = K;
+                        V[key][options.hash.key] = K
                     }
                     if (options.hash.comment && V[options.hash.comment]) {
-                        O.push('\n// ' + V[options.hash.comment]);
+                        O.push('\n// ' + V[options.hash.comment])
                     }
-                    O.push(V[key]);
+                    O.push(V[key])
                 }
             }
-            return O;
-        }, []);
+            return O
+        }, [])
     },
 
     str_join: function () {
-        var arg = Array.prototype.slice.call(arguments);
-        var options = arg.pop();
+        var arg = Array.prototype.slice.call(arguments)
+        var options = arg.pop()
 
-        return arg.join(options.hash.sep || '');
+        return arg.join(options.hash.sep || '')
     },
 
     join: function (cx, sep) {
-        return (cx && cx.join) ? cx.join(sep) : '';
+        return (cx && cx.join) ? cx.join(sep) : ''
     },
 
     book_writer: function (data, options) {
         var refs = data.reduce(function (O, V) {
-            O[V.pagename] = V;
-            return O;
-        }, {});
+            O[V.pagename] = V
+            return O
+        }, {})
 
         data.forEach(function (D, I) {
-            var T = D.pagename.match(/LC-(.+)/);
+            var T = D.pagename.match(/LC-(.+)/)
             if (T) {
-                D.title = 'LightnCandy option: ' + T[1];
-                D.opt_name = T[1];
+                D.title = 'LightnCandy option: ' + T[1]
+                D.opt_name = T[1]
             }
             if (D.hbonly) {
-                D.title = 'Handlebars: ' + D.title;
+                D.title = 'Handlebars: ' + D.title
             }
-        });
+        })
 
         data.forEach(function (D, I) {
-            var Data = handlebars.createFrame(options.data);
+            var Data = handlebars.createFrame(options.data)
 
-            Data.refs = refs;
+            Data.refs = refs
 
             if (I > 0) {
-                Data.page_prev = data[I - 1];
+                Data.page_prev = data[I - 1]
             }
             if (data[I + 1] !== undefined) {
-                Data.page_next = data[I + 1];
+                Data.page_next = data[I + 1]
             }
 
-            console.log('>> Writing the page:' + D.pagename);
-            fs.writeFileSync(options.data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}));
-        });
+            console.log('>> Writing the page:' + D.pagename)
+            fs.writeFileSync(options.data.configs.out_dir + D.pagename + '.html', options.fn(D, {data: Data}))
+        })
     },
 
     section_builder: function (cx, options) {
         if (!cx) {
-            return '';
+            return ''
         }
         if (typeof cx !== 'object') {
-            return '<p>' + cx + '</p>';
+            return '<p>' + cx + '</p>'
         }
         var sections = Object.keys(cx).reduce(function (ret, S) {
-            var data = handlebars.createFrame(options.data);
-            data.section = S;
-            var R = options.fn(cx, {data: data});
-            if (R != '') {
-                ret.push(R);
+            var data = handlebars.createFrame(options.data)
+            data.section = S
+            var R = options.fn(cx, {data: data})
+            if (R !== '') {
+                ret.push(R)
             }
-            return ret;
-        }.bind(this), []);
+            return ret
+        }, [])
         if (options.hash.column && sections.length > 1) {
             return '<div class="row">' + sections.map(function (S) {
-                return '<div class="col-md-' + ((sections.length < 5) ? 12/sections.length : '3') + '">' + S + '</div>';
-            }).join('') + '</div>';
+                return '<div class="col-md-' + ((sections.length < 5) ? 12/sections.length : '3') + '">' + S + '</div>'
+            }).join('') + '</div>'
         }
-        return sections.join('');
+        return sections.join('')
     },
 
     main_section: function (options) {
@@ -511,78 +510,78 @@ var helpers = {
         case 'pagename':
         case 'ref':
         case 'opt_name':
-            return '';
+            return ''
         default:
-            return options.fn(this);
+            return options.fn(this)
         }
     },
 
     eq: function (a, b) {
-        return (a === b);
+        return (a === b)
     },
 
     or: function () {
-        var arg = Array.prototype.slice.call(arguments, 0, -1);
+        var arg = Array.prototype.slice.call(arguments, 0, -1)
 
         for (var I in arg) {
             if (arg[I]) {
-                return arg[I];
+                return arg[I]
             }
         }
     },
 
     match: function (regexp, string) {
-        return (new RegExp(regexp)).test(string);
+        return (new RegExp(regexp)).test(string)
     },
 
     set: function (name, value, options) {
-        var data = handlebars.createFrame(options.data);
+        var data = handlebars.createFrame(options.data)
 
-        data[name] = value;
+        data[name] = value
 
-        return options.fn(this, {data: data});
+        return options.fn(this, {data: data})
     },
 
     code_type: function (options) {
-        var T = options.hash.section || options.data.section;
+        var T = options.hash.section || options.data.section
 
         if (this.file) {
             switch (this.file.match(/\.(.+)$/)[1]) {
             default:
-                return 'js';
+                return 'js'
             }
         }
 
         if (T) {
             switch (T) {
             case 'template':
-                return 'handlebars';
+                return 'handlebars'
             case 'mustache':
             case 'handlebars.js':
             case 'nodejs':
             case 'JavaScript':
-                return 'js';
+                return 'js'
             case 'php':
             case 'lightncandy':
-                return 'php';
+                return 'php'
             default:
-                return 'js';
+                return 'js'
             }
         }
     },
 
     remove_dupe_cr: function (txt) {
-        return (txt && txt.replace) ? txt.replace(/\n+$/, '').replace(/\n{3,10}/g, '\n\n') : '';
+        return (txt && txt.replace) ? txt.replace(/\n+$/, '').replace(/\n{3,10}/g, '\n\n') : ''
     },
 
     anchor: function (name) {
-        return encodeURIComponent(name.replace(/ /g, ''));
+        return encodeURIComponent(name.replace(/ /g, ''))
     },
 
     anchorHTML: function (name) {
-        var N = helpers.anchor(name);
-        return '<a name="' + N + '"></a><a class="glyphicon glyphicon-pushpin" href="#' + N + '"></a>';
+        var N = helpers.anchor(name)
+        return '<a name="' + N + '"></a><a class="glyphicon glyphicon-pushpin" href="#' + N + '"></a>'
     }
-};
+}
 
-module.exports = helpers;
+module.exports = helpers

@@ -15,12 +15,14 @@ const less = () =>
     .pipe(gulp.dest('generated'))
     .pipe(browserSync.stream())
 
-const build = gulp.series(gulp.parallel(clean, less), () => {
+const buildTask = (done) => {
   delete require.cache[require.resolve('./build')]
   require('./build')()
   browserSync.reload()
-	console.log('build ok')
-})
+	done()
+}
+
+const build = gulp.series(gulp.parallel(clean, less), buildTask)
 
 const watchless = gulp.series(less, () => {
   gulp.watch(lessFiles, less)
