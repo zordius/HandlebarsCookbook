@@ -46,7 +46,7 @@ Reuse the render function:
     code: console.log(render(another_data));
   mustache:
     note: Mustache does not support pre-compile, so you need to compile the template everytime.
-    code: console.log(Mustache.render(template, data));
+    code: console.log(Mustache.render(template, another_data));
 
 The full code:
   lightncandy:
