@@ -18,7 +18,7 @@ Inverted Block for True:
       data:
         foo: test
     - template: "{{^foo}}Ya!{{/foo}}"
-      note: A inverted block will not render inner content for a number.
+      note: An inverted block will not render inner content for a number.
       different: true
       data:
         foo: 1
