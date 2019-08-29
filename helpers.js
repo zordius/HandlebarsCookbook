@@ -11,6 +11,7 @@ require('prismjs/components/prism-php')
 require('prismjs/components/prism-handlebars')
 require('prismjs/components/prism-markup-templating')
 
+/* eslint no-unused-vars: off */
 var consoleLog = function (O) {
     return O
 }
@@ -249,6 +250,7 @@ var helpers = {
             fs.unlinkSync(tmpFile)
         } else {
             try {
+                /* eslint no-eval: off */
                 result = {
                     code: 0,
                     output: eval(code.replace(/console\.log/g, 'consoleLog').replace(/require\('handlebars'\);/, 'require(\'handlebars\').create();'))
