@@ -389,7 +389,7 @@ var helpers = {
         }
 
         if (options.hash.collapse) {
-            btn.push('<button class="btn" data-toggle="collapse" data-target="#pre' + id + '">Show / Hide</button>')
+            btn.push('<button class="btn btn-secondary" data-toggle="collapse" data-target="#pre' + id + '">Show / Hide</button>')
         }
 
         if (options.hash.copy) {
