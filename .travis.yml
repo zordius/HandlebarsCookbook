@@ -3,6 +3,7 @@ php:
   - 7.3
 script:
   - npm install
+  - composer install
   - npm run build
   - ./travis.sh
 sudo: false
