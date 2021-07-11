@@ -70,7 +70,7 @@ lcresult:
       $phpStr = LightnCandy::compile($template, array(
           'flags' => LightnCandy::FLAG_EXTHELPER, // Do not provide helpers when compile
           'helperresolver' => function ($cx, $name) {
-              return true;         // Every $name is helper
+              return true;         // Every $name is valid helper name
           }
       ));
 

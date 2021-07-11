@@ -31,7 +31,7 @@ lcresult:
       $renderer = LightnCandy::prepare($phpStr);
       echo $renderer();
   Rename LS class:
-    note: "If the class is not implemeted, then the <code>\\LightnCandy\\SafeString</code> class will be used."
+    note: "If you specify the <code>safestring</code> option but the class is existing, then the <code>\\LightnCandy\\SafeString</code> class will be used."
     code: |
       require_once('./vendor/autoload.php');
       use LightnCandy\LightnCandy;

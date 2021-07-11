@@ -1,5 +1,5 @@
 {
-    "name": "zordius/HandlebarsCookbook",
+    "name": "zordius/handlebars-cookbook",
     "description": "A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage",
     "homepage": "https://github.com/zordius/HandlebarsCookbook",
     "keywords": ["handlebars", "mustache", "template", "logicless"],
@@ -14,6 +14,6 @@
         "php": ">=5.4.0"
     },
     "require-dev": {
-        "zordius/lightncandy": "1.2.4"
+        "zordius/lightncandy": "1.2.6"
     }
 }

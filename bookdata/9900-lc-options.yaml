@@ -16,7 +16,7 @@ Example:
         'prepartial' => function ($context, $template, $name) { .... }, // callback to preprocess partials
 
         'delimiters' => array('<%', '%>'),                              // change default delimiters
-        'renderex' => '// Compiled at ' . date('Y-m-d h:i:s'),          // extend PHP code into generated render
+        'renderex' => '// Compiled at ' . date('Y-m-d h:i:s'),          // insert the PHP code into generated render()
         'runtime' => 'MyNameSpace\\MyCustomRuntime',                    // customized Runtime class
     ));
 lccompile: true

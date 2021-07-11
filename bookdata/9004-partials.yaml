@@ -91,7 +91,7 @@ lcresult:
           )
       ));
 
-      // Warning: This code will cause 'partial not found' error
+      // Warning: This code will cause 'partial not found' error when you execute it without providing required partials.
       echo $phpStr;
   Runtime Partials:
     note: "You can provide more precompiled partials to render functions."

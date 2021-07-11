@@ -235,7 +235,7 @@ var helpers = {
             fs.writeFileSync(tmpFile, '<?php ' + code + '\n?>')
             try {
                 result = {
-                    output: child.execSync('php ' + tmpFile + (log ? '2>&1' : ' 2>/dev/null')).toString(),
+                    output: child.execSync('php ' + tmpFile + (log ? ' 2>&1' : ' 2>null')).toString(),
                     code: 0
                 }
             } catch (E) {
