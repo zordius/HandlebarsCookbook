@@ -1,0 +1,37 @@
+name: handlebars cookbook
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 7.4
+        extensions: mbstring, intl
+        ini-values: post_max_size=256M, max_execution_time=180
+    - name: settle libs
+      run: |
+        npm install
+        composer install
+    - name: build document
+      run: npm run build
+    - name: pull generated document to github
+    - name: push handlebars test report to git
+      if: ${{ github.ref == 'refs/heads/master' }}
+      run: |
+        git config --global user.name "GithubAction"
+        git config --global user.email "zordius@users.noreply.gihub.com"
+        cd generated
+        git init -b gh-pages
+        git add .
+        git commit -m "docs: auto deployed to Github Pages from @${GITHUB_SHA} [ci skip]"
+        git push --force origin gh-pages
