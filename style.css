@@ -1,0 +1,165 @@
+body > .container-fluid {
+  padding-top: 70px;
+}
+h2,
+h4 {
+  border-top: 1px dotted #ccc;
+  padding-top: 10px;
+}
+h2 {
+  padding-left: 20px;
+}
+a.glyphicon {
+  position: relative;
+  top: 60px;
+}
+a[name] {
+  position: absolute;
+}
+h5 {
+  color: #555;
+}
+dd {
+  padding: 10px 20px;
+}
+pre {
+  margin: 10px 0;
+}
+.copy {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  height: 0;
+  width: 0;
+}
+.lcflag {
+  border-left: 8px solid #aaf;
+  padding: 0 5px;
+  margin-right: 10px;
+  background: #eef;
+}
+.result {
+  background: #efe;
+}
+.different {
+  background: #ffd;
+}
+.error {
+  background: #fdd;
+}
+.pager {
+  border-top: 1px solid #aaa;
+  padding-top: 30px;
+}
+.hbonly {
+  color: #800;
+}
+.perfalert {
+  color: #c00;
+}
+.helperhint {
+  color: #600;
+}
+p.note {
+  color: #006;
+}
+.lcsample p.note {
+  font-weight: 900;
+  border-top: 1px dotted #eee;
+  padding-top: 10px;
+}
+.partials {
+  width: 100%;
+  background: #eff;
+}
+.partials tr:nth-child(odd) {
+  background: #eef;
+}
+.partials td,
+.partials th {
+  padding: 3px 5px;
+}
+.partials th {
+  text-align: right;
+  width: 25%;
+}
+.partials td {
+  background: rgba(255, 255, 255, 0.5);
+  white-space: pre;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.search {
+  min-height: 200px;
+}
+.search * {
+  box-sizing: content-box;
+}
+.search .gsc-input-box-focus {
+  box-shadow: 0 0 3px #00f;
+}
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #444;
+}
+.navbar label {
+  font-weight: normal;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+}
+@media (max-width: 768px) {
+  .navbar-fixed-top {
+    position: relative;
+  }
+  body > .container-fluid {
+    padding-top: 0px;
+  }
+}
+@media (min-width: 768px) {
+  .dropdown-menu {
+    overflow-y: auto;
+    max-height: 200px;
+  }
+}
+@media (min-width: 768px) and (min-height: 600px) {
+  .dropdown-menu {
+    max-height: 520px;
+  }
+}
+@media (min-width: 768px) and (min-height: 700px) {
+  .dropdown-menu {
+    max-height: 620px;
+  }
+}
+@media (min-width: 768px) and (min-height: 800px) {
+  .dropdown-menu {
+    max-height: 720px;
+  }
+}
+@media (min-width: 768px) and (min-height: 900px) {
+  .dropdown-menu {
+    max-height: 820px;
+  }
+}
+@media (min-width: 768px) and (min-height: 1000px) {
+  .dropdown-menu {
+    max-height: 920px;
+  }
+}
+@media (min-width: 768px) and (min-height: 1200px) {
+  .dropdown-menu {
+    max-height: 1120px;
+  }
+}
+@media (min-width: 768px) and (min-height: 1400px) {
+  .dropdown-menu {
+    max-height: 1320px;
+  }
+}
+@media (min-width: 768px) and (min-height: 2000px) {
+  .dropdown-menu {
+    max-height: 1920px;
+  }
+}
