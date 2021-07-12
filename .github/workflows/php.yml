@@ -25,7 +25,6 @@ jobs:
     - name: build document
       run: npm run build
     - name: pull generated document to github
-    - name: push handlebars test report to git
       if: ${{ github.ref == 'refs/heads/master' }}
       run: |
         git config --global user.name "GithubAction"
