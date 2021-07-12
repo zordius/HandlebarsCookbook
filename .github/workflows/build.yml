@@ -27,7 +27,7 @@ jobs:
     - name: pull generated document to github
       if: ${{ github.ref == 'refs/heads/master' }}
       env:
-        GHTK: ${{ secrets.GITHUB_TOKEN }}
+        GHTK: ${{ secrets.GHTK }}
       run: |
         git config --global user.name "GithubAction"
         git config --global user.email "zordius@users.noreply.gihub.com"
