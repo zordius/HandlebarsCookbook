@@ -1,7 +1,7 @@
 HandlebarsCookbook
 ==================
 
-[![Build Status](https://travis-ci.org/zordius/HandlebarsCookbook.svg?branch=master)](https://travis-ci.org/zordius/HandlebarsCookbook) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
+[![handlebars cookbook](https://github.com/zordius/HandlebarsCookbook/actions/workflows/build.yml/badge.svg)](https://github.com/zordius/HandlebarsCookbook/actions/workflows/build.yml) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
 
 A cookbook of handlebars and mustache, focus on handlebars.js , mustache.js and lightncandy usage.
 
