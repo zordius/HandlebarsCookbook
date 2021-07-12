@@ -33,4 +33,4 @@ jobs:
         git init -b gh-pages
         git add .
         git commit -m "docs: auto deployed to Github Pages from @${GITHUB_SHA} [ci skip]"
-        git push --force origin gh-pages
+        git push --force https://github.com/zordius/lightncandy.git gh-pages
