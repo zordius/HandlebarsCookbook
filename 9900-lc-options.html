@@ -1,0 +1,257 @@
+<!DOCTYPE html>                                                                                                       
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ <title>Handlebars Cookbook - LightnCandy options</title>
+ <script async src="https://www.googletagmanager.com/gtag/js?id=UA-400506-4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-400506-4');
+</script>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" rel="stylesheet">
+ <link href="style.css" rel="stylesheet">
+<style>
+.btn-secondary{border-color:#abc}
+</style>
+ <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAPzlzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAARAAAAARAAAAEQAAARAAAAABEAARAiIiIiARABECACIAIBEAEQIAIgAgEQARAgAiACARARECAAAAIBEREQIAAAAgERARAgAiACARABECACIAIBEAEQIAIgAgEQARAiIiIiARAAEQAAAAARAAABEAAAARAAAAARAAARAADzzwAA5+cAAM/zAACQCQAAkAkAAJAJAACQCQAAEAgAABAIAACQCQAAkAkAAJAJAACQCQAAz/MAAOfnAADzzwAA" rel="icon" type="image/x-icon" />
+ <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container">
+  <div class="navbar-header">
+   <a class="navbar-brand" href="./"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Handlebars Cookbook</a>
+  </div>
+  <ul class="nav navbar-nav">
+   <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index <span class="caret"></span>
+    </a>
+    <ol class="dropdown-menu">
+<li><a href="index.html">1. About this book</a></li>
+<li><a href="0002-install.html">2. Create your project</a></li>
+<li><a href="0003-hello.html">3. Hello World</a></li>
+<li><a href="0004-simple-variable.html">4. Simple Variable</a></li>
+<li><a href="0005-variable-escape.html">5. Variable Escaping</a></li>
+<li><a href="0006-raw.html">6. Raw Output</a></li>
+<li><a href="0007-specific-values.html">7. Specific Values</a></li>
+<li><a href="0008-block.html">8. Block</a></li>
+<li><a href="0009-inverted-block.html">9. Inverted Block</a></li>
+<li><a href="0010-comment.html">10. Comment</a></li>
+<li><a href="0011-partial.html">11. Partials</a></li>
+<li><a href="0012-delimiter.html">12. Set Delimiter</a></li>
+<li><a href="0013-dotnotation.html">13. Dot Notation</a></li>
+<li><a href="0014-path.html">14. Handlebars: Path</a></li>
+<li><a href="0015-hbcomment.html">15. Handlebars: Extended Comment</a></li>
+<li><a href="0016-if.html">16. Handlebars: Built-in block helper - #if</a></li>
+<li><a href="0017-unless.html">17. Handlebars: Built-in block helper - #unless</a></li>
+<li><a href="0018-with.html">18. Handlebars: Built-in block helper - #with</a></li>
+<li><a href="0019-each.html">19. Handlebars: Built-in block helper - #each</a></li>
+<li><a href="0020-lookup.html">20. Handlebars: Built-in helper - lookup</a></li>
+<li><a href="0021-customhelper.html">21. Handlebars: Custom Helper</a></li>
+<li><a href="0022-blockhelper.html">22. Handlebars: Block Custom Helper</a></li>
+<li><a href="0023-namedarguments.html">23. Handlebars: Named Arguments</a></li>
+<li><a href="0024-partialcontext.html">24. Handlebars: Change Partial Context</a></li>
+<li><a href="0025-parentcontext.html">25. Handlebars: Parent Context</a></li>
+<li><a href="0026-subexpression.html">26. Handlebars: Subexpression</a></li>
+<li><a href="0027-advancedvariable.html">27. Handlebars: Advanced Variable</a></li>
+<li><a href="0028-dynamicpartial.html">28. Handlebars: Dynamic Partial</a></li>
+<li><a href="0029-safestring.html">29. Handlebars: Use SafeString</a></li>
+<li><a href="0030-changecontext.html">30. Handlebars: Change Context</a></li>
+<li><a href="0031-whitespace-control.html">31. Handlebars: Whitespace Control</a></li>
+<li><a href="0032-partial-block.html">32. Handlebars: Partial Block</a></li>
+<li><a href="9000-quickstart.html">33. LightnCandy: Quick Start</a></li>
+<li><a href="9001-customhelper.html">34. LightnCandy: Custom Helper</a></li>
+<li><a href="9002-helperoptions.html">35. LightnCandy: The $options Object</a></li>
+<li><a href="9003-helperescaping.html">36. LightnCandy: Use SafeString</a></li>
+<li><a href="9004-partials.html">37. LightnCandy: Deep Dive Partials</a></li>
+<li><a href="9900-lc-options.html">38. LightnCandy options</a></li>
+<li><a href="9901-lcop-helperresolver.html">39. LightnCandy option: helperresolver</a></li>
+<li><a href="9902-lcop-partialresolver.html">40. LightnCandy option: partialresolver</a></li>
+<li><a href="9903-lcop-safestring.html">41. LightnCandy option: safestring</a></li>
+<li><a href="LC-FLAG_ADVARNAME.html">42. LightnCandy option: FLAG_ADVARNAME</a></li>
+<li><a href="LC-FLAG_BESTPERFORMANCE.html">43. LightnCandy option: FLAG_BESTPERFORMANCE</a></li>
+<li><a href="LC-FLAG_ECHO.html">44. LightnCandy option: FLAG_ECHO</a></li>
+<li><a href="LC-FLAG_ELSE.html">45. LightnCandy option: FLAG_ELSE</a></li>
+<li><a href="LC-FLAG_ERROR_EXCEPTION.html">46. LightnCandy option: FLAG_ERROR_EXCEPTION</a></li>
+<li><a href="LC-FLAG_ERROR_LOG.html">47. LightnCandy option: FLAG_ERROR_LOG</a></li>
+<li><a href="LC-FLAG_ERROR_SKIPPARTIAL.html">48. LightnCandy option: FLAG_ERROR_SKIPPARTIAL</a></li>
+<li><a href="LC-FLAG_EXTHELPER.html">49. LightnCandy option: FLAG_EXTHELPER</a></li>
+<li><a href="LC-FLAG_HBESCAPE.html">50. LightnCandy option: FLAG_HBESCAPE</a></li>
+<li><a href="LC-FLAG_INSTANCE.html">51. LightnCandy option: FLAG_INSTANCE</a></li>
+<li><a href="LC-FLAG_JS.html">52. LightnCandy option: FLAG_JS</a></li>
+<li><a href="LC-FLAG_JSLENGTH.html">53. LightnCandy option: FLAG_JSLENGTH</a></li>
+<li><a href="LC-FLAG_JSOBJECT.html">54. LightnCandy option: FLAG_JSOBJECT</a></li>
+<li><a href="LC-FLAG_JSTRUE.html">55. LightnCandy option: FLAG_JSTRUE</a></li>
+<li><a href="LC-FLAG_METHOD.html">56. LightnCandy option: FLAG_METHOD</a></li>
+<li><a href="LC-FLAG_NAMEDARG.html">57. LightnCandy option: FLAG_NAMEDARG</a></li>
+<li><a href="LC-FLAG_NOESCAPE.html">58. LightnCandy option: FLAG_NOESCAPE</a></li>
+<li><a href="LC-FLAG_PARENT.html">59. LightnCandy option: FLAG_PARENT</a></li>
+<li><a href="LC-FLAG_PARTIALNEWCONTEXT.html">60. LightnCandy option: FLAG_PARTIALNEWCONTEXT</a></li>
+<li><a href="LC-FLAG_PROPERTY.html">61. LightnCandy option: FLAG_PROPERTY</a></li>
+<li><a href="LC-FLAG_RENDER_DEBUG.html">62. LightnCandy option: FLAG_RENDER_DEBUG</a></li>
+<li><a href="LC-FLAG_RUNTIMEPARTIAL.html">63. LightnCandy option: FLAG_RUNTIMEPARTIAL</a></li>
+<li><a href="LC-FLAG_SLASH.html">64. LightnCandy option: FLAG_SLASH</a></li>
+<li><a href="LC-FLAG_STANDALONEPHP.html">65. LightnCandy option: FLAG_STANDALONEPHP</a></li>
+<li><a href="LC-FLAG_THIS.html">66. LightnCandy option: FLAG_THIS</a></li>
+</ol>
+   </li>
+   <li><a href="#search"><label for="gsc-i-id1"><span class="glyphicon glyphicon-search"></span> Search</label></a></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+   <li><a href="https://github.com/zordius/HandlebarsCookbook"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Go to Github</a></li>
+  </ul>
+ </div>
+</nav>
+<div class="container-fluid">
+ <h1>LightnCandy options</h1>
+ <p>You can apply more options by running <code>LightnCandy::compile($template, $options)</code>.
+</p>
+   <a name="Example"></a><a class="glyphicon glyphicon-pushpin" href="#Example"></a>
+<h2>Example</h2>
+   <div class="text-center">Source Code <textarea class="copy" id="code_xcjX1vrRnz">$phpStr = LightnCandy::compile($template, array(
+    'flags' => LightnCandy::FLAG_ERROR_LOG | LightnCandy::FLAG_STANDALONEPHP, // Compile Flags
+    'helpers' => array(                                             // list of custom helpers
+        'custom_helper_name' => function () { .... }
+    ),
+    'partials' => array(                                            // list of partials
+        'partial_name' => 'partial {{foo}} template',
+    ),
+    'helperresolver' => function ($context, $name) { .... },        // callback to load missing helper with name
+    'partialresolver' => function ($context, $name) { .... },       // callback to load missing partial with name
+    'prepartial' => function ($context, $template, $name) { .... }, // callback to preprocess partials
+
+    'delimiters' => array('<%', '%>'),                              // change default delimiters
+    'renderex' => '// Compiled at ' . date('Y-m-d h:i:s'),          // insert the PHP code into generated render()
+    'runtime' => 'MyNameSpace\\MyCustomRuntime',                    // customized Runtime class
+));</textarea><button class="btn btn-primary" data-clipboard-target="#code_xcjX1vrRnz">Copy to clipboard</button></div><pre id="precode_xcjX1vrRnz"><code class="language-php"><span class="token variable">$phpStr</span> <span class="token operator">=</span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">,</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token string single-quoted-string">'flags'</span> <span class="token operator">=></span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token class-name">FLAG_ERROR_LOG</span> <span class="token operator">|</span> <span class="token class-name">LightnCandy</span><span class="token operator">::</span><span class="token constant">FLAG_STANDALONEPHP</span><span class="token punctuation">,</span> <span class="token comment">// Compile Flags</span>
+    <span class="token string single-quoted-string">'helpers'</span> <span class="token operator">=></span> <span class="token keyword">array</span><span class="token punctuation">(</span>                                             <span class="token comment">// list of custom helpers</span>
+        <span class="token string single-quoted-string">'custom_helper_name'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span><span class="token operator">.</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'partials'</span> <span class="token operator">=></span> <span class="token keyword">array</span><span class="token punctuation">(</span>                                            <span class="token comment">// list of partials</span>
+        <span class="token string single-quoted-string">'partial_name'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'partial {{foo}} template'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'helperresolver'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$context</span><span class="token punctuation">,</span> <span class="token variable">$name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span><span class="token operator">.</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>        <span class="token comment">// callback to load missing helper with name</span>
+    <span class="token string single-quoted-string">'partialresolver'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$context</span><span class="token punctuation">,</span> <span class="token variable">$name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span><span class="token operator">.</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>       <span class="token comment">// callback to load missing partial with name</span>
+    <span class="token string single-quoted-string">'prepartial'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$context</span><span class="token punctuation">,</span> <span class="token variable">$template</span><span class="token punctuation">,</span> <span class="token variable">$name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span><span class="token operator">.</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// callback to preprocess partials</span>
+
+    <span class="token string single-quoted-string">'delimiters'</span> <span class="token operator">=></span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'&lt;%'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'%>'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>                              <span class="token comment">// change default delimiters</span>
+    <span class="token string single-quoted-string">'renderex'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'// Compiled at '</span> <span class="token operator">.</span> <span class="token function">date</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'Y-m-d h:i:s'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>          <span class="token comment">// insert the PHP code into generated render()</span>
+    <span class="token string single-quoted-string">'runtime'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'MyNameSpace\\MyCustomRuntime'</span><span class="token punctuation">,</span>                    <span class="token comment">// customized Runtime class</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+    <a name="CompileFlags"></a><a class="glyphicon glyphicon-pushpin" href="#CompileFlags"></a>
+<h2>Compile Flags:</h2>
+<dl>
+ <dt><a href="LC-FLAG_ADVARNAME.html">LightnCandy::FLAG_ADVARNAME</a></dt><dd>Support <code>{{foo.[0].[#te#st].bar}}</code> or <code>{{"some string"}}</code> or <code>{{helper (subexpression ...)}}</code> handlebars style extensions.
+</dd>
+ <dt><a href="LC-FLAG_BESTPERFORMANCE.html">LightnCandy::FLAG_BESTPERFORMANCE</a></dt><dd>same with <code>FLAG_ECHO</code> + <code>FLAG_STANDALONEPHP</code> now. This flag may be changed base on performance testing result in the future.</dd>
+ <dt><a href="LC-FLAG_ECHO.html">LightnCandy::FLAG_ECHO</a></dt><dd>compile to <code>echo 'a', $b, 'c';</code> to improve performance. This will slow down rendering when the template and data are simple, but will improve 5% ~ 10% when the data is big and looping in the template.
+</dd>
+ <dt><a href="LC-FLAG_ELSE.html">LightnCandy::FLAG_ELSE</a></dt><dd>Resolve <code>{{else}}</code> or <code>{{^}}</code> as handlebars specification. Otherwise, <code>{{else}}</code> will be resolved as normal variable, and {{^}} will cause template error.</dd>
+ <dt><a href="LC-FLAG_ERROR_EXCEPTION.html">LightnCandy::FLAG_ERROR_EXCEPTION</a></dt><dd>Throw exception when template error.</dd>
+ <dt><a href="LC-FLAG_ERROR_LOG.html">LightnCandy::FLAG_ERROR_LOG</a></dt><dd>Print error log to stderr when template error.</dd>
+ <dt><a href="LC-FLAG_ERROR_SKIPPARTIAL.html">LightnCandy::FLAG_ERROR_SKIPPARTIAL</a></dt><dd>Skip 'partial not found' error or exception. Use this to align with mustache specification.</dd>
+ <dt><a href="LC-FLAG_EXTHELPER.html">LightnCandy::FLAG_EXTHELPER</a></dt><dd>Do not including custom helper codes into compiled PHP codes. This reduces the code size, but you need to take care of your helper functions when rendering. If you forget to include required functions when execute rendering function, <code>undefined function</code> runtime error will be triggered.
+</dd>
+ <dt><a href="LC-FLAG_HBESCAPE.html">LightnCandy::FLAG_HBESCAPE</a></dt><dd>Align <code>{{foo}}</code> escaping logic with handlebars.js. This causes <code>'</code>, <code>=</code> and <code>`</code> be escaped in different way.</dd>
+ <dt><a href="LC-FLAG_INSTANCE.html">LightnCandy::FLAG_INSTANCE</a></dt><dd>same with <code>FLAG_PROPERTY</code> + <code>FLAG_METHOD</code></dd>
+ <dt><a href="LC-FLAG_JS.html">LightnCandy::FLAG_JS</a></dt><dd>simulate all supported JavaScript behavior, same with <code>FLAG_JSTRUE</code> + <code>FLAG_JSOBJECT</code> + <code>FLAG_JSLENGTH</code>.</dd>
+ <dt><a href="LC-FLAG_JSLENGTH.html">LightnCandy::FLAG_JSLENGTH</a></dt><dd>support <code>{{foo.length}}</code> when foo is an array (simulate JavaScript Array.proto.length behavior)</dd>
+ <dt><a href="LC-FLAG_JSOBJECT.html">LightnCandy::FLAG_JSOBJECT</a></dt><dd>Align object or associative array conversion logic with JavaScript.</dd>
+ <dt><a href="LC-FLAG_JSTRUE.html">LightnCandy::FLAG_JSTRUE</a></dt><dd>Align boolean conversion logic with JavaScript.</dd>
+ <dt><a href="LC-FLAG_METHOD.html">LightnCandy::FLAG_METHOD</a></dt><dd>Support object instance attribute access; you must apply this if your data contains object.</dd>
+ <dt><a href="LC-FLAG_NAMEDARG.html">LightnCandy::FLAG_NAMEDARG</a></dt><dd>Enable named arguments support for partials and helpers.</dd>
+ <dt><a href="LC-FLAG_NOESCAPE.html">LightnCandy::FLAG_NOESCAPE</a></dt><dd>Do not do any HTML escape on <code>{{var}}</code>. This option is same with handlbars.js <a href="http://handlebarsjs.com/reference.html">noEscape</a> option.</dd>
+ <dt><a href="LC-FLAG_PARENT.html">LightnCandy::FLAG_PARENT</a></dt><dd>Support <code>{{..}}</code> or <code>{{../foo}}</code> in template. Otherwise, <code>{{..}}</code> or <code>{{../foo}}</code> will cause template error.
+</dd>
+ <dt><a href="LC-FLAG_PARTIALNEWCONTEXT.html">LightnCandy::FLAG_PARTIALNEWCONTEXT</a></dt><dd>Create a new context for the partial. This option is same with handlbars.js <a href="http://handlebarsjs.com/reference.html">explicitPartialContext</a> option.</dd>
+ <dt><a href="LC-FLAG_PROPERTY.html">LightnCandy::FLAG_PROPERTY</a></dt><dd>Support object instance attribute access; you must apply this if your data contains object.</dd>
+ <dt><a href="LC-FLAG_RENDER_DEBUG.html">LightnCandy::FLAG_RENDER_DEBUG</a></dt><dd>Generate debug template to show error when rendering. With this flag, the performance of rendering may be slowed.</dd>
+ <dt><a href="LC-FLAG_RUNTIMEPARTIAL.html">LightnCandy::FLAG_RUNTIMEPARTIAL</a></dt><dd>Compile the partial as callable. This enables recursive partials or context change for partials.</dd>
+ <dt><a href="LC-FLAG_SLASH.html">LightnCandy::FLAG_SLASH</a></dt><dd>Skip a delimiter when it behind <code>\</code> .</dd>
+ <dt><a href="LC-FLAG_STANDALONEPHP.html">LightnCandy::FLAG_STANDALONEPHP</a></dt><dd>Generate stand-alone PHP codes which can be execute without LightnCandy\Runtime class. The compiled PHP code will contain scoped Runtime functions and the file size will be bigger. And, the performance will faster 5 ~10%.
+</dd>
+ <dt><a href="LC-FLAG_THIS.html">LightnCandy::FLAG_THIS</a></dt><dd>Resolve <code>{{this}}</code> as <code>{{.}}</code> . Otherwise, <code>{{this}}</code> will lookup the variable 'this'.</dd>
+</dl>
+  <a name="SeeAlso..."></a><a class="glyphicon glyphicon-pushpin" href="#SeeAlso..."></a>
+<h2>See Also...</h2>
+<ul class="ref">
+ <li><a href="0011-partial.html">Partials</a></li>
+ <li><a href="0012-delimiter.html">Set Delimiter</a></li>
+ <li><a href="0021-customhelper.html">Handlebars: Custom Helper</a></li>
+ <li><a href="9901-lcop-helperresolver.html">LightnCandy option: helperresolver</a></li>
+ <li><a href="9902-lcop-partialresolver.html">LightnCandy option: partialresolver</a></li>
+ <li><a href="9003-helperescaping.html">LightnCandy: Use SafeString</a></li>
+ <li><a href="9004-partials.html">LightnCandy: Deep Dive Partials</a></li>
+</ul>
+<ul class="pager">
+ <li class="previous"><a href="9004-partials.html"><span class="glyphicon glyphicon-arrow-left"></span> LightnCandy: Deep Dive Partials</a></li>
+ <li class="next"><a href="9901-lcop-helperresolver.html">LightnCandy option: helperresolver <span class="glyphicon glyphicon-arrow-right"></span></a></li>
+</ul>
+<script>
+(function() {
+ var cx = '015786516026450061497:ydk5o8cxglu';
+ var gcse = document.createElement('script');
+ gcse.type = 'text/javascript';
+ gcse.async = true;
+ gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(gcse, s);
+})();
+</script>
+<div class="search">
+<h3>Search the cookbook</h3>
+<gcse:search></gcse:search>
+</div>
+<div class="footer">
+Generated at 2022-03-21T13:13:56.019Z
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+<script>
+if (document.execCommand) {
+    new Clipboard('.btn[data-clipboard-target]');
+} else {
+    $('.btn[data-clipboard-target]').hide();
+}
+
+$(document).keydown(function (e) {
+  var A;
+
+  if ($('#gsc-i-id1').is(':focus')) {
+      return;
+  }
+
+  switch (e.keyCode) {
+  case 37:
+    A = $('.pager .previous a').attr('href');
+    break;
+  case 39:
+    A = $('.pager .next a').attr('href');
+    break;
+  case 191:
+    return setTimeout(function () {
+        $('#gsc-i-id1').focus();
+    }, 1);
+  case 190:
+    return $('ul.ref li:first-child a').focus();
+  case 188:
+    return $('.navbar .nav .dropdown .dropdown-toggle').trigger('click');
+  }
+  if (A) {
+    location.href = A;
+  }
+});
+</script>
+</body>
+</html>

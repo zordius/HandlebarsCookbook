@@ -1,0 +1,350 @@
+<!DOCTYPE html>                                                                                                       
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ <title>Handlebars Cookbook - LightnCandy: Custom Helper</title>
+ <script async src="https://www.googletagmanager.com/gtag/js?id=UA-400506-4"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-400506-4');
+</script>
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" rel="stylesheet">
+ <link href="style.css" rel="stylesheet">
+<style>
+.btn-secondary{border-color:#abc}
+</style>
+ <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/4QAAPzlzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAARAAAAARAAAAEQAAARAAAAABEAARAiIiIiARABECACIAIBEAEQIAIgAgEQARAgAiACARARECAAAAIBEREQIAAAAgERARAgAiACARABECACIAIBEAEQIAIgAgEQARAiIiIiARAAEQAAAAARAAABEAAAARAAAAARAAARAADzzwAA5+cAAM/zAACQCQAAkAkAAJAJAACQCQAAEAgAABAIAACQCQAAkAkAAJAJAACQCQAAz/MAAOfnAADzzwAA" rel="icon" type="image/x-icon" />
+ <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+ <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container">
+  <div class="navbar-header">
+   <a class="navbar-brand" href="./"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Handlebars Cookbook</a>
+  </div>
+  <ul class="nav navbar-nav">
+   <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Index <span class="caret"></span>
+    </a>
+    <ol class="dropdown-menu">
+<li><a href="index.html">1. About this book</a></li>
+<li><a href="0002-install.html">2. Create your project</a></li>
+<li><a href="0003-hello.html">3. Hello World</a></li>
+<li><a href="0004-simple-variable.html">4. Simple Variable</a></li>
+<li><a href="0005-variable-escape.html">5. Variable Escaping</a></li>
+<li><a href="0006-raw.html">6. Raw Output</a></li>
+<li><a href="0007-specific-values.html">7. Specific Values</a></li>
+<li><a href="0008-block.html">8. Block</a></li>
+<li><a href="0009-inverted-block.html">9. Inverted Block</a></li>
+<li><a href="0010-comment.html">10. Comment</a></li>
+<li><a href="0011-partial.html">11. Partials</a></li>
+<li><a href="0012-delimiter.html">12. Set Delimiter</a></li>
+<li><a href="0013-dotnotation.html">13. Dot Notation</a></li>
+<li><a href="0014-path.html">14. Handlebars: Path</a></li>
+<li><a href="0015-hbcomment.html">15. Handlebars: Extended Comment</a></li>
+<li><a href="0016-if.html">16. Handlebars: Built-in block helper - #if</a></li>
+<li><a href="0017-unless.html">17. Handlebars: Built-in block helper - #unless</a></li>
+<li><a href="0018-with.html">18. Handlebars: Built-in block helper - #with</a></li>
+<li><a href="0019-each.html">19. Handlebars: Built-in block helper - #each</a></li>
+<li><a href="0020-lookup.html">20. Handlebars: Built-in helper - lookup</a></li>
+<li><a href="0021-customhelper.html">21. Handlebars: Custom Helper</a></li>
+<li><a href="0022-blockhelper.html">22. Handlebars: Block Custom Helper</a></li>
+<li><a href="0023-namedarguments.html">23. Handlebars: Named Arguments</a></li>
+<li><a href="0024-partialcontext.html">24. Handlebars: Change Partial Context</a></li>
+<li><a href="0025-parentcontext.html">25. Handlebars: Parent Context</a></li>
+<li><a href="0026-subexpression.html">26. Handlebars: Subexpression</a></li>
+<li><a href="0027-advancedvariable.html">27. Handlebars: Advanced Variable</a></li>
+<li><a href="0028-dynamicpartial.html">28. Handlebars: Dynamic Partial</a></li>
+<li><a href="0029-safestring.html">29. Handlebars: Use SafeString</a></li>
+<li><a href="0030-changecontext.html">30. Handlebars: Change Context</a></li>
+<li><a href="0031-whitespace-control.html">31. Handlebars: Whitespace Control</a></li>
+<li><a href="0032-partial-block.html">32. Handlebars: Partial Block</a></li>
+<li><a href="9000-quickstart.html">33. LightnCandy: Quick Start</a></li>
+<li><a href="9001-customhelper.html">34. LightnCandy: Custom Helper</a></li>
+<li><a href="9002-helperoptions.html">35. LightnCandy: The $options Object</a></li>
+<li><a href="9003-helperescaping.html">36. LightnCandy: Use SafeString</a></li>
+<li><a href="9004-partials.html">37. LightnCandy: Deep Dive Partials</a></li>
+<li><a href="9900-lc-options.html">38. LightnCandy options</a></li>
+<li><a href="9901-lcop-helperresolver.html">39. LightnCandy option: helperresolver</a></li>
+<li><a href="9902-lcop-partialresolver.html">40. LightnCandy option: partialresolver</a></li>
+<li><a href="9903-lcop-safestring.html">41. LightnCandy option: safestring</a></li>
+<li><a href="LC-FLAG_ADVARNAME.html">42. LightnCandy option: FLAG_ADVARNAME</a></li>
+<li><a href="LC-FLAG_BESTPERFORMANCE.html">43. LightnCandy option: FLAG_BESTPERFORMANCE</a></li>
+<li><a href="LC-FLAG_ECHO.html">44. LightnCandy option: FLAG_ECHO</a></li>
+<li><a href="LC-FLAG_ELSE.html">45. LightnCandy option: FLAG_ELSE</a></li>
+<li><a href="LC-FLAG_ERROR_EXCEPTION.html">46. LightnCandy option: FLAG_ERROR_EXCEPTION</a></li>
+<li><a href="LC-FLAG_ERROR_LOG.html">47. LightnCandy option: FLAG_ERROR_LOG</a></li>
+<li><a href="LC-FLAG_ERROR_SKIPPARTIAL.html">48. LightnCandy option: FLAG_ERROR_SKIPPARTIAL</a></li>
+<li><a href="LC-FLAG_EXTHELPER.html">49. LightnCandy option: FLAG_EXTHELPER</a></li>
+<li><a href="LC-FLAG_HBESCAPE.html">50. LightnCandy option: FLAG_HBESCAPE</a></li>
+<li><a href="LC-FLAG_INSTANCE.html">51. LightnCandy option: FLAG_INSTANCE</a></li>
+<li><a href="LC-FLAG_JS.html">52. LightnCandy option: FLAG_JS</a></li>
+<li><a href="LC-FLAG_JSLENGTH.html">53. LightnCandy option: FLAG_JSLENGTH</a></li>
+<li><a href="LC-FLAG_JSOBJECT.html">54. LightnCandy option: FLAG_JSOBJECT</a></li>
+<li><a href="LC-FLAG_JSTRUE.html">55. LightnCandy option: FLAG_JSTRUE</a></li>
+<li><a href="LC-FLAG_METHOD.html">56. LightnCandy option: FLAG_METHOD</a></li>
+<li><a href="LC-FLAG_NAMEDARG.html">57. LightnCandy option: FLAG_NAMEDARG</a></li>
+<li><a href="LC-FLAG_NOESCAPE.html">58. LightnCandy option: FLAG_NOESCAPE</a></li>
+<li><a href="LC-FLAG_PARENT.html">59. LightnCandy option: FLAG_PARENT</a></li>
+<li><a href="LC-FLAG_PARTIALNEWCONTEXT.html">60. LightnCandy option: FLAG_PARTIALNEWCONTEXT</a></li>
+<li><a href="LC-FLAG_PROPERTY.html">61. LightnCandy option: FLAG_PROPERTY</a></li>
+<li><a href="LC-FLAG_RENDER_DEBUG.html">62. LightnCandy option: FLAG_RENDER_DEBUG</a></li>
+<li><a href="LC-FLAG_RUNTIMEPARTIAL.html">63. LightnCandy option: FLAG_RUNTIMEPARTIAL</a></li>
+<li><a href="LC-FLAG_SLASH.html">64. LightnCandy option: FLAG_SLASH</a></li>
+<li><a href="LC-FLAG_STANDALONEPHP.html">65. LightnCandy option: FLAG_STANDALONEPHP</a></li>
+<li><a href="LC-FLAG_THIS.html">66. LightnCandy option: FLAG_THIS</a></li>
+</ol>
+   </li>
+   <li><a href="#search"><label for="gsc-i-id1"><span class="glyphicon glyphicon-search"></span> Search</label></a></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
+   <li><a href="https://github.com/zordius/HandlebarsCookbook"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Go to Github</a></li>
+  </ul>
+ </div>
+</nav>
+<div class="container-fluid">
+ <h1>LightnCandy: Custom Helper</h1>
+ <p></p>
+    <a name="Compileoption'helpers'"></a><a class="glyphicon glyphicon-pushpin" href="#Compileoption'helpers'"></a>
+<h2>Compile option &#x27;helpers&#x27;</h2>
+<p class="note">When <code>compile()</code>, you can use the compile option <code>helpers</code> to provide custom helpers. <b>NOTICE</b>: <code>FLAG_NAMEDARG</code> is required for named arguments, <code>FLAG_ADVARNAME</code> is required for string or subexpression arguments</p>
+<div class="text-center">Source Code <textarea class="copy" id="code_e91sTGAyNex">require_once('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+
+function my_helper_function () {
+    return 'OK! (my_helper_function)';
+}
+
+function my_other_helper () {
+    return 'OK! (my_other_helper)';
+}
+
+class myClass {
+    public static function myStaticMethod () {
+        return 'OK! (myClass::myStaticMethod)';
+    }
+}
+
+$template = "1. {{my_helper_function}}\n2. {{myClass::myStaticMethod}}\n3. {{helper_name}}\n4. {{helper_name2}}\n5. {{helper_name3}}";
+$phpStr = LightnCandy::compile($template, array(
+    'flags' => LightnCandy::FLAG_HANDLEBARS,
+    'helpers' => array(
+        // 1. You may pass your function name
+        //    When the function is not exist, you get compile time error
+        //    Template: {{my_helper_functoin ....}}
+        'my_helper_function',
+
+        // 2. You may also provide a static call from a class
+        //    In this case, the helper name is same with provided full name
+        //    Template: {{myClass::myStaticMethod ....}}
+        'myClass::myStaticMethod',
+
+        // 3. You may also provide an alias name for helper function
+        //    This help you to mapping different function to a preferred helper name
+        //    Template: {{helper_name ....}}
+        'helper_name' => 'my_other_helper',
+
+        // 4. Alias also works well for static call of a class
+        //    This help you to mapping different function to a preferred helper name
+        //    Template: {{helper_name2 ....}}
+        'helper_name2' => 'myClass::myStaticMethod',
+
+        // 5. Anonymous function should be provided with alias
+        //    The function will be included in generaed code always
+        //    Template: {{helper_name3 ....}}
+        'helper_name3' => function () {
+            return 'OK! (helper_name3)';
+        }
+    )
+));
+$renderer = LightnCandy::prepare($phpStr);
+echo $renderer(null);</textarea><button class="btn btn-primary" data-clipboard-target="#code_e91sTGAyNex">Copy to clipboard</button></div><pre id="precode_e91sTGAyNex"><code class="language-php"><span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function-definition function">my_helper_function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string single-quoted-string">'OK! (my_helper_function)'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function-definition function">my_other_helper</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string single-quoted-string">'OK! (my_other_helper)'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">myClass</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">function</span> <span class="token function-definition function">myStaticMethod</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string single-quoted-string">'OK! (myClass::myStaticMethod)'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"1. {{my_helper_function}}\n2. {{myClass::myStaticMethod}}\n3. {{helper_name}}\n4. {{helper_name2}}\n5. {{helper_name3}}"</span><span class="token punctuation">;</span>
+<span class="token variable">$phpStr</span> <span class="token operator">=</span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">,</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token string single-quoted-string">'flags'</span> <span class="token operator">=></span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token constant">FLAG_HANDLEBARS</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'helpers'</span> <span class="token operator">=></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+        <span class="token comment">// 1. You may pass your function name</span>
+        <span class="token comment">//    When the function is not exist, you get compile time error</span>
+        <span class="token comment">//    Template: {{my_helper_functoin ....}}</span>
+        <span class="token string single-quoted-string">'my_helper_function'</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// 2. You may also provide a static call from a class</span>
+        <span class="token comment">//    In this case, the helper name is same with provided full name</span>
+        <span class="token comment">//    Template: {{myClass::myStaticMethod ....}}</span>
+        <span class="token string single-quoted-string">'myClass::myStaticMethod'</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// 3. You may also provide an alias name for helper function</span>
+        <span class="token comment">//    This help you to mapping different function to a preferred helper name</span>
+        <span class="token comment">//    Template: {{helper_name ....}}</span>
+        <span class="token string single-quoted-string">'helper_name'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'my_other_helper'</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// 4. Alias also works well for static call of a class</span>
+        <span class="token comment">//    This help you to mapping different function to a preferred helper name</span>
+        <span class="token comment">//    Template: {{helper_name2 ....}}</span>
+        <span class="token string single-quoted-string">'helper_name2'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'myClass::myStaticMethod'</span><span class="token punctuation">,</span>
+
+        <span class="token comment">// 5. Anonymous function should be provided with alias</span>
+        <span class="token comment">//    The function will be included in generaed code always</span>
+        <span class="token comment">//    Template: {{helper_name3 ....}}</span>
+        <span class="token string single-quoted-string">'helper_name3'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string single-quoted-string">'OK! (helper_name3)'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$renderer</span> <span class="token operator">=</span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$phpStr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$renderer</span><span class="token punctuation">(</span><span class="token constant">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h3>Output</h3>
+<pre><code>1. OK! (my_helper_function)
+2. OK! (myClass::myStaticMethod)
+3. OK! (my_other_helper)
+4. OK! (myClass::myStaticMethod)
+5. OK! (helper_name3)</code></pre>
+<a name="CustomHelperInterface"></a><a class="glyphicon glyphicon-pushpin" href="#CustomHelperInterface"></a>
+<h2>Custom Helper Interface</h2>
+<p class="note">The input arguments are processed by LightnCandy automatically, you do not need to worry about variable name processing or current context. You can also use double quoted string as input.</p>
+<div class="text-center">Source Code <textarea class="copy" id="code_8betBZBVTw8">require_once('./vendor/autoload.php');
+use LightnCandy\LightnCandy;
+
+$template = <<<VAREND
+{{helper name}}              // This send the value of 'name' into the helper
+{{helper "Test"}}            // This send the string "Test" into the helper (FLAG_ADVARNAME is required)
+{{helper2 "Test" name}}      // This send string "Test" as first parameter,
+                             // and the value of 'name' as second parameter into the helper
+VAREND;
+
+$phpStr = LightnCandy::compile($template, array(
+    'flags' => LightnCandy::FLAG_HANDLEBARS,
+    'helpers' => array(
+      'helper' => function ($arg1) {
+          return "ARG 1: $arg1";
+      },
+      'helper2' => function ($arg1, $arg2) {
+          return "ARG 1: $arg1, ARG2: $arg2";
+      }
+    )
+));
+$renderer = LightnCandy::prepare($phpStr);
+echo $renderer(array('name' => 'John'));</textarea><button class="btn btn-primary" data-clipboard-target="#code_8betBZBVTw8">Copy to clipboard</button></div><pre id="precode_8betBZBVTw8"><code class="language-php"><span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'./vendor/autoload.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">LightnCandy<span class="token punctuation">\</span>LightnCandy</span><span class="token punctuation">;</span>
+
+<span class="token variable">$template</span> <span class="token operator">=</span> <span class="token string heredoc-string"><span class="token delimiter symbol"><span class="token punctuation">&lt;&lt;&lt;</span>VAREND</span>
+{{helper name}}              // This send the value of 'name' into the helper
+{{helper "Test"}}            // This send the string "Test" into the helper (FLAG_ADVARNAME is required)
+{{helper2 "Test" name}}      // This send string "Test" as first parameter,
+                             // and the value of 'name' as second parameter into the helper
+<span class="token delimiter symbol">VAREND<span class="token punctuation">;</span></span></span>
+
+<span class="token variable">$phpStr</span> <span class="token operator">=</span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token function">compile</span><span class="token punctuation">(</span><span class="token variable">$template</span><span class="token punctuation">,</span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+    <span class="token string single-quoted-string">'flags'</span> <span class="token operator">=></span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token constant">FLAG_HANDLEBARS</span><span class="token punctuation">,</span>
+    <span class="token string single-quoted-string">'helpers'</span> <span class="token operator">=></span> <span class="token keyword">array</span><span class="token punctuation">(</span>
+      <span class="token string single-quoted-string">'helper'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$arg1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token string double-quoted-string">"ARG 1: <span class="token interpolation"><span class="token variable">$arg1</span></span>"</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string single-quoted-string">'helper2'</span> <span class="token operator">=></span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token variable">$arg1</span><span class="token punctuation">,</span> <span class="token variable">$arg2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token string double-quoted-string">"ARG 1: <span class="token interpolation"><span class="token variable">$arg1</span></span>, ARG2: <span class="token interpolation"><span class="token variable">$arg2</span></span>"</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$renderer</span> <span class="token operator">=</span> <span class="token class-name static-context">LightnCandy</span><span class="token operator">::</span><span class="token function">prepare</span><span class="token punctuation">(</span><span class="token variable">$phpStr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token variable">$renderer</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'name'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'John'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre><h3>Output</h3>
+<pre><code>ARG 1: John              // This send the value of &#x27;name&#x27; into the helper
+ARG 1: Test            // This send the string &quot;Test&quot; into the helper (FLAG_ADVARNAME is required)
+ARG 1: Test, ARG2: John      // This send string &quot;Test&quot; as first parameter,
+                             // and the value of &#x27;name&#x27; as second parameter into the helper</code></pre>
+  <a name="SeeAlso..."></a><a class="glyphicon glyphicon-pushpin" href="#SeeAlso..."></a>
+<h2>See Also...</h2>
+<ul class="ref">
+ <li><a href="http://handlebarsjs.com/expressions.html"><span class="glyphicon glyphicon-new-window"></span> http://handlebarsjs.com/expressions.html</a></li>
+ <li><a href="http://handlebarsjs.com/block_helpers.html"><span class="glyphicon glyphicon-new-window"></span> http://handlebarsjs.com/block_helpers.html</a></li>
+ <li><a href="0021-customhelper.html">Handlebars: Custom Helper</a></li>
+ <li><a href="0023-namedarguments.html">Handlebars: Named Arguments</a></li>
+ <li><a href="9002-helperoptions.html">LightnCandy: The $options Object</a></li>
+ <li><a href="LC-FLAG_NAMEDARG.html">LightnCandy option: FLAG_NAMEDARG</a></li>
+ <li><a href="LC-FLAG_ADVARNAME.html">LightnCandy option: FLAG_ADVARNAME</a></li>
+</ul>
+<ul class="pager">
+ <li class="previous"><a href="9000-quickstart.html"><span class="glyphicon glyphicon-arrow-left"></span> LightnCandy: Quick Start</a></li>
+ <li class="next"><a href="9002-helperoptions.html">LightnCandy: The $options Object <span class="glyphicon glyphicon-arrow-right"></span></a></li>
+</ul>
+<script>
+(function() {
+ var cx = '015786516026450061497:ydk5o8cxglu';
+ var gcse = document.createElement('script');
+ gcse.type = 'text/javascript';
+ gcse.async = true;
+ gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+ var s = document.getElementsByTagName('script')[0];
+ s.parentNode.insertBefore(gcse, s);
+})();
+</script>
+<div class="search">
+<h3>Search the cookbook</h3>
+<gcse:search></gcse:search>
+</div>
+<div class="footer">
+Generated at 2022-03-21T13:13:56.019Z
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+<script>
+if (document.execCommand) {
+    new Clipboard('.btn[data-clipboard-target]');
+} else {
+    $('.btn[data-clipboard-target]').hide();
+}
+
+$(document).keydown(function (e) {
+  var A;
+
+  if ($('#gsc-i-id1').is(':focus')) {
+      return;
+  }
+
+  switch (e.keyCode) {
+  case 37:
+    A = $('.pager .previous a').attr('href');
+    break;
+  case 39:
+    A = $('.pager .next a').attr('href');
+    break;
+  case 191:
+    return setTimeout(function () {
+        $('#gsc-i-id1').focus();
+    }, 1);
+  case 190:
+    return $('ul.ref li:first-child a').focus();
+  case 188:
+    return $('.navbar .nav .dropdown .dropdown-toggle').trigger('click');
+  }
+  if (A) {
+    location.href = A;
+  }
+});
+</script>
+</body>
+</html>
